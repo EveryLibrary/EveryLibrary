@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-title>{{'PROFILO_TITOLO' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="profiloFormModel">
+    <ion-list no-lines>
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">{{ 'EMAIL' | translate }}</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="profiloFormModel.get('email').touched && profiloFormModel.get('email').invalid">
+        <ion-text color="danger">{{ 'EMAIL_REQUIRED' | translate }}</ion-text>
+      </p>
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">{{ 'TELEFONO' | translate }}</ion-label>
+        <ion-input type="text" formControlName="telefono"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">{{ 'LANGUAGE' | translate }}</ion-label>
+        <ion-select formControlName="linguaPreferita" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
+          <ion-select-option *ngFor="let lingua of lingue" [value]="lingua.valore">{{lingua.etichetta}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <div margin-top="30px" align="center">
+      <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmit()" [disabled]="!profiloFormModel.valid" tappable>
+        {{ 'SAVE_BUTTON' | translate }}
+      </ion-button>
+      <ion-button icon-left size="medium" shape="round" color="primary" (click)="cancel()" tappable>
+        {{ 'CANCEL_BUTTON' | translate }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-content padding>
+  <ion-list>
+    <ion-card *ngFor="let i of insegnamenti$ | async">
+      <ion-card-header>
+        <ion-card-title>{{i.denominazione | uppercase}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <h2>{{i.codice}}</h2>
+        <p>{{i.corsoDiLaurea.nome}}</p>
+      </ion-card-content>
+      <ion-row no-padding>
+        <ion-col text-left>
+          <ion-button color="secondary" icon-start (click)="openDettaglioInsegnamento(i)">
+            <ion-icon name='create'></ion-icon>
+            {{'DETTAGLIO_INSEGNAMENTO_TITOLO' | translate}}
+          </ion-button>
+        </ion-col>
+        <ion-col text-right>
+          <ion-button color="secondary" icon-start [routerLink]="['/appelli-insegnamento', i.id]" routerDirection="forward">
+            <ion-icon name='color-wand'></ion-icon>
+            {{'APPELLI_TITOLO' | translate}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+</ion-content>

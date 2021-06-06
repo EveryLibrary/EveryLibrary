@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <!--
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    -->
+    <ion-title>{{'APPELLO_TITOLO' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="appelloFormModel">
+    <ion-list no-lines>
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">{{ 'APPELLO_DESCRIZIONE' | translate }}</ion-label>
+        <ion-input type="email" formControlName="descrizione"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="appelloFormModel.get('descrizione').touched && appelloFormModel.get('descrizione').invalid">
+        <ion-text color="danger">{{ 'APPELLO_DESCRIZIONE_REQUIRED' | translate }}</ion-text>
+      </p>
+      <ion-item>
+        <ion-label position="fixed">{{ 'APPELLO_TIPOLOGIA_ESAME' | translate }}</ion-label>
+        <ion-select formControlName="tipologiaEsame" okText="{{ 'SAVE_BUTTON' | translate }}" cancelText="{{ 'CANCEL_BUTTON' | translate }}">
+          <ion-select-option *ngFor="let t of tipologieEsame" [value]="t">{{t}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">{{ 'APPELLO_DATA' | translate }}</ion-label>
+        <ion-datetime formControlName="dataAppello" displayFormat="DD/MM/YYYY" min="2018-01-01" max="2020-12-31"
+                      cancelText="{{ 'CANCEL_BUTTON' | translate }}"
+                      doneText="{{ 'SAVE_BUTTON' | translate }}"></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <div margin-top="30px" align="center">
+      <ion-button icon-left size="medium" shape="round" color="primary" (click)="onSubmit()" [disabled]="!appelloFormModel.valid" tappable>
+        {{ 'SAVE_BUTTON' | translate }}
+      </ion-button>
+      <ion-button icon-left size="medium" shape="round" color="primary" (click)="cancel()" tappable>
+        {{ 'CANCEL_BUTTON' | translate }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'DETTAGLIO_NOTIZIA_TITOLO' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngIf="(notizia$ | async) as notizia">
+    <ion-card-header>
+      <ion-card-title>{{notizia.nome}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>{{notizia.descrizione}}</div>
+      <div>Pubblicato da: <b>{{notizia.pubblicatoDa.nome}}</b></div>
+      <div>Tipologia: <b>{{notizia.tipologia.nome}}</b></div>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
