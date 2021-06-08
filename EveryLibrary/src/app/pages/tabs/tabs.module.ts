@@ -23,42 +23,6 @@ const routes: Routes = [
                 ]
             },
             {
-                path: 'insegnamenti',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../insegnamenti/insegnamenti.module#InsegnamentiPageModule'
-                    }
-                ]
-            },
-            {
-                path: 'lezioni',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../dummy-tab/dummy-tab.module#DummyTabPageModule'
-                    }
-                ]
-            },
-            {
-                path: 'appelli',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../dummy-tab/dummy-tab.module#DummyTabPageModule'
-                    }
-                ]
-            },
-            {
-                path: 'orario',
-                children: [
-                    {
-                        path: '',
-                        loadChildren: '../dummy-tab/dummy-tab.module#DummyTabPageModule'
-                    }
-                ]
-            },
-            {
                 path: '',
                 redirectTo: '/tabs/notizie',
                 pathMatch: 'full'

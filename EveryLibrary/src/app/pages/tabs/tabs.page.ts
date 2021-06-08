@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {Utente} from '../../../../../../../MyUnivaq/src/app/model/utente.model';
-import {UtenteService} from '../../../../../../../MyUnivaq/src/app/services/utente.service';
 
 @Component({
   selector: 'app-tabs',
@@ -10,12 +7,9 @@ import {UtenteService} from '../../../../../../../MyUnivaq/src/app/services/uten
 })
 export class TabsPage implements OnInit {
 
-  private utente$: BehaviorSubject<Utente>;
-
-  constructor(private utenteService: UtenteService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.utente$ = this.utenteService.getUtente();
   }
 
 }
