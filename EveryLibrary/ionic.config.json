@@ -1,7 +1,0 @@
-{
-  "name": "EveryLibrary",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
