@@ -1,0 +1,32 @@
+ion-icon{
+    font-size: 32px;
+    margin-right: 10px;
+    float: right;
+}
+
+#logo{
+    padding: 10px;
+}
+
+ion-toolbar{
+    --background: #859b59;
+}
+
+ion-content{
+    text-align: center;
+    --background: #d8f2a2;
+}
+
+ion-searchbar{
+    font-size: 4px;
+    --background: white;
+    --color: black;
+    --border-radius: 50px;
+}
+
+ion-button{
+    --background: #c0e080;
+    --color: black;
+    width: 200px;
+    --border-radius: 10px;
+}
