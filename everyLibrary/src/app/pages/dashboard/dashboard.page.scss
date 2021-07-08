@@ -1,20 +1,27 @@
 .bottoniLog{
+  //text-transform: none;
     font-size: 12px;
-    margin-right: 10px;
-    text-align-last: center;
+    display: block;
     --background: #c0e080;
     --border-radius: 50px;
-    
+    width: fit-content;
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
 }
-
 #logo{
     padding: 10px;
 }
-
-ion-toolbar{
-    --background: #859b59;
+.header-md::after{
+  background-image: none;
 }
-
+ion-toolbar{
+  text-align: -webkit-center;
+    --background: #d8f2a2;
+}
+ion-toolbar:first-of-type{
+  padding: 0;
+}
 ion-content{
     text-align: center;
     --background: #d8f2a2;

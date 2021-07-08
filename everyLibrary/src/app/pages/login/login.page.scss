@@ -11,6 +11,10 @@
     padding: 10px;
 }
 
+ion-toolbar:first-of-type{
+  padding: 0;
+}
+
 ion-toolbar{
     --background: #859b59;
 }
@@ -20,16 +24,18 @@ ion-content{
     --background: #d8f2a2;
 }
 
-ion-searchbar{
-    font-size: 4px;
-    --background: white;
-    --color: black;
-    --border-radius: 50px;
-}
-
 ion-button{
     --background: #c0e080;
     --color: black;
     width: 200px;
     --border-radius: 10px;
+}
+
+ion-input{
+  width: 80%;
+  text-align: center;
+  background-color: #def3cd;
+  margin-left: 10%;
+  border: 1px solid grey;
+  border-radius: 4px;
 }

@@ -1,15 +1,16 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <ion-button class="bottoniLog" (click)="back()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
       <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
-      <ion-searchbar placeholder="Città, Biblioteche, ..."></ion-searchbar>
+      <ion-input type="text" placeholder="username"></ion-input>
       <br>
-      <ion-button (click)="linkMappaBiblioteche()">Mappa Biblioteche</ion-button>
+      <ion-input type="password" placeholder="password"></ion-input>
       <br>
+      <ion-button (click)="signIn()">Accedi</ion-button>
       <br>
-      <ion-button (click)="linkAreaRiservata()">Area Riservata</ion-button>
+      <ion-text (click)="signup()" style="font-size: 10px">Non hai un account? Registrati qui</ion-text>
 </ion-content>
