@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
   },
+  {
+    path: 'biblioteche',
+    loadChildren: () => import('./pages/biblioteche/biblioteche.module').then( m => m.BibliotechePageModule)
+  },
+  {
+    path: 'area-riservata',
+    loadChildren: () => import('./pages/area-riservata/area-riservata.module').then( m => m.AreaRiservataPageModule)
+  },
 ];
 
 @NgModule({
