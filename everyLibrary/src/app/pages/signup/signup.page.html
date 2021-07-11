@@ -1,9 +1,46 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
+  <ion-toolbar style="margin-top: 17px">
+    <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
 
+  <form>
+    <div class="wrapform" style="background-color: none;">
+      
+      <ion-input type="text" placeholder="nome">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+      <ion-input type="text" placeholder="cognome">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+      <ion-input type="date">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+      <ion-input type="tel" placeholder="telefono">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+      <ion-input type="email" placeholder="email">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+      <ion-input type="text" placeholder="username">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+      <ion-input type="password" placeholder="password">
+        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      </ion-input>
+
+
+    </div>
+  </form>
+
+  <ion-button (click)="signup"><b>Registrati</b></ion-button>
 </ion-content>
