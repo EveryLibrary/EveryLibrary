@@ -5,12 +5,46 @@
 </ion-header>
 
 <ion-content>
-      <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
-      <ion-input type="text" placeholder="username"></ion-input>
+  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>  
+  
+  <form [formGroup]="validationFormUser" (ngSubmit)="LoginUser(validationFormUser.value)">
+    <div class="wrapform" style="background-color: none;">
+        
+        
+    <ion-input type="text" placeholder="username" formControlName="username">
+      <ion-icon name="mail-outline" style="margin-left: 5px;"></ion-icon>
+    </ion-input>
+  
+    <div>
+      <ng-container *ngFor="let validation of validationUserMessage.username">
+        <div class="error_message" *ngIf="validationFormUser.get('username').hasError(validation.type) && (validationFormUser.get('username').dirty || validationFormUser.get('username').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <br>
+  
+    <ion-input type="password" placeholder="password" formControlName="password">
+      <ion-icon name="lock-closed-outline" style="margin-left: 5px;"></ion-icon>  
+    </ion-input>
+
+    <div>
+      <ng-container *ngFor="let validation of validationUserMessage.password">
+        <div class="error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+  
+    </div>
+      
+  </form>
+
       <br>
-      <ion-input type="password" placeholder="password"></ion-input>
-      <br>
-      <ion-button (click)="signIn()">Accedi</ion-button>
-      <br>
-      <ion-text (click)="signup()" style="font-size: 10px">Non hai un account? Registrati qui</ion-text>
+      <ion-button (click)="signIn()" [disabled]="!validationFormUser.valid"><b>Accedi</b></ion-button>
+      <br>     
+      <ion-text (click)="signup()" style="font-size: 11px; color: #374124;">Non hai un account? Registrati qui</ion-text>
+
+  
 </ion-content>
