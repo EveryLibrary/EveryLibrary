@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,25 +12,26 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginPage implements OnInit {
 
   validationUserMessage ={
-    username:[
-      {type:"required", message:"Inserisci il tuo username"},
-      {type:"pattern", message:"L'username inserito non è corretto"}
+    email:[
+      {type:'required', message:'Inserisci la tua email'},
+      {type:'pattern', message:'L\'email inserita non è corretta'}
     ],
     password:[
-      {type:"required", message:"Inserisci la tua password"},
-      {type:"minlength", message:"La password inserita non è corretta"}
+      {type:'required', message:'Inserisci la tua password'},
+      {type:'minlength', message:'La password inserita non è corretta'}
     ]
-  }
+  };
 
   validationFormUser: FormGroup;
 
-  constructor(private navController: NavController, private router: Router, public formBuilder: FormBuilder) { }
+  constructor(private navController: NavController, private router: Router, public formBuilder: FormBuilder,
+              public authservice: AuthService) { }
 
   ngOnInit() {
     this.validationFormUser=this.formBuilder.group({
-      username: new FormControl('', Validators.compose([
+      email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9]+$')
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
@@ -37,6 +39,16 @@ export class LoginPage implements OnInit {
       ]))
     });
 
+  }
+
+  LoginUser(value){
+    try {
+      this.authservice.loginFireauth(value).then( resp=>{
+        console.log(resp);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   signup(){
