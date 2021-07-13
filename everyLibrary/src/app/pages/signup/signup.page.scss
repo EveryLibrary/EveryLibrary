@@ -8,17 +8,19 @@
 }
 
 #logo{
-    padding: 10px;
+  height: 130px;
+}
+
+ion-toolbar{
+  --background: #d8f2a2;
 }
 
 ion-toolbar:first-of-type{
   padding: 0;
 }
-
-ion-toolbar{
-    --background: #859b59;
+.header-md::after{
+  background-image: none;
 }
-
 ion-content{
     text-align: center;
     --background: #d8f2a2;
@@ -39,9 +41,4 @@ ion-input{
     border: 1px solid grey;
     border-radius: 4px;
     color: black;
-}
-
-::-webkit-scrollbar,
-*::-webkit-scrollbar {
-  display: none;
 }

@@ -5,8 +5,17 @@ import { AreaRiservataPage } from './area-riservata.page';
 
 const routes: Routes = [
   {
+    path: 'area-riservata',
+    component: AreaRiservataPage,
+    children: [{
+      path: 'biblioteche', loadChildren: () => import('src/app/pages/biblioteche/biblioteche.module').
+      then(res => res.BibliotechePageModule)
+    }]
+  },
+  {
     path: '',
-    component: AreaRiservataPage
+    redirectTo: 'area-riservata/biblioteche',
+    pathMatch: 'full'
   }
 ];
 

@@ -41,10 +41,11 @@ export class LoginPage implements OnInit {
 
   }
 
-  LoginUser(value){
+  loginUser(value){
     try {
       this.authservice.loginFireauth(value).then( resp=>{
         console.log(resp);
+        this.router.navigate(['area-riservata']);
       });
     } catch (err) {
       console.log(err);

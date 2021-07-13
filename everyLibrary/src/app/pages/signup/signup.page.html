@@ -1,47 +1,82 @@
 <ion-header>
-  <ion-toolbar style="margin-top: 17px">
+  <ion-toolbar style="margin-top: 17px;">
     <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
-
-  <form>
-    <div class="wrapform" style="background-color: none;">
-
-      <ion-input type="text" placeholder="nome">
-        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+  <ion-card class="ion-no-margin">
+    <ion-card-header>
+      <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
+    </ion-card-header>
+  <form [formGroup]="validationFormUser" (ngSubmit)="registerUser(validationFormUser.value)" >
+    <ion-card-content>
+    <div>
+      <ion-input type="text" placeholder="nome" formControlName="name">
       </ion-input>
+      <div>
+        <ng-container *ngFor="let validation of validationMessages.name">
+          <div class="error_message" *ngIf="validationFormUser.get('name').hasError(validation.type) && (validationFormUser.get('name').dirty || validationFormUser.get('name').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
 
-      <ion-input type="text" placeholder="cognome">
-        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      <ion-input type="text" placeholder="cognome" formControlName="surname">
       </ion-input>
+      <div>
+        <ng-container *ngFor="let validation of validationMessages.surname">
+          <div class="error_message" *ngIf="validationFormUser.get('surname').hasError(validation.type) && (validationFormUser.get('surname').dirty || validationFormUser.get('surname').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
 
-      <ion-input type="date">
-        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      <ion-input type="date" formControlName="birthdate">
       </ion-input>
+      <div>
+        <ng-container *ngFor="let validation of validationMessages.birthdate">
+          <div class="error_message" *ngIf="validationFormUser.get('birthdate').hasError(validation.type) && (validationFormUser.get('birthdate').dirty || validationFormUser.get('birthdate').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
 
-      <ion-input type="tel" placeholder="telefono">
-        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      <ion-input type="tel" placeholder="telefono" formControlName="tel">
       </ion-input>
+      <div>
+        <ng-container *ngFor="let validation of validationMessages.tel">
+          <div class="error_message" *ngIf="validationFormUser.get('tel').hasError(validation.type) && (validationFormUser.get('tel').dirty || validationFormUser.get('tel').touched)" style="color: red; margin-top: 4px; font-size: 10px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
 
-      <ion-input type="email" placeholder="email">
-        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      <ion-input type="email" placeholder="email" formControlName="email">
       </ion-input>
-
+      <div>
+        <ng-container *ngFor="let validation of validationMessages.email">
+          <div class="error_message" *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
       <!--
       <ion-input type="text" placeholder="username">
         <ion-icon name="" style="margin-left: 5px;"></ion-icon>
       </ion-input> -->
-
-      <ion-input type="password" placeholder="password">
-        <ion-icon name="" style="margin-left: 5px;"></ion-icon>
+      <ion-input type="password" placeholder="password" formControlName="password">
       </ion-input>
-
-
+      <div>
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
     </div>
+  <ion-button type="submit" [disabled]="!validationFormUser.valid"><b>Registrati</b></ion-button>
+    </ion-card-content>
   </form>
-
-  <ion-button (click)="signup"><b>Registrati</b></ion-button>
+  </ion-card>
 </ion-content>

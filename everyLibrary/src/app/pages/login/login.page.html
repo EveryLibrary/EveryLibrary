@@ -7,7 +7,7 @@
 <ion-content>
   <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
 
-  <form [formGroup]="validationFormUser" (ngSubmit)="LoginUser(validationFormUser.value)">
+  <form [formGroup]="validationFormUser" (ngSubmit)="loginUser(validationFormUser.value)">
     <div class="wrapform" style="background-color: none;">
 
 
@@ -39,12 +39,12 @@
 
     </div>
 
-  </form>
+
 
       <br>
-      <ion-button [disabled]="!validationFormUser.valid"><b>Accedi</b></ion-button>
+      <ion-button type="submit" [disabled]="!validationFormUser.valid"><b>Accedi</b></ion-button>
       <br>
       <ion-text (click)="signup()" style="font-size: 11px; color: #374124;">Non hai un account? Registrati qui</ion-text>
-
+  </form>
 
 </ion-content>
