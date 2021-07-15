@@ -61,23 +61,26 @@ export class SignupPage implements OnInit {
       });
   }
 
-  registerUser(value){
+  registerUser(value) {
     this.showalert();
     try {
-      this.authService.userRegistration(value).then( resp=>{
-        console.log(resp);
-        if (resp.user){
-          resp.updateProfile({
+      console.log(value);
+      this.authService.userRegistration(value).then(response => {
+        console.log(response);
+        if (response.currentUser) {
+          console.log('prima di updateProfile la response è: ' + response.currentUser);
+          response.updateProfile({
             displayName: value.name,
             email: value.email,
-            birthdate: value.birthdate,
-            surname: value.surname,
-            tel: value.tel
-          });
+            //birthdate: value.birthdate,
+            //surname: value.surname,
+            phoneNumber: value.tel});
+          console.log('prima di dismiss');
           this.loading.dismiss();
           this.router.navigate(['login']);
         }
-      }, error=>{
+      }, error => {
+        console.log('errore');
         this.loading.dismiss();
         this.errorLoading(error.message);
       });
@@ -99,10 +102,10 @@ export class SignupPage implements OnInit {
     await loading.present();
   }
   async showalert(){
-    var load = await  this.alertCtrl.create({
-      message:'Attendere prego....',
+    var loading = await  this.alertCtrl.create({
+      message:'Attendere prego....' ,
     });
-    load.present();
+    await loading.present();
   }
 
 }

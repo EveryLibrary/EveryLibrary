@@ -8,7 +8,7 @@
 }
 
 #logo{
-  height: 130px;
+  height: 120px;
 }
 
 ion-toolbar{
@@ -35,10 +35,23 @@ ion-button{
 
 ion-input{
     width: 80%;
+    height: 60%;
     text-align: center;
     background-color: #def3cd;
     margin: 10px 10%;
     border: 1px solid grey;
     border-radius: 4px;
     color: black;
+}
+ion-card-header{
+  margin-bottom: -20px;
+  margin-top: -25px
+}
+.error_message{
+  color: red;
+  padding: 10px 0px 10px 5px;
+  font-size: 12px;
+}
+input.native-input.sc-ion-input-md{
+  font-size: 14px;
 }
