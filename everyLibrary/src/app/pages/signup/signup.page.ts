@@ -41,7 +41,7 @@ export class SignupPage implements OnInit {
           Validators.required,
           Validators.pattern('^[a-zA-Z]+$')
         ])),
-        bithdate: new FormControl('' , Validators.compose([
+        birthdate: new FormControl('' , Validators.compose([
           Validators.required
         ])),
         tel: new FormControl('', Validators.compose([
@@ -62,7 +62,7 @@ export class SignupPage implements OnInit {
   }
 
   registerUser(value){
-    //this.showalert();
+    this.showalert();
     try {
       this.authService.userRegistration(value).then( resp=>{
         console.log(resp);
@@ -70,16 +70,16 @@ export class SignupPage implements OnInit {
           resp.updateProfile({
             displayName: value.name,
             email: value.email,
-            birthdate: value.bithdate,
+            birthdate: value.birthdate,
             surname: value.surname,
             tel: value.tel
           });
-          //this.loading.dismiss();
+          this.loading.dismiss();
           this.router.navigate(['login']);
         }
       }, error=>{
-        //this.loading.dismiss();
-        //this.errorLoading(error.message);
+        this.loading.dismiss();
+        this.errorLoading(error.message);
       });
     } catch (err) {
       console.log(err);
