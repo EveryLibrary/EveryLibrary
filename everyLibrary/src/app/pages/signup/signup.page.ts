@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertController, NavController} from '@ionic/angular';
+import {AlertController, NavController, LoadingController} from '@ionic/angular';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
@@ -28,7 +28,9 @@ export class SignupPage implements OnInit {
   validationFormUser: FormGroup;
   loading: any;
   constructor(private navController: NavController, private router: Router, public formBuilder: FormBuilder,
-              public authService: AuthService, private alertCtrl: AlertController) { }
+              public authService: AuthService, private alertCtrl: AlertController, public loadingCtrl : LoadingController) {
+                this.loading = this.loadingCtrl;
+  }
 
   ngOnInit() {
     this.validationFormUser=this.formBuilder.group(
@@ -64,16 +66,16 @@ export class SignupPage implements OnInit {
   registerUser(value) {
     this.showalert();
     try {
-      console.log(value);
+      console.log('stampa value', value);
       this.authService.userRegistration(value).then(response => {
-        console.log(response);
-        if (response.currentUser) {
-          console.log('prima di updateProfile la response è: ' + response.currentUser);
+        console.log('stampa response', response);
+        if (response.user) {
+          console.log('prima di updateProfile la response è: ' , response.user);
           response.updateProfile({
             displayName: value.name,
             email: value.email,
-            //birthdate: value.birthdate,
-            //surname: value.surname,
+            birthdate: value.birthdate,
+            surname: value.surname,
             phoneNumber: value.tel});
           console.log('prima di dismiss');
           this.loading.dismiss();
@@ -85,7 +87,7 @@ export class SignupPage implements OnInit {
         this.errorLoading(error.message);
       });
     } catch (err) {
-      console.log(err);
+      console.log('stampa err'+err);
     }
   }
   async errorLoading(message: any){
