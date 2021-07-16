@@ -28,7 +28,19 @@ const routes: Routes = [
     path: 'area-riservata',
     loadChildren: () => import('./pages/area-riservata/area-riservata.module').then( m => m.AreaRiservataPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'libri-preferiti',
+    loadChildren: () => import('./pages/libri-preferiti/libri-preferiti.module').then( m => m.LibriPreferitiPageModule)
   },
+  {
+    path: 'libri-prenotati',
+    loadChildren: () => import('./pages/libri-prenotati/libri-prenotati.module').then( m => m.LibriPrenotatiPageModule)
+  },
+  {
+    path: 'biblioteca',
+    loadChildren: () => import('./pages/biblioteca/biblioteca.module').then( m => m.BibliotecaPageModule)
+  },
+
 ];
 
 @NgModule({

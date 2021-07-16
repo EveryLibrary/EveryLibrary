@@ -1,16 +1,64 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <ion-title>biblioteche</ion-title>
+    <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
     <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-icon name="log-out-outline"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo"></ion-img>
   <ion-searchbar placeholder="Città, Biblioteche, ..."></ion-searchbar>
   <br>
-  <ion-button (click)="linkMappaBiblioteche()">Qualcosa</ion-button>
   <br>
-  <br>
-  <ion-button (click)="linkAreaRiservata()">altro</ion-button>
+  <ion-text> MAPPA ????????</ion-text>
+  <ion-list>
+
+    <ion-card>
+      <ion-item>
+        <ion-icon name="library-outline" slot="start"></ion-icon>
+        <ion-label>Nome Biblioteca</ion-label>
+        <ion-button fill="outline" slot="end" (click)="linkBiblioteca()">Vedi di più</ion-button>
+      </ion-item>
+      <ion-card-content>
+        Posizione:
+        <br>
+        Contatti:
+        <br>
+        Orari:
+        <br>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-icon name="library-outline" slot="start"></ion-icon>
+        <ion-label>Nome Biblioteca</ion-label>
+        <ion-button fill="outline" slot="end" (click)="linkBiblioteca()">Vedi di più</ion-button>
+      </ion-item>
+      <ion-card-content>
+        Posizione:
+        <br>
+        Contatti:
+        <br>
+        Orari:
+        <br>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-icon name="library-outline" slot="start"></ion-icon>
+        <ion-label>Nome Biblioteca</ion-label>
+        <ion-button fill="outline" slot="end" (click)="linkBiblioteca()">Vedi di più</ion-button>
+      </ion-item>
+      <ion-card-content>
+        Posizione:
+        <br>
+        Contatti:
+        <br>
+        Orari:
+        <br>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

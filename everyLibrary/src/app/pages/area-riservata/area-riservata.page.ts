@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-area-riservata',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreaRiservataPage implements OnInit {
 
-  constructor() { }
+  constructor(private navController: NavController, private router: Router) { }
 
   ngOnInit() {
   }
 
+  linkLibriPreferiti(){
+    this.router.navigate(['/libri-preferiti']);
+  }
+  linkLibriPrenotati(){
+    this.router.navigate(['/libri-prenotati']);
+  }
 }
