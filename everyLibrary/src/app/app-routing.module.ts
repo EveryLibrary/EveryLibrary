@@ -27,14 +27,17 @@ const routes: Routes = [
   {
     path: 'area-riservata',
     loadChildren: () => import('./pages/area-riservata/area-riservata.module').then( m => m.AreaRiservataPageModule),
-    canActivate: [AuthGuard]
-  },  {
+    //canActivate: [AuthGuard]
+  },
+  {
     path: 'libri-preferiti',
     loadChildren: () => import('./pages/libri-preferiti/libri-preferiti.module').then( m => m.LibriPreferitiPageModule)
+    //canActivate: [AuthGuard]
   },
   {
     path: 'libri-prenotati',
     loadChildren: () => import('./pages/libri-prenotati/libri-prenotati.module').then( m => m.LibriPrenotatiPageModule)
+    //canActivate: [AuthGuard]
   },
   {
     path: 'biblioteca',

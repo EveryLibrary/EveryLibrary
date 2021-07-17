@@ -20,7 +20,6 @@ export class DashboardPage implements OnInit {
   linkAreaRiservata(){
     this.router.navigate(['/area-riservata']);
   }
-
   login(){
     this.router.navigate(['/login']);
   }

@@ -1,63 +1,37 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
+    <ion-button class="bottoniLog" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
-    <ion-icon name="log-out-outline"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <br>
     <ion-item>
       <ion-label>Nome: </ion-label>
-      <ion-text> ... </ion-text>
+      <ion-text> Luca </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Cognome: </ion-label>
-      <ion-text> ... </ion-text>
+      <ion-text> Ruggeri </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Data Di Nascita: </ion-label>
-      <ion-text> ... </ion-text>
+      <ion-text> 18/07/1997 </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Email: </ion-label>
-      <ion-text> ... </ion-text>
+      <ion-text> luca@gmail.com </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Telefono: </ion-label>
-      <ion-text> ... </ion-text>
+      <ion-text> 3452617234 </ion-text>
     </ion-item>
-
-    <ion-item>
-      <ion-label>Username: </ion-label>
-      <ion-text> ... </ion-text>
-    </ion-item>
-  </ion-list>
-
-  <ion-card>
-    <ion-item>
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-text>
-        Nome:
-        <br>
-        Cognome:
-        <br>
-        Data Di Nascita:
-        <br>
-        Email:
-        <br>
-        Telefono:
-        <br>
-        Username:
-      </ion-text>
-    </ion-item>
-  </ion-card>
-  <br>
   <br>
   <ion-button (click)="linkLibriPrenotati()">Libri Prenotati</ion-button>
   <br>

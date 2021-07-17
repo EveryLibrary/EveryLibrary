@@ -1,27 +1,36 @@
 .bottoniLog{
   font-size: 12px;
-  margin-right: 10px;
-  text-align-last: center;
+  display: block;
   --background: #c0e080;
   --border-radius: 50px;
   width: fit-content;
+  float: right;
+  margin-right: 50px;
+  margin-left: 40px;
 }
-
 #logo{
-  padding: 15px;
+  padding: 10px;
 }
-
+.header-md::after{
+  background-image: none;
+}
+ion-toolbar{
+  text-align: -webkit-center;
+  --background: #d8f2a2;
+}
 ion-toolbar:first-of-type{
   padding: 0;
 }
-
-ion-toolbar{
-  --background: #859b59;
-}
-
 ion-content{
   text-align: center;
   --background: #d8f2a2;
+}
+
+ion-searchbar{
+  font-size: 4px;
+  --background: white;
+  --color: black;
+  --border-radius: 50px;
 }
 
 ion-button{
@@ -31,16 +40,6 @@ ion-button{
   --border-radius: 10px;
 }
 
-ion-input{
-  width: 80%;
-  text-align: center;
-  background-color: #def3cd;
-  margin-left: 10%;
-  border: 1px solid grey;
-  border-radius: 4px;
-  color: black;
-}
-
-ion-list{
-  background-color: #d8f2a2;
+ion-item{
+  --background: #d8f2a2;
 }
