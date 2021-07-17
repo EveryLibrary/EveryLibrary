@@ -3,18 +3,18 @@ import {NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-biblioteca',
-  templateUrl: './biblioteca.page.html',
-  styleUrls: ['./biblioteca.page.scss'],
+  selector: 'app-libro',
+  templateUrl: './libro.page.html',
+  styleUrls: ['./libro.page.scss'],
 })
-export class BibliotecaPage implements OnInit {
+export class LibroPage implements OnInit {
 
   constructor(private navController: NavController, private router: Router) { }
 
   ngOnInit() {
   }
-  linkListaLibri(){
-    this.router.navigate(['/lista-libri']);
+  linkPrestito(){
+    //this.router.navigate('/prestito');
   }
 
 }

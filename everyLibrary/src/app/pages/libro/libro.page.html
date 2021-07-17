@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar style="margin-top: 17px">
+    <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
+    <ion-button class="bottoniLog" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <br>
+  <ion-title>
+    Titolo Libro
+  </ion-title>
+  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo1"></ion-img>
+
+  <ion-item>
+    <ion-label>ISBN: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data Pubblicazione: </ion-label>
+    <ion-text> .... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Autore: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Editore: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Genere: </ion-label>
+    <ion-text> .... </ion-text>
+  </ion-item>
+
+  <br>
+  <ion-item>
+    <ion-label>Trama: </ion-label>
+    <ion-text>......... </ion-text>
+  </ion-item>
+  <br>
+  <br>
+  <ion-button (click)="linkPrestito()">Prendi in prestito</ion-button>
+
+</ion-content>
