@@ -1,9 +1,71 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>prestito</ion-title>
+  <ion-toolbar style="margin-top: 17px">
+    <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
+    <ion-button class="bottoniLog" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <br>
+  <br>
+  <ion-title style="text-align: center;">
+    Info Libro
+  </ion-title>
+  <br>
+  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo1"></ion-img>
+  <br>
+  <ion-item>
+    <ion-label>Titolo: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label>ISBN: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Autore: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Editore: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <br>
+  <br>
+  <ion-title style="text-align: center;">
+    Info Prenotazione
+  </ion-title>
+
+  <ion-item>
+    <ion-label>Biblioteca: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Corsia: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data Prenotazione: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data Ritiro: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data Restituzione: </ion-label>
+    <ion-text> ... </ion-text>
+  </ion-item>
+  <br>
+  <br>
+  <ion-button aria-haspopup="true">Conferma Prenotazione</ion-button>
 
 </ion-content>

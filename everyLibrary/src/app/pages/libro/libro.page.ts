@@ -14,7 +14,7 @@ export class LibroPage implements OnInit {
   ngOnInit() {
   }
   linkPrestito(){
-    //this.router.navigate('/prestito');
+    this.router.navigate(['/prestito']);
   }
 
 }

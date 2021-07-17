@@ -15,6 +15,7 @@ export class ListaLibriPage implements OnInit {
   }
 
   linkLibro(){
-    //this.router.navigate('/libro');
+    this.router.navigate(['/libro']);
   }
+
 }
