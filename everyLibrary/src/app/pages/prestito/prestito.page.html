@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
+    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" style="margin-right: 130px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
-    <ion-button class="bottoniLog" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -13,12 +13,13 @@
     Info Libro
   </ion-title>
   <br>
-  <ion-img src="../../../assets/icon/logo_everylibrary_senza_sfondo_-_Copia-removebg-preview.png" id="logo1"></ion-img>
+  <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
   <br>
   <ion-item>
     <ion-label>Titolo: </ion-label>
     <ion-text> ... </ion-text>
   </ion-item>
+
   <ion-item>
     <ion-label>ISBN: </ion-label>
     <ion-text> ... </ion-text>
@@ -65,7 +66,6 @@
     <ion-text> ... </ion-text>
   </ion-item>
   <br>
-  <br>
-  <ion-button aria-haspopup="true">Conferma Prenotazione</ion-button>
+  <ion-button class="prestito" aria-haspopup="true">Conferma Prenotazione</ion-button>
 
 </ion-content>

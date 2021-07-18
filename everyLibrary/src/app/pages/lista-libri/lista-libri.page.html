@@ -1,21 +1,21 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <!--<ion-button class="bottoniLog" style="float: left" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog"  (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>-->
+    <!--<ion-button class="bottoniLog" style="float: left; margin-right: 5px; margin-left: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" style="margin-right: 5px; margin-left: 5px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>-->
+    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" style="margin-right: 130px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
-    <ion-button class="bottoniLog" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <br>
   <ion-searchbar placeholder="Cerca un libro"></ion-searchbar>
-  <ion-button (click)="linkLibro()">Cancellare bottone->Libro</ion-button>
+  <ion-button style="margin-left: 30px;" (click)="linkLibro()">Cancellare->Libro</ion-button>
   <ion-list>
     <ion-card>
       <ion-card-content>
-        <ion-icon name="book-outline"></ion-icon>
+        <ion-icon class="icona" name="book-outline"></ion-icon>
         <br>
         Titolo: Il bello dell'essere morti
         <br>
@@ -29,7 +29,7 @@
 
     <ion-card>
       <ion-card-content>
-        <ion-icon name="book-outline"></ion-icon>
+        <ion-icon class="icona" name="book-outline"></ion-icon>
         <br>
         Titolo: Il bello dell'essere morti
         <br>
@@ -43,7 +43,7 @@
 
     <ion-card>
       <ion-card-content>
-        <ion-icon name="book-outline"></ion-icon>
+        <ion-icon class="icona" name="book-outline"></ion-icon>
         <br>
         Titolo: Il bello dell'essere morti
         <br>

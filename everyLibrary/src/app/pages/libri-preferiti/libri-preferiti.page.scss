@@ -5,8 +5,6 @@
   --border-radius: 50px;
   width: fit-content;
   float: right;
-  margin-right: 50px;
-  margin-left: 40px;
 }
 #logo{
   padding: 10px;
@@ -15,14 +13,12 @@
   background-image: none;
 }
 ion-toolbar{
-  text-align: -webkit-center;
   --background: #d8f2a2;
 }
 ion-toolbar:first-of-type{
   padding: 0;
 }
 ion-content{
-  //text-align: center;
   --background: #d8f2a2;
 }
 
@@ -42,4 +38,9 @@ ion-button{
 
 ion-list{
   background-color: #d8f2a2;
+}
+
+.icone{
+  height: 30px;
+  width: 30px;
 }

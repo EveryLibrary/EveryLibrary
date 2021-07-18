@@ -5,8 +5,6 @@
   --border-radius: 50px;
   width: fit-content;
   float: right;
-  margin-right: 50px;
-  margin-left: 40px;
 }
 #logo{
   padding: 10px;
@@ -45,4 +43,14 @@ ion-list{
 }
 ion-item{
   --background: #d8f2a2;
+}
+.libro{
+  height: 250px;
+  width: 250px;
+  align-content: center;
+}
+.prestito{
+  width: 225px;
+  margin-left: 18px;
+  margin-bottom: 15px;
 }

@@ -5,8 +5,6 @@
   --border-radius: 50px;
   width: fit-content;
   float: right;
-  margin-right: 50px;
-  margin-left: 40px;
 }
 #logo{
   padding: 10px;
@@ -25,14 +23,6 @@ ion-content{
   //text-align: center;
   --background: #d8f2a2;
 }
-
-ion-searchbar{
-  font-size: 4px;
-  --background: white;
-  --color: black;
-  --border-radius: 50px;
-}
-
 ion-button{
   --background: #c0e080;
   --color: black;
@@ -45,4 +35,13 @@ ion-list{
 }
 ion-item{
   --background: #d8f2a2;
+}
+.libro{
+  height: 250px;
+  width: 250px;
+  align-content: center;
+}
+.prestito{
+  margin-left: 35px;
+  margin-bottom: 20px;
 }
