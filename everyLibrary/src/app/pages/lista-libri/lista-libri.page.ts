@@ -18,4 +18,13 @@ export class ListaLibriPage implements OnInit {
     this.router.navigate(['/libro']);
   }
 
+  /*
+  login(){
+    this.router.navigate(['/login']);
+  }
+
+  signup(){
+    this.router.navigate(['/signup']);
+  }
+   */
 }

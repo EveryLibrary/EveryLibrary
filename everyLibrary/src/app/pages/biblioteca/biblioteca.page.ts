@@ -17,4 +17,13 @@ export class BibliotecaPage implements OnInit {
     this.router.navigate(['/lista-libri']);
   }
 
+  /*
+  login(){
+    this.router.navigate(['/login']);
+  }
+
+  signup(){
+    this.router.navigate(['/signup']);
+  }
+   */
 }

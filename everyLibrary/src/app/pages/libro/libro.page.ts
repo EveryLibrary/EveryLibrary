@@ -17,4 +17,13 @@ export class LibroPage implements OnInit {
     this.router.navigate(['/prestito']);
   }
 
+  /*
+  login(){
+    this.router.navigate(['/login']);
+  }
+
+  signup(){
+    this.router.navigate(['/signup']);
+  }
+   */
 }

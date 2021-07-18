@@ -8,8 +8,17 @@ import { Router } from '@angular/router';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private router: Router) { }
-
+  jsonData: any=[];
+  constructor(private router: Router) {
+    this.initializeJSONData();
+  }
+  filterJSONData(ev: any){
+    this.initializeJSONData();
+    const val = ev.target.value;
+    if(val && val.trim() !== ''){
+      this.jsonData = this.jsonData.filter((item) =>(item.name.toLowerCase().indexOf(val.toLowerCase()) > -1 ));
+    }
+  }
   ngOnInit() {
   }
 
@@ -26,5 +35,17 @@ export class DashboardPage implements OnInit {
 
   signup(){
     this.router.navigate(['/signup']);
+  }
+  initializeJSONData(){
+    this.jsonData = [
+      {
+        name : 'L\'Aquila',
+        code : 'AQ'
+      },
+      {
+        name : 'Roma',
+        code : 'RM'
+      }
+    ];
   }
 }

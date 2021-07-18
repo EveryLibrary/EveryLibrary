@@ -10,7 +10,10 @@
   <br>
   <ion-button (click)="linkMappaBiblioteche()">Mappa Biblioteche</ion-button>
   <br>
-  <ion-searchbar placeholder="Città, Biblioteche, ..."></ion-searchbar>
+  <ion-searchbar (ionInput)="filterJSONData($event)" placeholder="Città, Biblioteche, ..."></ion-searchbar>
+  <!--<ion-item *ngFor="let item of jsonData">
+    {{item.name}}
+  </ion-item>-->
   <br>
   <ion-button (click)="linkAreaRiservata()">Area Riservata</ion-button>
 </ion-content>

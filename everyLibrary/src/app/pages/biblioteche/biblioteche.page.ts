@@ -17,4 +17,14 @@ export class BibliotechePage implements OnInit {
   linkBiblioteca(){
     this.router.navigate(['/biblioteca']);
   }
+
+  /*
+  login(){
+    this.router.navigate(['/login']);
+  }
+
+  signup(){
+    this.router.navigate(['/signup']);
+  }
+   */
 }
