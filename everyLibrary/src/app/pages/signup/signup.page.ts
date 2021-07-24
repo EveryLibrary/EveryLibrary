@@ -28,7 +28,7 @@ export class SignupPage implements OnInit {
   validationFormUser: FormGroup;
   loading: any;
   constructor(private navController: NavController, private router: Router, public formBuilder: FormBuilder,
-              public authService: AuthService, private alertCtrl: AlertController, public loadingCtrl : LoadingController) {
+              public authService: AuthService, private alertCtrl: AlertController, public loadingCtrl: LoadingController) {
                 this.loading = this.loadingCtrl;
   }
 
@@ -63,37 +63,36 @@ export class SignupPage implements OnInit {
       });
   }
 
-  registerUser(value) {
+  registerUser(value){
     this.showalert();
-    try {
-      console.log('stampa value', value);
-      this.authService.userRegistration(value).then(response => {
-        console.log('stampa response', response);
-        if (response.user) {
-          console.log('prima di updateProfile la response è: ' , response.user);
-          response.updateProfile({
+    try{
+      this.authService.userRegistration(value).then( response =>{
+        console.log(response);
+        if(response.user){
+          response.user.updateProfile({
             displayName: value.name,
             email: value.email,
-            birthdate: value.birthdate,
-            surname: value.surname,
-            phoneNumber: value.tel});
-          console.log('prima di dismiss');
+            phoneNumber: value.tel
+
+          });
+          //this.preference.store(value.phone,'userPhoneNumber');
+
           this.loading.dismiss();
           this.router.navigate(['login']);
         }
-      }, error => {
-        console.log('errore');
+      }, error=>{
         this.loading.dismiss();
         this.errorLoading(error.message);
+
       });
-    } catch (err) {
-      console.log('stampa err'+err);
+    }catch(erro){
+      console.log(erro);
     }
   }
   async errorLoading(message: any){
     const loading = await this.alertCtrl.create({
-      header: 'Errore nella registazione',
-      message: message,
+      header:'Errore nella registazione',
+      message,
       buttons:[{
         text:'ok',
         handler: ()=>{
@@ -103,11 +102,13 @@ export class SignupPage implements OnInit {
     });
     await loading.present();
   }
+
   async showalert(){
-    var loading = await  this.alertCtrl.create({
-      message:'Attendere prego....' ,
+    var load = await this.loadingCtrl.create({
+      message:'Attendere prego....',
+      duration:100,
     });
-    await loading.present();
+    load.present();
   }
 
 }
