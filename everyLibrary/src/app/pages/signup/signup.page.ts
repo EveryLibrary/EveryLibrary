@@ -14,17 +14,17 @@ export class SignupPage implements OnInit {
   validationMessages ={
     name: [{type:'required', message:'Inserisci il nome'}],
     surname: [{type:'required', message:'Inserisci il cognome'}],
-    tel: [{type:'required', message:'Inserisci il numero di telefono'}],
+    phoneNumber: [{type:'required', message:'Inserisci il numero di telefono'}],
     birthdate: [{type:'required', message:'Inserisci la data di nascita'}],
-      email:[
-        {type:'required', message:'Inserisci la tua email'},
-        {type:'pattern', message:'L\'email inserita non è corretta'}
-      ],
-      password:[
-        {type:'required', message:'Inserisci la tua password'},
-        {type:'minlength', message:'La password inserita non è corretta'}
-      ]
-      };
+    email:[
+      {type:'required', message:'Inserisci la tua email'},
+      {type:'pattern', message:'L\'email inserita non è corretta'}
+    ],
+    password:[
+      {type:'required', message:'Inserisci la tua password'},
+      {type:'minlength', message:'La password inserita non è corretta'}
+    ]
+    };
   validationFormUser: FormGroup;
   loading: any;
   constructor(private navController: NavController, private router: Router, public formBuilder: FormBuilder,
@@ -46,7 +46,7 @@ export class SignupPage implements OnInit {
         birthdate: new FormControl('' , Validators.compose([
           Validators.required
         ])),
-        tel: new FormControl('', Validators.compose([
+        phoneNumber: new FormControl('', Validators.compose([
           Validators.required,
           Validators.pattern('^[0-9]+$'),
           Validators.minLength(10),
@@ -71,9 +71,10 @@ export class SignupPage implements OnInit {
         if(response.user){
           response.user.updateProfile({
             displayName: value.name,
+            surname: value.surname,
+            birthdate: value.birthdate,
             email: value.email,
-            phoneNumber: value.tel
-
+            phoneNumber: value.phoneNumber
           });
           //this.preference.store(value.phone,'userPhoneNumber');
 

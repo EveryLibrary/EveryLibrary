@@ -43,10 +43,10 @@
       </ion-input>
 
 
-      <ion-input type="tel" placeholder="telefono" formControlName="tel">
+      <ion-input type="tel" placeholder="telefono" formControlName="phoneNumber">
         <div>
-          <ng-container *ngFor="let validation of validationMessages.tel">
-            <div class="error_message" *ngIf="validationFormUser.get('tel').hasError(validation.type) && (validationFormUser.get('tel').dirty || validationFormUser.get('tel').touched)">
+          <ng-container *ngFor="let validation of validationMessages.phoneNumber">
+            <div class="error_message" *ngIf="validationFormUser.get('phoneNumber').hasError(validation.type) && (validationFormUser.get('phoneNumber').dirty || validationFormUser.get('phoneNumber').touched)">
               {{validation.message}}
             </div>
           </ng-container>

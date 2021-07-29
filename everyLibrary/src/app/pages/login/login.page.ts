@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
         console.log(resp);
         //this.router.navigate(['area-riservata']);
         
+        //controllare this.authservice.setUser
         if(resp.user){
           this.authservice.setUser({
             username: resp.user.displayName,
@@ -60,8 +61,12 @@ export class LoginPage implements OnInit {
             } else {
               this.firestore.doc(`profile/${this.authservice.getUserUid()}`).set({
                 name: resp.user.displayName,
-                email: resp.user.email
+                email: resp.user.email,
+                //surname: resp.user.surname,
+                //birthdate: resp.user.birthdate,
+                phoneNumber: resp.user.phoneNumber
               });
+              this.navController.navigateForward(['area-riservata']);
             }
           })
         }
