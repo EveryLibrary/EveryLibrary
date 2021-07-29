@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginPage implements OnInit {
   validationFormUser: FormGroup;
 
   constructor(private navController: NavController, private router: Router, public formBuilder: FormBuilder,
-              public authservice: AuthService) { }
+              public authservice: AuthService, private firestore: AngularFirestore) { }
 
   ngOnInit() {
     this.validationFormUser=this.formBuilder.group({
@@ -45,7 +46,25 @@ export class LoginPage implements OnInit {
     try {
       this.authservice.loginFireauth(value).then( resp=>{
         console.log(resp);
-        this.router.navigate(['area-riservata']);
+        //this.router.navigate(['area-riservata']);
+        
+        if(resp.user){
+          this.authservice.setUser({
+            username: resp.user.displayName,
+            uid: resp.user.uid
+          })
+          const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
+          userProfile.get().subscribe(result=>{
+            if(result.exists){
+              this.navController.navigateForward(['area-riservata']);
+            } else {
+              this.firestore.doc(`profile/${this.authservice.getUserUid()}`).set({
+                name: resp.user.displayName,
+                email: resp.user.email
+              });
+            }
+          })
+        }
       });
     } catch (err) {
       console.log(err);
