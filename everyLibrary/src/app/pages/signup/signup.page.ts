@@ -3,7 +3,6 @@ import {AlertController, NavController, LoadingController} from '@ionic/angular'
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -66,18 +65,38 @@ export class SignupPage implements OnInit {
   registerUser(value){
     this.showalert();
     try{
+      const name = value.name;
+      const surname = value.surname;
+      const phoneNumber = value.phoneNumber;
+      const birthdate = value.birthdate;
+      const email = value.email;
+
       this.authService.userRegistration(value).then( response =>{
         console.log(response);
         if(response.user){
           response.user.updateProfile({
-            displayName: value.name,
+            displayName: value.name+' '+value.surname,
             surname: value.surname,
             birthdate: value.birthdate,
             email: value.email,
             phoneNumber: value.phoneNumber
           });
+          //salva dati nel db
+          this.authService
+            .userSignUp(name,surname,birthdate,phoneNumber,email);
+            /*.then(
+              () => {
+                this.loading.dismiss().then(() => {
+                  this.router.navigate(['login']);
+                });
+              },
+              error => {
+                this.loading.dismiss().then(() => {
+                  console.error(error);
+                });
+              }
+            );*/
           //this.preference.store(value.phone,'userPhoneNumber');
-
           this.loading.dismiss();
           this.router.navigate(['login']);
         }

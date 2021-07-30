@@ -47,24 +47,32 @@ export class LoginPage implements OnInit {
       this.authservice.loginFireauth(value).then( resp=>{
         console.log(resp);
         //this.router.navigate(['area-riservata']);
-        
+
         //controllare this.authservice.setUser
         if(resp.user){
           this.authservice.setUser({
-            username: resp.user.displayName,
+            name: resp.user.name,
+            surname: resp.user.surname,
+            birthdate: resp.user.birthdate,
+            phoneNumber: resp.user.phoneNumber,
+            email: resp.user.email,
+            //username: resp.user.displayName,
             uid: resp.user.uid
           })
-          const userProfile = this.firestore.collection('profile').doc(resp.user.uid);
+          const userProfile = this.firestore.collection('Utenti').doc(resp.user.uid);
+          console.log(userProfile);
           userProfile.get().subscribe(result=>{
             if(result.exists){
+              console.log('esiste');
               this.navController.navigateForward(['area-riservata']);
             } else {
-              this.firestore.doc(`profile/${this.authservice.getUserUid()}`).set({
+              console.log('Non esiste');
+              this.firestore.doc(`Utenti/${this.authservice.getUserUid()}`).set({
                 name: resp.user.displayName,
                 email: resp.user.email,
                 //surname: resp.user.surname,
                 //birthdate: resp.user.birthdate,
-                phoneNumber: resp.user.phoneNumber
+                phoneNumber: resp.user.phoneNumber,
               });
               this.navController.navigateForward(['area-riservata']);
             }
@@ -73,6 +81,7 @@ export class LoginPage implements OnInit {
       });
     } catch (err) {
       console.log(err);
+      //password/email errate
     }
   }
 
