@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
 
 export interface UserID{
   username: string;
@@ -36,6 +37,13 @@ export class AuthService {
       });
   }
 
+  /*userLogIn(id: string, uid: string){
+
+    return this.firestore.doc(`Utenti/${id}`).update({
+      id: uid,
+    });
+  }*/
+
   setUser(user: UserSignUp){
     return this.user = user;
   }
@@ -54,7 +62,8 @@ export class AuthService {
   }
 
   userSignUp(name,surname,birthdate,phoneNumber, email): Promise<void> {
-    const id = this.firestore.createId();
+    //const id = this.firestore.createId();
+    const id = firebase.auth().currentUser.uid;
 
     return this.firestore.doc(`Utenti/${id}`).set({
       id,
@@ -64,5 +73,9 @@ export class AuthService {
       phoneNumber,
       email,
     });
+  }
+
+  getUserInfo(userId: string): Observable<UserSignUp> {
+    return this.firestore.collection('Utenti').doc<UserSignUp>(userId).valueChanges();
   }
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="log-out-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" style="margin-right: 130px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
   </ion-toolbar>
@@ -10,27 +10,27 @@
   <br>
     <ion-item>
       <ion-label>Nome: </ion-label>
-      <ion-text> Luca </ion-text>
+      <ion-text> {{ utente.name }} </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Cognome: </ion-label>
-      <ion-text> Ruggeri </ion-text>
+      <ion-text> {{ utente.surname }} </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Data Di Nascita: </ion-label>
-      <ion-text> 18/07/1997 </ion-text>
+      <ion-text> {{ utente.birthdate}} </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Email: </ion-label>
-      <ion-text> luca@gmail.com </ion-text>
+      <ion-text> {{ utente.email }}</ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label>Telefono: </ion-label>
-      <ion-text> 3452617234 </ion-text>
+      <ion-text> {{ utente.phoneNumber }} </ion-text>
     </ion-item>
   <br>
   <ion-button (click)="linkLibriPrenotati()">Libri Prenotati</ion-button>

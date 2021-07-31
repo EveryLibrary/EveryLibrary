@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -64,6 +65,9 @@ export class LoginPage implements OnInit {
           userProfile.get().subscribe(result=>{
             if(result.exists){
               console.log('esiste');
+              //this.authservice.userLogIn(firebase.auth().currentUser.uid);
+              if (firebase.auth().currentUser !== null)
+                console.log('user id: ' + firebase.auth().currentUser.uid);
               this.navController.navigateForward(['area-riservata']);
             } else {
               console.log('Non esiste');
