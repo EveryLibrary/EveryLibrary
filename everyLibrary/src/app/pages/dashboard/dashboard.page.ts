@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import firebase from 'firebase';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthService} from '../../services/auth.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +14,8 @@ import { Router } from '@angular/router';
 export class DashboardPage implements OnInit {
 
   jsonData: any=[];
-  constructor(private router: Router) {
+  constructor(private router: Router, public authservice: AuthService, private firestore: AngularFirestore,
+  public toastController: ToastController) {
     this.initializeJSONData();
   }
   filterJSONData(ev: any){
@@ -20,6 +26,7 @@ export class DashboardPage implements OnInit {
     }
   }
   ngOnInit() {
+    //console.log(firebase.auth().currentUser.uid);
   }
 
   linkMappaBiblioteche(){
@@ -27,7 +34,14 @@ export class DashboardPage implements OnInit {
   }
 
   linkAreaRiservata(){
-    this.router.navigate(['/area-riservata']);
+    if(this.userLoggedIn()){
+    this.router.navigate(['/area-riservata']);}
+    else {
+      this.presentToast().then( res=>
+      this.router.navigate(['/login']),
+        err => console.log(err)
+        );
+    }
   }
   login(){
     this.router.navigate(['/login']);
@@ -47,5 +61,19 @@ export class DashboardPage implements OnInit {
         code : 'RM'
       }
     ];
+  }
+
+  userLoggedIn() {
+    return (firebase.auth().currentUser != null);
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Devi effettuare il Login!',
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
   }
 }

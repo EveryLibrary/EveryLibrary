@@ -3,6 +3,8 @@ import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
+import {LoadingController} from "@ionic/angular";
 
 export interface UserID{
   username: string;
@@ -22,10 +24,13 @@ export interface UserSignUp{
   providedIn: 'root'
 })
 export class AuthService {
-
+  loading: any;
   private user: UserSignUp;
 
-  constructor(public auth: AngularFireAuth, public firestore: AngularFirestore) { }
+  constructor(public auth: AngularFireAuth, public firestore: AngularFirestore,
+              public router: Router, public loadingCtrl: LoadingController) {
+    this.loading = this.loadingCtrl;
+  }
 
 
   loginFireauth(value){
@@ -77,5 +82,22 @@ export class AuthService {
 
   getUserInfo(userId: string): Observable<UserSignUp> {
     return this.firestore.collection('Utenti').doc<UserSignUp>(userId).valueChanges();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async SignOut() {
+    var load = await this.loadingCtrl.create({
+      message: 'Attendere prego....',
+      duration: 100,
+    });
+    load.present();
+    firebase.auth().signOut().then(
+      r => {
+        console.log('Sign out');
+        this.loading.dismiss();
+        this.router.navigate(['dashboard']);
+      },
+      err => console.log(err)
+    );
   }
 }

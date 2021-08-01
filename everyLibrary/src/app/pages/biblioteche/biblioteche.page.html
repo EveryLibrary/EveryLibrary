@@ -16,51 +16,23 @@
 
   <ion-list>
 
-    <ion-card>
-      <ion-item>
-        <ion-icon class="icona" name="library-outline" slot="start"></ion-icon>
-        <ion-button slot="end" (click)="linkBiblioteca()">Vedi di più</ion-button>
-      </ion-item>
-      <ion-card-content>
-        Posizione: Via delle piscine n°15
-        <br>
-        Contatti: 3452617253
-        <br>
-        Orari: 09:00-18:00
-        <br>
-      </ion-card-content>
-    </ion-card>
 
-    <ion-card>
-      <ion-item>
-        <ion-icon class="icona" name="library-outline" slot="start"></ion-icon>
-        <ion-label>Nome Biblioteca</ion-label>
-        <ion-button slot="end" (click)="linkBiblioteca()">Vedi di più</ion-button>
-      </ion-item>
-      <ion-card-content>
-        Posizione:
+          <ion-card *ngFor="let biblioteca of bibliotecheList | async"
+                    routerLink="/biblioteca/{{biblioteca.id}}">
+          <ion-card><h2 style="text-align: center">
+            <ion-icon class="icona" name="library-outline" slot="start"></ion-icon>
+            {{ biblioteca.nome }}</h2>
+          </ion-card>
+            <ion-card-content>
+        Posizione: {{ biblioteca.via+' '+biblioteca.civico }}
         <br>
-        Contatti:
+        Contatti: {{biblioteca.telefono }}
         <br>
-        Orari:
-        <br>
-      </ion-card-content>
-    </ion-card>
+        Orari: {{biblioteca.orario_apertura+'-'+biblioteca.orario_chiusura}}
 
-    <ion-card>
-      <ion-item>
-        <ion-icon class="icona" name="library-outline" slot="start"></ion-icon>
-        <ion-label>Nome Biblioteca</ion-label>
-        <ion-button slot="end" (click)="linkBiblioteca()">Vedi di più</ion-button>
-      </ion-item>
-      <ion-card-content>
-        Posizione:
-        <br>
-        Contatti:
-        <br>
-        Orari:
-        <br>
-      </ion-card-content>
-    </ion-card>
+              <ion-button style="width: fit-content;padding: 10px; font-size: 10px; float: right;" (click)="linkBiblioteca()">Vedi di più</ion-button>
+
+            </ion-card-content>
+          </ion-card>
   </ion-list>
 </ion-content>

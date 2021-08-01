@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import { ViewChild, ElementRef} from '@angular/core';
+import { FirestoreService } from '../../services/data/firestore.service';
+import { Biblioteca } from '../../models/biblioteche.interface';
+import { Observable } from 'rxjs';
 
 declare let google: any;
 
@@ -11,12 +14,14 @@ declare let google: any;
   styleUrls: ['./biblioteche.page.scss'],
 })
 export class BibliotechePage implements OnInit {
-
+  public bibliotecheList: Observable<Biblioteca[]>;
   map: any;
   @ViewChild('map', {read: ElementRef, static: false}) mapRef: ElementRef;
-  constructor(private navController: NavController, private router: Router) { }
+  constructor(private navController: NavController, private router: Router,
+  private firestoreService: FirestoreService) { }
 
   ngOnInit() {
+    this.bibliotecheList = this.firestoreService.getBibliotecheList();
   }
 
   linkBiblioteca(){

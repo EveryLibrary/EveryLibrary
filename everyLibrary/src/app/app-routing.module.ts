@@ -40,9 +40,10 @@ const routes: Routes = [
     //canActivate: [AuthGuard]
   },
   {
-    path: 'biblioteca',
+    path: 'biblioteca/:id',
     loadChildren: () => import('./pages/biblioteca/biblioteca.module').then( m => m.BibliotecaPageModule)
-  },  {
+  },
+  {
     path: 'libro',
     loadChildren: () => import('./pages/libro/libro.module').then( m => m.LibroPageModule)
   },
