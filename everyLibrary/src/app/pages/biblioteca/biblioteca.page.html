@@ -12,26 +12,26 @@
   <br>
   <br>
   <ion-title>
-    Biblioteca L'Aquila
+    {{ biblioteca?.nome }}
   </ion-title>
   <ion-item>
     <ion-label>Posizione: </ion-label>
-    <ion-text> Via delle Piscine n°15 </ion-text>
+    <ion-text> {{ biblioteca?.via+' n°'+biblioteca?.civico }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Telefono: </ion-label>
-    <ion-text> 3452617234 </ion-text>
+    <ion-text> {{biblioteca?.telefono }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Orario apertura: </ion-label>
-    <ion-text> 09:00 </ion-text>
+    <ion-text> {{biblioteca?.orario_apertura}} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Orario chiusura: </ion-label>
-    <ion-text> 18:00 </ion-text>
+    <ion-text> {{biblioteca?.orario_chiusura}} </ion-text>
   </ion-item>
   <br>
   <br>

@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
-import {Router} from '@angular/router';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import { ViewChild, ElementRef} from '@angular/core';
+import { FirestoreService } from '../../services/data/firestore.service';
+import { Biblioteca } from '../../models/biblioteche.interface';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-biblioteca',
   templateUrl: './biblioteca.page.html',
   styleUrls: ['./biblioteca.page.scss'],
 })
 export class BibliotecaPage implements OnInit {
-
-  constructor(private navController: NavController, private router: Router) { }
+  public biblioteca: Biblioteca;
+  constructor(private navController: NavController, private router: Router,
+    private route: ActivatedRoute, private firestoreService: FirestoreService) { }
 
   ngOnInit() {
+    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
+    this.firestoreService.getBiblioteca(bibliotecaId).subscribe(biblioteca => {
+      this.biblioteca = biblioteca;
+    });
   }
   linkListaLibri(){
     this.router.navigate(['/lista-libri']);

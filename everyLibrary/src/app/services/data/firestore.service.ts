@@ -14,4 +14,8 @@ export class FirestoreService {
   getBibliotecheList(): Observable<Biblioteca[]> {
     return this.firestore.collection<Biblioteca>(`Biblioteche`).valueChanges();
   }
+
+  getBiblioteca(bibliotecaId: string): Observable<Biblioteca> {
+    return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges();
+  }
 }

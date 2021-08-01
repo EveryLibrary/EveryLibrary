@@ -20,17 +20,17 @@
           <ion-card *ngFor="let biblioteca of bibliotecheList | async"
                     routerLink="/biblioteca/{{biblioteca.id}}">
           <ion-card><h2 style="text-align: center">
-            <ion-icon class="icona" name="library-outline" slot="start"></ion-icon>
+            <ion-icon class="icona" name="library-outline" [style.color]="'#82552E'" slot="start"></ion-icon>
             {{ biblioteca.nome }}</h2>
           </ion-card>
             <ion-card-content>
-        Posizione: {{ biblioteca.via+' '+biblioteca.civico }}
+        Posizione: {{ biblioteca.via+' n°'+biblioteca.civico }}
         <br>
         Contatti: {{biblioteca.telefono }}
         <br>
         Orari: {{biblioteca.orario_apertura+'-'+biblioteca.orario_chiusura}}
 
-              <ion-button style="width: fit-content;padding: 10px; font-size: 10px; float: right;" (click)="linkBiblioteca()">Vedi di più</ion-button>
+              <ion-button style="width: fit-content;padding: 10px; font-size: 10px; float: right;">Vedi di più</ion-button>
 
             </ion-card-content>
           </ion-card>
