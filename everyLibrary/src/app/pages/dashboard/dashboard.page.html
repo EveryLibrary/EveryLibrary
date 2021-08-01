@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <!--<ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>-->
+    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float: left; margin-left: 5px; margin-right: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="margin-left: 5px; margin-right: 5px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>
   </ion-toolbar>

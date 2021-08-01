@@ -5,6 +5,7 @@ import { ViewChild, ElementRef} from '@angular/core';
 import { FirestoreService } from '../../services/data/firestore.service';
 import { Biblioteca } from '../../models/biblioteche.interface';
 import { Observable } from 'rxjs';
+import firebase from 'firebase';
 @Component({
   selector: 'app-biblioteca',
   templateUrl: './biblioteca.page.html',
@@ -24,8 +25,6 @@ export class BibliotecaPage implements OnInit {
   linkListaLibri(){
     this.router.navigate(['/lista-libri']);
   }
-
-  /*
   login(){
     this.router.navigate(['/login']);
   }
@@ -33,5 +32,7 @@ export class BibliotecaPage implements OnInit {
   signup(){
     this.router.navigate(['/signup']);
   }
-   */
+  userLoggedIn() {
+    return (firebase.auth().currentUser != null);
+  }
 }

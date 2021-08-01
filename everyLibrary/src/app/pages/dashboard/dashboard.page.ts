@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from '../../services/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {ToastController} from '@ionic/angular';
+import {NavController, ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +15,7 @@ export class DashboardPage implements OnInit {
 
   jsonData: any=[];
   constructor(private router: Router, public authservice: AuthService, private firestore: AngularFirestore,
-  public toastController: ToastController) {
+  public toastController: ToastController, private navController: NavController) {
     this.initializeJSONData();
   }
   filterJSONData(ev: any){

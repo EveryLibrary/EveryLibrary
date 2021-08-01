@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
 import { Biblioteca } from '../../models/biblioteche.interface';
 import {Observable} from 'rxjs';
+import {Libri} from '../../models/libri.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,11 @@ export class FirestoreService {
 
   getBiblioteca(bibliotecaId: string): Observable<Biblioteca> {
     return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges();
+  }
+  getLibriList(): Observable<Libri[]> {
+    return this.firestore.collection<Libri>(`Libri`).valueChanges();
+  }
+  getLibro(libroId: string): Observable<Libri> {
+    return this.firestore.collection('Libri').doc<Libri>(libroId).valueChanges();
   }
 }

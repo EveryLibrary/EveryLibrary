@@ -5,6 +5,7 @@ import { ViewChild, ElementRef} from '@angular/core';
 import { FirestoreService } from '../../services/data/firestore.service';
 import { Biblioteca } from '../../models/biblioteche.interface';
 import { Observable } from 'rxjs';
+import firebase from 'firebase';
 
 declare let google: any;
 
@@ -27,8 +28,6 @@ export class BibliotechePage implements OnInit {
   linkBiblioteca(){
     this.router.navigate(['/biblioteca']);
   }
-
-  /*
   login(){
     this.router.navigate(['/login']);
   }
@@ -36,7 +35,6 @@ export class BibliotechePage implements OnInit {
   signup(){
     this.router.navigate(['/signup']);
   }
-   */
   ionViewDidEnter(){
     this.showMap();
   }
@@ -48,5 +46,8 @@ export class BibliotechePage implements OnInit {
       disableDefaultUI: true
     };
     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
+  }
+  userLoggedIn() {
+    return (firebase.auth().currentUser != null);
   }
 }

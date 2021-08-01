@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <!--<ion-button class="bottoniLog" style="float: left; margin-right: 5px; margin-left: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" style="margin-right: 5px; margin-left: 5px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>-->
+    <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float: left; margin-right: 5px; margin-left: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="margin-right: 5px; margin-left: 5px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="this.navController.navigateBack('login');"><ion-icon name="log-out-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" style="margin-right: 130px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
@@ -12,7 +12,7 @@
   <br>
   <br>
   <ion-title style="text-align: center;">
-    Titolo Libro
+    {{ libro?.titolo }}
   </ion-title>
   <br>
   <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
@@ -22,12 +22,12 @@
   <br>
   <ion-item>
     <ion-label>ISBN: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libro?.isbn }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Data Pubblicazione: </ion-label>
-    <ion-text> .... </ion-text>
+    <ion-text> {{ libro?.dataPubblicazione }} </ion-text>
   </ion-item>
 
   <ion-item>
@@ -42,13 +42,13 @@
 
   <ion-item>
     <ion-label>Genere: </ion-label>
-    <ion-text> .... </ion-text>
+    <ion-text> {{ libro?.genere }} </ion-text>
   </ion-item>
 
   <br>
   <ion-item>
     <ion-label>Trama: </ion-label>
-    <ion-text> ..... </ion-text>
+    <ion-text> {{ libro?.trama }} </ion-text>
   </ion-item>
   <br>
   <ion-button class="prestito" (click)="linkPrestito()">Prendi in prestito</ion-button>
