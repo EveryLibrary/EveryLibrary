@@ -40,9 +40,17 @@ export class FirestoreService {
       this.firestore.collectionGroup('Biblioteche/' + bibliotecaId).get().subscribe(res => {
         res.forEach(item =>{
           this.firestore.doc(item.ref.path).collection('ListaLibri').valueChanges();
+<<<<<<< HEAD
         });
       });
     });
     return idLibri;
   }
+=======
+          });
+        });
+      });
+    return idLibri;
+    }
+>>>>>>> 38282849b86344b32e89f3d4b3defa481d15bfc6
 }

@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import { Router } from '@angular/router';
-import {LoadingController} from "@ionic/angular";
+import {LoadingController} from '@ionic/angular';
 
 export interface UserID{
   username: string;
