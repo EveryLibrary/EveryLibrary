@@ -3,7 +3,7 @@ import {NavController} from '@ionic/angular';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ViewChild, ElementRef} from '@angular/core';
 import { FirestoreService } from '../../services/data/firestore.service';
-import { Libri } from '../../models/libri.interface';
+import { Libro } from '../../models/libri.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
 
@@ -13,7 +13,7 @@ import firebase from 'firebase';
   styleUrls: ['./libro.page.scss'],
 })
 export class LibroPage implements OnInit {
-  public libro: Libri;
+  public libro: Libro;
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService) { }
 

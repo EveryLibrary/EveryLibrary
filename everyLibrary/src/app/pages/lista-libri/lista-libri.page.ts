@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ViewChild, ElementRef} from '@angular/core';
 import { FirestoreService } from '../../services/data/firestore.service';
-import { Libri } from '../../models/libri.interface';
+import { Libro } from '../../models/libri.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
 
@@ -14,12 +14,15 @@ import firebase from 'firebase';
   styleUrls: ['./lista-libri.page.scss'],
 })
 export class ListaLibriPage implements OnInit {
-  public libriList: Observable<Libri[]>;
+  public libriList: Observable<Libro[]>;
   constructor(private navController: NavController, private router: Router,
-              private firestoreService: FirestoreService) { }
+              private firestoreService: FirestoreService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.libriList = this.firestoreService.getLibriList();
+    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
+    console.log('Biblio: ' + bibliotecaId);
+    this.libriList = this.firestoreService.getListaLibriBiblioteca(bibliotecaId);
+    console.log('Lista libri: ' + this.libriList);
   }
 
   linkLibro(){
