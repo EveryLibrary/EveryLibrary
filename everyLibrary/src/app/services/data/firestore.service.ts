@@ -19,10 +19,17 @@ export class FirestoreService {
   getBiblioteca(bibliotecaId: string): Observable<Biblioteca> {
     return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges();
   }
+
   getLibriList(): Observable<Libri[]> {
     return this.firestore.collection<Libri>(`Libri`).valueChanges();
   }
   getLibro(libroId: string): Observable<Libri> {
     return this.firestore.collection('Libri').doc<Libri>(libroId).valueChanges();
   }
+
+
+  /*getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {
+    return this.firestore.collection('Biblioteche/'+ bibliotecaId +'/ListaLibri').get();
+  }*/
+
 }

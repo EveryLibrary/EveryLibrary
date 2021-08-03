@@ -7,6 +7,7 @@ import { Libri } from '../../models/libri.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
 
+
 @Component({
   selector: 'app-lista-libri',
   templateUrl: './lista-libri.page.html',
