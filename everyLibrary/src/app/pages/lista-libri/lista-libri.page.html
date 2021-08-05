@@ -14,17 +14,13 @@
   <ion-button style="margin-left: 30px;" (click)="linkLibro()">Cancellare->Libro</ion-button>
   <ion-list>
     <ion-card *ngFor="let libro of libriList | async"
-              routerLink="/libro/{{libro.id}}">
+              routerLink="/libro/{{libro?.id}}">
           <ion-icon class="icona" name="book-outline"></ion-icon>
           <ion-icon class="icona" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
-        <br>
-        Titolo: {{ libro.titolo }}
-        <br>
-        Autore: {{ libro.autore }}
-        <br>
-        Editore: {{ libro.editore }}
-        <br>
-        Disponibilità: {{ libro.numeroCopie }}
+    <ion-card-content>
+    <br>
+    Titolo: {{ libro.titolo }}
+    </ion-card-content>
     </ion-card>
   </ion-list>
 </ion-content>

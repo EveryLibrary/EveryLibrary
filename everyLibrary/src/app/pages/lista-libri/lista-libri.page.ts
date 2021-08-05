@@ -15,7 +15,7 @@ import firebase from 'firebase';
 export class ListaLibriPage implements OnInit {
   public libriList: Observable<Libro[]>;
   constructor(private navController: NavController, private router: Router,
-              private firestoreService: FirestoreService, private route: ActivatedRoute) { }
+              private firestoreService: FirestoreService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');

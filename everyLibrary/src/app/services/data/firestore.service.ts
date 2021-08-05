@@ -9,6 +9,7 @@ import {Libro} from '../../models/libri.interface';
   providedIn: 'root'
 })
 export class FirestoreService {
+  private listaLibri: Observable<Libro[]>;
 
   constructor(public firestore: AngularFirestore) {}
 
@@ -36,13 +37,36 @@ export class FirestoreService {
     return idLibri;
   }*/
   getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {
-    const idLibri = new Observable<Libro[]>(subscriber => {
-      this.firestore.collectionGroup('Biblioteche/' + bibliotecaId).get().subscribe(res => {
-        res.forEach(item =>{
+    /*const idLibri = new Observable<Libro[]>(subscriber => {
+      this.firestore.collection('Biblioteche').ref.where('id','==',bibliotecaId).get().subscribe(res => {
+        res
+          .forEach(item =>{
+            console.log(item.ref.path);
           this.firestore.doc(item.ref.path).collection('ListaLibri').valueChanges();
         });
       });
     });
-    return idLibri;
+    return idLibri;*/
+    var i = 0;
+    var docRef = this.firestore.collection('Biblioteche').ref.where('id','==',bibliotecaId);
+    docRef.get().then((querySnapshot) => {
+      querySnapshot.forEach( (doc) => {
+        this.listaLibri = this.firestore.collection<Libro>('ListaLibri').valueChanges();
+        console.log(i++);
+      });
+    });
+    return this.listaLibri;
   }
 }
+/*ngOnInit() {
+  var docRef = this.database.collection("utente", ref => ref.where('uid','==',this.id));
+  docRef.get().toPromise().then((querySnapshot) => {
+    querySnapshot.forEach( (doc) => {
+      this.SchedeProfilo = this.database.collection<Schede>("scheda", ref => ref.where('creatore', '==', doc.data()['username']).where('genere','==',this.cat)).valueChanges();
+      this.SchedeProfilo.subscribe(result => {
+        if(result.length == 0)
+          this.openToast();
+      });
+    });
+  });
+}*/

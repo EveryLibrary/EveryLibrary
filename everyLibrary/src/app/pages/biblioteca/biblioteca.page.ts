@@ -23,7 +23,7 @@ export class BibliotecaPage implements OnInit {
     });
   }
   linkListaLibri(){
-    this.router.navigate(['/lista-libri']);
+    this.router.navigate(['/lista-libri',  this.route.snapshot.paramMap.get('id')]);
   }
   login(){
     this.router.navigate(['/login']);
