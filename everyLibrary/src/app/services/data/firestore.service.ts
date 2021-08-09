@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import 'firebase/firestore';
 import { Biblioteca } from '../../models/biblioteche.interface';
-import {Observable} from 'rxjs';
-import {Libro} from '../../models/libri.interface';
+import { Observable } from 'rxjs';
+import { Libro } from '../../models/libri.interface';
+import firebase from "firebase";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
   private listaLibri: Observable<Libro[]>;
+  private db = firebase.database();
 
-  constructor(public firestore: AngularFirestore) {}
+  constructor(public firestore: AngularFirestore) { }
 
   getBibliotecheList(): Observable<Biblioteca[]> {
     return this.firestore.collection<Biblioteca>(`Biblioteche`).valueChanges();
@@ -47,7 +50,7 @@ export class FirestoreService {
       });
     });
     return idLibri;*/
-    var i = 0;
+    /*var i = 0;
     var docRef = this.firestore.collection('Biblioteche').ref.where('id','==',bibliotecaId);
     docRef.get().then((querySnapshot) => {
       querySnapshot.forEach( (doc) => {
@@ -55,6 +58,29 @@ export class FirestoreService {
         console.log(i++);
       });
     });
+    
+    ref.once('value', (snapshot) => { 
+      snapshot.forEach((childSnapshot) => { 
+        var childKey = childSnapshot.key; 
+        var childData = childSnapshot.val(); 
+      }); 
+    });
+
+    */
+
+    
+
+    var docRef = this.db.ref("Biblioteche/" + bibliotecaId + "/ListaLibri").once('value', (snapshot) => { 
+      snapshot.forEach((childSnapshot) => { 
+        var childKey = childSnapshot.key; 
+        var childData = childSnapshot.val();
+        console.log(childKey);
+        console.log(childData);
+      }); 
+    });
+    
+    console.log(docRef);
+    console.log("ciao");
     return this.listaLibri;
   }
 }

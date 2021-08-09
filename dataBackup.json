@@ -1,0 +1,109 @@
+{
+     "__collections__": {
+          "Biblioteche": {
+               "1": {
+                    "periodo_prestito": "10gg",
+                    "orario_chiusura": "20:00",
+                    "orario_apertura": "10:00",
+                    "via": "via Gianni",
+                    "nome": "Biblioteca PE",
+                    "citta": "Pescara",
+                    "id": "1",
+                    "civico": "32",
+                    "telefono": "0854781256",
+                    "__collections__": {
+                         "ListaLibri": {
+                              "1": {
+                                   "isbn": "9781336019362",
+                                   "dataPubblicazione": "04/05/2016",
+                                   "genere": "Fantascienza",
+                                   "trama": "Daemon Black ultimamente è cambiato: dolce, passionale, protettivo e addirittura geloso, sembra davvero prendere sul serio la relazione con Katy, che adesso è qualcosa di più di una bizzarra connessione aliena. E Katy? Ancora combattuta, non può più negare di esserne perdutamente innamorata.",
+                                   "titolo": "Onyx",
+                                   "id": "1",
+                                   "__collections__": {}
+                              },
+                              "2": {
+                                   "titolo": "Shadows",
+                                   "dataPubblicazione": "09/09/2020",
+                                   "isbn": "9788416429530",
+                                   "genere": "thriller",
+                                   "id": "2",
+                                   "trama": "L'ultima cosa che Dawson Black si sarebbe aspettato era Bethany Williams. Come forma di vita aliena sulla Terra, Dawson e il suo gemello Daemon trovano che le ragazze umane siano... un passatempo divertente. Ma innamorarsi di una di loro sarebbe folle. Pericoloso. Allettante. Irrinunciabile. Bethany viene dal Nevada, e l'ultima cosa che cerca nel West Virginia è l'amore. Ma ogni volta che i suoi occhi incontrano quelli di Dawson si scatena un'attrazione innegabile. E anche se i ragazzi sono una complicazione di cui farebbe volentieri a meno, non riesce davvero a stare lontana da lui. Attratta. Desiderata. Amata. Dawson però nasconde un segreto inconfessabile che non solo può cambiare l'esistenza di Bethany, ma rischia di mettere in pericolo la sua vita. Si può rischiare tutto per una ragazza umana? Si può sfidare un destino inesorabile come l'amore?",
+                                   "__collections__": {}
+                              }
+                         }
+                    }
+               },
+               "2": {
+                    "nome": "Biblioteca AQ",
+                    "via": "via Rossi",
+                    "citta": "L'Aquila",
+                    "periodo_prestito": "5gg",
+                    "orario_apertura": "09:00",
+                    "orario_chiusura": "18:00",
+                    "id": "2",
+                    "telefono": "0854684955",
+                    "civico": "32",
+                    "__collections__": {}
+               }
+          },
+          "Libri": {
+               "libro1": {
+                    "isbn": "9781336019362",
+                    "titolo": "Onyx",
+                    "id": "1",
+                    "dataPubblicazione": "04/05/2016",
+                    "genere": "Fantascienza",
+                    "trama": "Daemon Black ultimamente è cambiato: dolce, passionale, protettivo e addirittura geloso, sembra davvero prendere sul serio la relazione con Katy, che adesso è qualcosa di più di una bizzarra connessione aliena. E Katy? Ancora combattuta, non può più negare di esserne perdutamente innamorata.",
+                    "__collections__": {}
+               },
+               "libro2": {
+                    "trama": "Alma e Alex vivono nei boschi con la Madre, una donna severa che le protegge dalle Ombre, presenze minacciose che infestano il mondo oltre il fiume. Un giorno, le due sorelle intraprendono una serie di avventure e compiono un viaggio verso la verità.",
+                    "genere": "thriller",
+                    "isbn": "9788416429530",
+                    "id": "2",
+                    "dataPubblicazione": "09/09/2020",
+                    "titolo": "Shadows",
+                    "__collections__": {}
+               }
+          },
+          "Utenti": {
+               "W7jeRbMrq1dkhPFveiFJaEa2cv83": {
+                    "id": "W7jeRbMrq1dkhPFveiFJaEa2cv83",
+                    "birthdate": "2000-01-01",
+                    "phoneNumber": "3455656969",
+                    "surname": "Rossi",
+                    "email": "mario@gmail.com",
+                    "name": "Mario",
+                    "__collections__": {}
+               },
+               "XVY6exAqihUrblDtKdDoGQWvQdF2": {
+                    "email": "luca@gmail.com",
+                    "name": "Luca",
+                    "birthdate": "1998-03-12",
+                    "surname": "Falli",
+                    "id": "XVY6exAqihUrblDtKdDoGQWvQdF2",
+                    "phoneNumber": "3425678956",
+                    "__collections__": {}
+               },
+               "heEfLzmYiMWoAi9Ue5pYGP2Mj5q1": {
+                    "email": "rosa@gmail.com",
+                    "id": "heEfLzmYiMWoAi9Ue5pYGP2Mj5q1",
+                    "surname": "gialli",
+                    "birthdate": "2000-03-03",
+                    "name": "rosa",
+                    "phoneNumber": "3458585969",
+                    "__collections__": {}
+               },
+               "nZsJ3K2ccTWdFCy5kW7ULx3IIoX2": {
+                    "surname": "verdi",
+                    "name": "luigi",
+                    "birthdate": "2000-02-02",
+                    "phoneNumber": "3405656969",
+                    "id": "nZsJ3K2ccTWdFCy5kW7ULx3IIoX2",
+                    "email": "luigi@gmail.com",
+                    "__collections__": {}
+               }
+          }
+     }
+}

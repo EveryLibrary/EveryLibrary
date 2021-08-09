@@ -1,3 +1,5 @@
+import firebase  from "firebase";
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -13,8 +15,13 @@ export const firebaseConfig = {
   storageBucket: 'everylibrary-7583a.appspot.com',
   messagingSenderId: '198725644811',
   appId: '1:198725644811:web:b33d85c118bcdb30774d0e',
-  measurementId: 'G-WG5LSRGM6Y'
+  measurementId: 'G-WG5LSRGM6Y',
+  databaseURL: 'https://everylibrary-7583a.firebaseio.com'
 };
+
+firebase.initializeApp(firebaseConfig);
+
+let db = firebase.firestore();
 
 /*
  * For easier debugging in development mode, you can import the following file
