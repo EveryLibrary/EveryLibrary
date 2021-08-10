@@ -39,7 +39,7 @@ export class FirestoreService {
     });
     return idLibri;
   }*/
-  getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {
+  getListaLibriBiblioteca(bibliotecaId: string) {
     /*const idLibri = new Observable<Libro[]>(subscriber => {
       this.firestore.collection('Biblioteche').ref.where('id','==',bibliotecaId).get().subscribe(res => {
         res
@@ -70,18 +70,32 @@ export class FirestoreService {
 
     
 
-    var docRef = this.db.ref("Biblioteche/" + bibliotecaId + "/ListaLibri").once('value', (snapshot) => { 
-      snapshot.forEach((childSnapshot) => { 
-        var childKey = childSnapshot.key; 
+    /*var docRef = this.db.ref("Biblioteche/" + bibliotecaId + "/ListaLibri").once('value', (snapshot) => { 
+      snapshot.forEach((childSnapshot) => {
+        var childKey = childSnapshot.key;
         var childData = childSnapshot.val();
-        console.log(childKey);
-        console.log(childData);
       }); 
     });
+    firebase.firestore().collection('Biblioteche').get().then((snapshot)=> {
+      console.log(snapshot.docs);
+    })
     
-    console.log(docRef);
-    console.log("ciao");
-    return this.listaLibri;
+    */
+
+    /*
+    firebase.firestore().collection("Biblioteche/" + bibliotecaId + "/ListaLibri").get().then((snapshot) => {
+      snapshot.forEach((doc)=>{
+        console.log(doc.get('titolo'));
+        //this.listaLibri = doc.data();
+      })
+    })
+    
+    
+    */
+
+    return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges('ListaLibri_libro2');
+
+    //return this.listaLibri;
   }
 }
 /*ngOnInit() {

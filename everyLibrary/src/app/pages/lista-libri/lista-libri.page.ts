@@ -6,6 +6,7 @@ import { FirestoreService } from '../../services/data/firestore.service';
 import { Libro } from '../../models/libri.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
+import { Biblioteca } from 'src/app/models/biblioteche.interface';
 
 @Component({
   selector: 'app-lista-libri',
@@ -13,7 +14,7 @@ import firebase from 'firebase';
   styleUrls: ['./lista-libri.page.scss'],
 })
 export class ListaLibriPage implements OnInit {
-  public libriList: Observable<Libro[]>;
+  public libriList: Observable<Biblioteca>;
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute) {}
 
