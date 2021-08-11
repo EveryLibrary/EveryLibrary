@@ -5,4 +5,6 @@ export interface Libro {
   trama: string;
   dataPubblicazione: string;
   genere: string;
+  autore: string;
+  editore: string;
 }

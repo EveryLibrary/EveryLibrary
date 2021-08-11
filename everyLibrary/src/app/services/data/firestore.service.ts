@@ -28,7 +28,9 @@ export class FirestoreService {
     return this.firestore.collection<Libro>(`Libri`).valueChanges();
   }
   getLibro(libroId: string): Observable<Libro> {
-    return this.firestore.collection('Libri').doc<Libro>(libroId).valueChanges();
+    var libro = this.firestore.collection<Libro>('Libri', ref => ref.where('id','==',libroId)).doc<Libro>().valueChanges();
+    console.log(libro);
+    return libro;
   }
 
   /*getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {
