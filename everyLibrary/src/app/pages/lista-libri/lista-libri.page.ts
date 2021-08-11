@@ -14,15 +14,15 @@ import { Biblioteca } from 'src/app/models/biblioteche.interface';
   styleUrls: ['./lista-libri.page.scss'],
 })
 export class ListaLibriPage implements OnInit {
-  public libriList: Observable<Biblioteca>;
+  public listaLibri: Observable<Libro[]>;
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
     console.log('Biblio: ' + bibliotecaId);
-    this.libriList = this.firestoreService.getListaLibriBiblioteca(bibliotecaId);
-    console.log('Lista libri: ' + this.libriList);
+    this.listaLibri = this.firestoreService.getListaLibriBiblioteca(bibliotecaId);
+    console.log('Lista libri: ' + this.listaLibri);
   }
 
   linkLibro(){

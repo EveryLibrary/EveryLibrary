@@ -11,15 +11,15 @@
 <ion-content>
   <br>
   <ion-searchbar placeholder="Cerca un libro"></ion-searchbar>
-  <ion-button style="margin-left: 30px;" (click)="linkLibro()">Cancellare->Libro</ion-button>
   <ion-list>
-    <ion-card *ngFor="let libro of libriList | async"
+    <ion-card *ngFor="let libro of listaLibri | async"
               routerLink="/libro/{{libro?.id}}">
           <ion-icon class="icona" name="book-outline"></ion-icon>
           <ion-icon class="icona" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
     <ion-card-content>
     <br>
-    Titolo: {{ libro.titolo }}
+    Titolo: {{ libro?.titolo }}
+      <!--autore, editore, disponibilità-->
     </ion-card-content>
     </ion-card>
   </ion-list>

@@ -4,8 +4,8 @@ import 'firebase/firestore';
 import { Biblioteca } from '../../models/biblioteche.interface';
 import { Observable } from 'rxjs';
 import { Libro } from '../../models/libri.interface';
-import firebase from "firebase";
-
+import firebase from 'firebase';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +39,7 @@ export class FirestoreService {
     });
     return idLibri;
   }*/
-  getListaLibriBiblioteca(bibliotecaId: string) {
+  getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {
     /*const idLibri = new Observable<Libro[]>(subscriber => {
       this.firestore.collection('Biblioteche').ref.where('id','==',bibliotecaId).get().subscribe(res => {
         res
@@ -58,48 +58,49 @@ export class FirestoreService {
         console.log(i++);
       });
     });
-    
-    ref.once('value', (snapshot) => { 
-      snapshot.forEach((childSnapshot) => { 
-        var childKey = childSnapshot.key; 
-        var childData = childSnapshot.val(); 
-      }); 
+
+    ref.once('value', (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+      });
     });
 
     */
 
-    
 
-    /*var docRef = this.db.ref("Biblioteche/" + bibliotecaId + "/ListaLibri").once('value', (snapshot) => { 
+
+    /*var docRef = this.db.ref("Biblioteche/" + bibliotecaId + "/ListaLibri").once('value', (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         var childKey = childSnapshot.key;
         var childData = childSnapshot.val();
-      }); 
+      });
     });
     firebase.firestore().collection('Biblioteche').get().then((snapshot)=> {
       console.log(snapshot.docs);
     })
-    
-    */
 
-    /*
-    firebase.firestore().collection("Biblioteche/" + bibliotecaId + "/ListaLibri").get().then((snapshot) => {
+    */
+    /*return firebase.firestore().collection('Biblioteche/' + bibliotecaId + '/ListaLibri').get().then((snapshot) => {
       snapshot.forEach((doc)=>{
         console.log(doc.get('titolo'));
         //this.listaLibri = doc.data();
-      })
-    })
-    
-    
-    */
-
-    return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges('ListaLibri_libro2');
+      });
+    });*/
+    /*return Observable.fromPromise(firebase.firestore().collection('Biblioteche/' + bibliotecaId + '/ListaLibri').get().then((snapshot) => {
+      snapshot.forEach((doc)=>{
+        console.log(doc.get('titolo'));
+        //this.listaLibri = doc.data();
+      });
+    }));*/
+    //return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges('ListaLibri_libro2');
 
     //return this.listaLibri;
+    return this.firestore.collection<Libro>('Biblioteche/' + bibliotecaId + '/ListaLibri').valueChanges();
   }
 }
 /*ngOnInit() {
-  var docRef = this.database.collection("utente", ref => ref.where('uid','==',this.id));
+  var libri = this.database.collection("utente", ref => ref.where('uid','==',this.id));
   docRef.get().toPromise().then((querySnapshot) => {
     querySnapshot.forEach( (doc) => {
       this.SchedeProfilo = this.database.collection<Schede>("scheda", ref => ref.where('creatore', '==', doc.data()['username']).where('genere','==',this.cat)).valueChanges();
