@@ -25,9 +25,6 @@ export class ListaLibriPage implements OnInit {
     console.log('Lista libri: ' + this.listaLibri);
   }
 
-  linkLibro(){
-    this.router.navigate(['/libro']);
-  }
   login(){
     this.router.navigate(['/login']);
   }

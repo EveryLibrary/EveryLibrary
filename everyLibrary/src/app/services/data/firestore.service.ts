@@ -1,18 +1,17 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
 import 'firebase/firestore';
-import { Biblioteca } from '../../models/biblioteche.interface';
-import { Observable } from 'rxjs';
-import { Libro } from '../../models/libri.interface';
+import {Biblioteca} from '../../models/biblioteche.interface';
+import {Observable} from 'rxjs';
+import {Libro} from '../../models/libri.interface';
 import firebase from 'firebase';
-import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
   private listaLibri: Observable<Libro[]>;
-  private db = firebase.database();
+  private db = firebase.firestore();
 
   constructor(public firestore: AngularFirestore) { }
 
@@ -28,9 +27,28 @@ export class FirestoreService {
     return this.firestore.collection<Libro>(`Libri`).valueChanges();
   }
   getLibro(libroId: string): Observable<Libro> {
-    var libro = this.firestore.collection<Libro>('Libri', ref => ref.where('id','==',libroId)).doc<Libro>().valueChanges();
-    console.log(libro);
-    return libro;
+    return this.firestore.collection<Libro>(`Libri`).doc<Libro>(libroId).valueChanges();
+    /*const citiesRef = this.db.collection('Libri');
+      this.db.collection('Libri').where('id', '==', ''+libroId)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log('QUERY: ' + doc.id, ' => ', doc.data());
+
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });*/
+    /*this.db.collection('Libri').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+    });*/
+    //console.log(this.db.collection('Libri', ref => ref.where('id','==',libroId)));
+    //this.firestore.collection('Libri', ref => ref.where('id','==',libroId)).doc<Libro>(libroId).valueChanges();
+    //return this.db.collection('Libri').where('id', '==', libroId).;
   }
 
   /*getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {

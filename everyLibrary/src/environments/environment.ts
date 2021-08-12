@@ -21,7 +21,7 @@ export const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-let db = firebase.firestore();
+const db = firebase.firestore();
 
 /*
  * For easier debugging in development mode, you can import the following file
