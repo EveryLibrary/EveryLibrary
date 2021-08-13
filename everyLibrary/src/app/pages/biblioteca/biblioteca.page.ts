@@ -6,6 +6,7 @@ import { FirestoreService } from '../../services/data/firestore.service';
 import { Biblioteca } from '../../models/biblioteche.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
+import {AuthService} from '../../services/auth.service';
 @Component({
   selector: 'app-biblioteca',
   templateUrl: './biblioteca.page.html',
@@ -14,7 +15,7 @@ import firebase from 'firebase';
 export class BibliotecaPage implements OnInit {
   public biblioteca: Biblioteca;
   constructor(private navController: NavController, private router: Router,
-    private route: ActivatedRoute, private firestoreService: FirestoreService) { }
+    private route: ActivatedRoute, private firestoreService: FirestoreService, public authservice: AuthService) { }
 
   ngOnInit() {
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');

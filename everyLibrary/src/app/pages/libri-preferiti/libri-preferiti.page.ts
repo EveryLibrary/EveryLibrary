@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-libri-preferiti',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LibriPreferitiPage implements OnInit {
 
-  constructor(private navController: NavController, private router: Router) { }
+  constructor(private navController: NavController, private router: Router, public authservice: AuthService) { }
 
   ngOnInit() {
   }

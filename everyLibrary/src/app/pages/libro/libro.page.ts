@@ -6,6 +6,7 @@ import { FirestoreService } from '../../services/data/firestore.service';
 import { Libro } from '../../models/libri.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-libro',
@@ -15,7 +16,8 @@ import firebase from 'firebase';
 export class LibroPage implements OnInit {
   public libro: Libro;
   constructor(private navController: NavController, private router: Router,
-              private route: ActivatedRoute, private firestoreService: FirestoreService) { }
+              private route: ActivatedRoute, private firestoreService: FirestoreService,
+              public authservice: AuthService) { }
 
   ngOnInit() {
     const libroId: string =  this.route.snapshot.paramMap.get('id');

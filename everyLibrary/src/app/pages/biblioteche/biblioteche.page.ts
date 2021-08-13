@@ -6,8 +6,9 @@ import { FirestoreService } from '../../services/data/firestore.service';
 import { Biblioteca } from '../../models/biblioteche.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
+import {AuthService} from '../../services/auth.service';
 
-declare let google: any;
+declare var google: any;
 
 @Component({
   selector: 'app-biblioteche',
@@ -19,7 +20,7 @@ export class BibliotechePage implements OnInit {
   map: any;
   @ViewChild('map', {read: ElementRef, static: false}) mapRef: ElementRef;
   constructor(private navController: NavController, private router: Router,
-  private firestoreService: FirestoreService) { }
+  private firestoreService: FirestoreService, public authservice: AuthService) { }
 
   ngOnInit() {
     this.bibliotecheList = this.firestoreService.getBibliotecheList();
