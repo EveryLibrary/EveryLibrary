@@ -29,18 +29,18 @@ export class FirestoreService {
   getLibro(libroId: string): Observable<Libro> {
     return this.firestore.collection<Libro>(`Libri`).doc<Libro>(libroId).valueChanges();
     /*const citiesRef = this.db.collection('Libri');
-      this.db.collection('Libri').where('id', '==', ''+libroId)
+    this.db.collection('Libri').where('id', '==', ''+libroId)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           console.log('QUERY: ' + doc.id, ' => ', doc.data());
-
         });
       })
       .catch((error) => {
         console.log('Error getting documents: ', error);
-      });*/
+      });
+      return ;*/
     /*this.db.collection('Libri').get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         console.log(`${doc.id} => ${doc.data()}`);
