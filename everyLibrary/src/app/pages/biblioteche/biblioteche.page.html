@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float: left; margin-right: 5px; margin-left: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="margin-right: 5px; margin-left: 5px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="authservice.SignOut()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" style="margin-right: 130px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <!--<ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float: left; margin-right: 5px; margin-left: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>-->
+    <ion-button class="bottoniLog" style="float: left; margin-right: 5px; margin-left: 5px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float:right; margin-right: 5px; margin-left: 5px;margin-top: 10px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" *ngIf="userLoggedIn()" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="authservice.SignOut()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
   </ion-toolbar>
 </ion-header>
