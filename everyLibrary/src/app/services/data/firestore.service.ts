@@ -5,6 +5,7 @@ import {Biblioteca} from '../../models/biblioteche.interface';
 import {Observable} from 'rxjs';
 import {Libro} from '../../models/libri.interface';
 import firebase from 'firebase';
+import {count} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +122,30 @@ export class FirestoreService {
     //return this.firestore.collection('Biblioteche').doc<Biblioteca>(bibliotecaId).valueChanges('ListaLibri_libro2');
 
     //return this.listaLibri;
+  }
+
+  aggiungiPreferito(userUid: string, id: string) {
+    this.firestore.collection('LibriPreferiti').add({
+      userId: ''+userUid,
+      libroId: ''+id
+    });
+  }
+
+  verificaPreferito(userUid: string, id: string) {
+    console.log('ciaone');
+    //let list = this.firestore.collection('LibriPreferiti', ref => ref.where('userId', '==', userUid))
+    //  .get();
+    this.db.collection('LibriPreferiti').where('userId', '==', userUid).get().then((doc) => {
+      if (doc.size !== 0) {
+        console.log("Document data:", doc.size);
+        return true;
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    });
+    console.log('nada');
+    return false;
   }
 }
 /*ngOnInit() {

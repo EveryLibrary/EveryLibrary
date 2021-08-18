@@ -48,4 +48,13 @@ ion-item{
 .icona{
   height: 40px;
   width: 40px;
+  margin: auto;
+  color: tomato;
+}
+ion-segment-button {
+  border: 1px solid rgb(0 0 0 / 8%);
+  border-radius: 10px;
+  background-color: #c0e080;
+  width: fit-content;
+  margin-inline: auto;
 }
