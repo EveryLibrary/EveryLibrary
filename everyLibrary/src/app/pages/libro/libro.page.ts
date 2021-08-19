@@ -14,17 +14,20 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./libro.page.scss'],
 })
 export class LibroPage implements OnInit {
+  isFavorited: Promise<boolean> | boolean;
   public libro: Libro;
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService,
               public authservice: AuthService, public toastController: ToastController) { }
 
   ngOnInit() {
-    const libroId: string =  this.route.snapshot.paramMap.get('id');
+    const libroId: string = this.route.snapshot.paramMap.get('id');
     console.log('Libro: ' + libroId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
     });
+    this.isFavorited = this.favoriteBook();
+    console.log('isFavorited: ' + this.isFavorited);
   }
   favorite() {
     if(this.userLoggedIn()){
@@ -74,14 +77,13 @@ export class LibroPage implements OnInit {
   }
 
   favoriteBook() {
-    if(this.userLoggedIn()){
-      console.log('libro preferito');
-    return true;
-      //this.firestoreService.verificaPreferito(this.authservice.getUserUid(), this.route.snapshot.paramMap.get('id'));
-      }
-    else {
-      console.log('libro non preferito');
-      return false;}
+    if (this.userLoggedIn()) {
+      console.log('utente loggato');
+      return this.firestoreService.verificaPreferito(this.authservice.getUserUid(), this.route.snapshot.paramMap.get('id'));
+    } else {
+      console.log('utente Non loggato');
+      return false;
+    }
     // return false; //libro non preferito
   }
 }

@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {Libro} from '../../models/libri.interface';
 import firebase from 'firebase';
 import {count} from "rxjs/operators";
+import {resolve} from "url";
 
 @Injectable({
   providedIn: 'root'
@@ -131,21 +132,30 @@ export class FirestoreService {
     });
   }
 
-  verificaPreferito(userUid: string, id: string) {
+  async verificaPreferito(userUid: string, id: string){
     console.log('ciaone');
+    let cond: boolean;
     //let list = this.firestore.collection('LibriPreferiti', ref => ref.where('userId', '==', userUid))
     //  .get();
-    this.db.collection('LibriPreferiti').where('userId', '==', userUid).get().then((doc) => {
+     return await this.db.collection('LibriPreferiti').where('libroId', '==', id)
+       .get()
+       .then((doc) => {
       if (doc.size !== 0) {
+        console.log('libro preferito');
         console.log("Document data:", doc.size);
+        //return Promise.resolve(true);
+        cond = true;
         return true;
       } else {
+        cond = false;
+        console.log('libro non preferito');
         // doc.data() will be undefined in this case
         console.log("No such document!");
+        return false;
       }
     });
-    console.log('nada');
-    return false;
+    console.log('COND: ' + cond);
+    //return cond;
   }
 }
 /*ngOnInit() {

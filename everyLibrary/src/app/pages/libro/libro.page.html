@@ -19,8 +19,8 @@
   <br>
   <ion-segment-button (click)="favorite()">
   <ion-icon class="icona" style="" name="heart-circle-outline"></ion-icon>
-  <ion-text *ngIf="!favoriteBook()" style="color: tomato"> Aggiungi ai preferiti </ion-text>
-  <ion-text *ngIf="favoriteBook()" style="color: tomato"> Rimuovi dai preferiti </ion-text>
+  <ion-text *ngIf="!isFavorited" style="color: tomato"> Aggiungi ai preferiti </ion-text>
+  <ion-text *ngIf="isFavorited" style="color: tomato"> Rimuovi dai preferiti </ion-text>
   </ion-segment-button>
   <br>
   <ion-item>
