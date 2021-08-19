@@ -137,7 +137,9 @@ export class FirestoreService {
     let cond: boolean;
     //let list = this.firestore.collection('LibriPreferiti', ref => ref.where('userId', '==', userUid))
     //  .get();
-     return await this.db.collection('LibriPreferiti').where('libroId', '==', id)
+    // per fare la query corretta va aggiunto un altro .where(userID == userUid) dopo il primo e
+    // vanno indicizzati su firebase se non funziona
+     await this.db.collection('LibriPreferiti').where('libroId', '==', id)
        .get()
        .then((doc) => {
       if (doc.size !== 0) {
@@ -155,7 +157,7 @@ export class FirestoreService {
       }
     });
     console.log('COND: ' + cond);
-    //return cond;
+    return cond;
   }
 }
 /*ngOnInit() {
