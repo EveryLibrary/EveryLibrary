@@ -9,13 +9,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar placeholder="Città, Biblioteche, ..."></ion-searchbar>
+  <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Biblioteca"></ion-searchbar>
   <br>
   <br>
   <div #mapElement id="map"></div>
 
   <ion-list>
-          <ion-card *ngFor="let biblioteca of bibliotecheList | async"
+          <ion-card *ngFor="let biblioteca of bibliotecheList"
                     routerLink="/biblioteca/{{biblioteca.id}}">
           <ion-card><h2 style="text-align: center">
             <ion-icon class="icona" name="library-outline" [style.color]="'#82552E'" slot="start"></ion-icon>

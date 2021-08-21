@@ -17,7 +17,7 @@ export class FirestoreService {
 
   constructor(public firestore: AngularFirestore) { }
 
-  getBibliotecheList(): Observable<Biblioteca[]> {
+  getBibliotecheList(): Observable<any[]> {
     return this.firestore.collection<Biblioteca>(`Biblioteche`).valueChanges();
   }
 

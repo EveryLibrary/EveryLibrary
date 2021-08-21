@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import { ViewChild, ElementRef} from '@angular/core';
@@ -7,6 +7,8 @@ import { Biblioteca } from '../../models/biblioteche.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
 import {AuthService} from '../../services/auth.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import { first } from 'rxjs/operators';
 //declare var google;
 declare var google: any;
 
@@ -16,18 +18,52 @@ declare var google: any;
   styleUrls: ['./biblioteche.page.scss'],
 })
 export class BibliotechePage implements OnInit{ //, AfterContentInit
-  public bibliotecheList: Observable<Biblioteca[]>;
+  public bibliotecheList: any[];
+  public bibliotecheCaricate: any[];
   /*map;
   @ViewChild('mapElement') mapElement;*/
   /* MAPPA 1 */
    map: any;
   @ViewChild('mapElement', {read: ElementRef, static: false}) mapRef: ElementRef;
   constructor(private navController: NavController, private router: Router,
-  private firestoreService: FirestoreService, public authservice: AuthService) { }
+  private firestoreService: FirestoreService, public authservice: AuthService,
+  private firestore: AngularFirestore) { }
 
-  ngOnInit() {
-    this.bibliotecheList = this.firestoreService.getBibliotecheList();
+  async ngOnInit() {
+    /*this.firestoreService.getBibliotecheList().subscribe(
+      bibliotecheList=>{
+        this.bibliotecheList = bibliotecheList;
+        this.bibliotecheCaricate = bibliotecheList;
+      }
+    );*/
+    this.bibliotecheList = await this.initializeItems();
   }
+
+  async initializeItems(): Promise<any> {
+    const bibliotecheList = await this.firestoreService.getBibliotecheList().pipe(first()).toPromise();
+    this.bibliotecheCaricate = bibliotecheList;
+    return bibliotecheList;
+  }
+
+  async filterList(evt){
+    this.bibliotecheList = this.bibliotecheCaricate;
+    const searchTerm = evt.srcElement.value;
+    if(!searchTerm){
+      return;
+    }
+    
+    this.bibliotecheList = this.bibliotecheList.filter(
+      currentBiblioteca => {
+        if(currentBiblioteca.nome && searchTerm){
+          if(currentBiblioteca.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+            return true;
+          }
+          return false;
+        }
+      }
+    );
+  }
+
 
   linkBiblioteca(){
     this.router.navigate(['/biblioteca']);
