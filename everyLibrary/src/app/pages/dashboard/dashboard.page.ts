@@ -5,6 +5,9 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from '../../services/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {NavController, ToastController} from '@ionic/angular';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {Libro} from '../../models/libri.interface';
+import {Biblioteca} from '../../models/biblioteche.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,20 +15,22 @@ import {NavController, ToastController} from '@ionic/angular';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
-  jsonData: any=[];
+  validationFormRicerca ={
+    ricerca:[
+      {type:'required', message:'Inserisci la biblioteca'},
+    ]
+  };
+  ricercaBiblioteca: FormGroup;
+  private db = firebase.firestore();
   constructor(private router: Router, public authservice: AuthService, private firestore: AngularFirestore,
-  public toastController: ToastController, private navController: NavController) {
-    this.initializeJSONData();
-  }
-  filterJSONData(ev: any){
-    this.initializeJSONData();
-    const val = ev.target.value;
-    if(val && val.trim() !== ''){
-      this.jsonData = this.jsonData.filter((item) =>(item.name.toLowerCase().indexOf(val.toLowerCase()) > -1 ));
-    }
+  public toastController: ToastController, private navController: NavController, public formBuilder: FormBuilder) {
   }
   ngOnInit() {
+    this.ricercaBiblioteca=this.formBuilder.group({
+      ricerca: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
+    });
     //console.log(firebase.auth().currentUser.uid);
   }
 
@@ -50,19 +55,6 @@ export class DashboardPage implements OnInit {
   signup(){
     this.router.navigate(['/signup']);
   }
-  initializeJSONData(){
-    this.jsonData = [
-      {
-        name : 'L\'Aquila',
-        code : 'AQ'
-      },
-      {
-        name : 'Roma',
-        code : 'RM'
-      }
-    ];
-  }
-
   userLoggedIn() {
     return (firebase.auth().currentUser != null);
   }
@@ -75,5 +67,17 @@ export class DashboardPage implements OnInit {
       color: 'danger'
     });
     toast.present();
+  }
+  ricerca(value){
+      try  {
+        this.db.collection('Biblioteche').where('nome', '==', value)
+          .get()
+          .then((doc) => {
+            doc.isEqual(value);
+            this.navController.navigateForward(['biblioteca']);
+          });
+      } catch (err) {
+      console.log(err);
+    }
   }
 }

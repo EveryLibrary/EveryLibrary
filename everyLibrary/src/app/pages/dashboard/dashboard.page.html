@@ -10,10 +10,22 @@
   <br>
   <ion-button (click)="linkMappaBiblioteche()">Mappa Biblioteche</ion-button>
   <br>
-  <ion-searchbar showCancelButton (ionInput)="filterJSONData($event)" placeholder="Città, Biblioteche, ..."></ion-searchbar>
-  <!--<ion-item *ngFor="let item of jsonData">
-    {{item.name}}
-  </ion-item>-->
+  <!--<form [formGroup]="ricercaBiblioteca" (ngSubmit)="ricerca(ricercaBiblioteca.value)">
+      <div class="wrapform" style="background-color: white;">
+        <ion-input type="text" placeholder="ricerca" formControlName="ricerca">
+        </ion-input>
+        <ion-button type="submit" [disabled]="!ricercaBiblioteca.valid"><b>Cerca</b></ion-button>
+        <div>
+          <ng-container *ngFor="let validation of validationFormRicerca.ricerca">
+            <div class="error_message" *ngIf="validationFormRicerca.get('ricerca').hasError(validation.type) && (validationFormRicerca.get('ricerca').dirty || validationFormRicerca.get('ricerca').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+              {{validation.message}}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+  </form>-->
+
+  <ion-searchbar showCancelButton placeholder="Città e/o biblioteche"></ion-searchbar>
   <br>
   <ion-button (click)="linkAreaRiservata()">Area Riservata</ion-button>
 </ion-content>

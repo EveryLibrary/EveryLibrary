@@ -28,10 +28,10 @@
     <ion-text> {{ libro?.isbn }} </ion-text>
   </ion-item>
 
-  <!--<ion-item>
+  <ion-item>
     <ion-label>Data Pubblicazione: </ion-label>
     <ion-text> {{ libro?.dataPubblicazione }} </ion-text>
-  </ion-item>-->
+  </ion-item>
 
   <ion-item>
     <ion-label>Autore: </ion-label>
@@ -43,7 +43,7 @@
     <ion-text> {{ libro?.editore }} </ion-text>
   </ion-item>
 
-  <!--<ion-item>
+  <ion-item>
     <ion-label>Genere: </ion-label>
     <ion-text> {{ libro?.genere }} </ion-text>
   </ion-item>
@@ -51,8 +51,10 @@
   <br>
   <ion-item>
     <ion-label>Trama: </ion-label>
+    <br>
     <ion-text> {{ libro?.trama }} </ion-text>
-  </ion-item>-->
+    <br>
+  </ion-item>
   <br>
   <ion-button class="prestito" (click)="linkPrestito()">Prendi in prestito</ion-button>
 

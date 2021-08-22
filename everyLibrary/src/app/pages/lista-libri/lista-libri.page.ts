@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import firebase from 'firebase';
 import { Biblioteca } from 'src/app/models/biblioteche.interface';
 import {AuthService} from '../../services/auth.service';
+import {first} from 'rxjs/operators';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-lista-libri',
@@ -15,16 +17,20 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./lista-libri.page.scss'],
 })
 export class ListaLibriPage implements OnInit {
-  public listaLibri: Observable<Libro[]>;
+  public libriList: any[];
+  public libriCaricati: any[];
+  //public bid: string;
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,
-              public authservice: AuthService) {}
+              public authservice: AuthService, private firestore: AngularFirestore) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
-    console.log('Biblio: ' + bibliotecaId);
-    this.listaLibri = this.firestoreService.getListaLibriBiblioteca(bibliotecaId);
-    console.log('Lista libri: ' + this.listaLibri);
+    //this.bid =  this.route.snapshot.paramMap.get('id');
+    //console.log('Biblio: ' + bibliotecaId);
+    //this.libriList = this.firestoreService.getListaLibriBiblioteca(bibliotecaId);
+    //console.log('Lista libri: ' + this.libriList);
+    this.libriList = await this.initializeItems(bibliotecaId);
   }
 
   login(){
@@ -36,5 +42,29 @@ export class ListaLibriPage implements OnInit {
   }
   userLoggedIn() {
     return (firebase.auth().currentUser != null);
+  }
+  async initializeItems(bibliotecaId): Promise<any> {
+    const libriList = await this.firestoreService.getListaLibriBiblioteca(bibliotecaId).pipe(first()).toPromise();
+    this.libriCaricati = libriList;
+    return libriList;
+  }
+
+  async filterList(evt){
+    this.libriList = this.libriCaricati;
+    const searchTerm = evt.srcElement.value;
+    if(!searchTerm){
+      return;
+    }
+
+    this.libriList = this.libriList.filter(
+      currentLibro => {
+        if(currentLibro.titolo && searchTerm){
+          if(currentLibro.titolo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+            return true;
+          }
+          return false;
+        }
+      }
+    );
   }
 }

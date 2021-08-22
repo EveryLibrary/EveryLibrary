@@ -1,3 +1,5 @@
+import {Libro} from "./libri.interface";
+
 export interface Biblioteca {
   id: string;
   nome: string;
@@ -8,4 +10,5 @@ export interface Biblioteca {
   orario_chiusura: string;
   telefono: string;
   periodo_prestito: string;
+  listaLibri: Libro[];
 }

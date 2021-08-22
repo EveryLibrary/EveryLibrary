@@ -5,8 +5,8 @@ import {Biblioteca} from '../../models/biblioteche.interface';
 import {Observable} from 'rxjs';
 import {Libro} from '../../models/libri.interface';
 import firebase from 'firebase';
-import {count} from "rxjs/operators";
-import {resolve} from "url";
+import {count} from 'rxjs/operators';
+import {resolve} from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +67,7 @@ export class FirestoreService {
     });
     return idLibri;
   }*/
-  getListaLibriBiblioteca(bibliotecaId: string): Observable<Libro[]> {
+  getListaLibriBiblioteca(bibliotecaId: string): Observable<any[]> {
     return this.firestore.collection<Libro>('Biblioteche/' + bibliotecaId + '/ListaLibri').valueChanges();
     /*const idLibri = new Observable<Libro[]>(subscriber => {
       this.firestore.collection('Biblioteche').ref.where('id','==',bibliotecaId).get().subscribe(res => {
@@ -144,7 +144,7 @@ export class FirestoreService {
        .then((doc) => {
       if (doc.size !== 0) {
         console.log('libro preferito');
-        console.log("Document data:", doc.size);
+        console.log('Document data:', doc.size);
         //return Promise.resolve(true);
         cond = true;
         return true;
@@ -152,7 +152,7 @@ export class FirestoreService {
         cond = false;
         console.log('libro non preferito');
         // doc.data() will be undefined in this case
-        console.log("No such document!");
+        console.log('No such document!');
         return false;
       }
     });

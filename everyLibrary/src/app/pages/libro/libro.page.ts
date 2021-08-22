@@ -22,6 +22,7 @@ export class LibroPage implements OnInit {
 
   ngOnInit() {
     const libroId: string = this.route.snapshot.paramMap.get('id');
+    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
     console.log('Libro: ' + libroId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
@@ -78,10 +79,11 @@ export class LibroPage implements OnInit {
 
   favoriteBook() {
     if (this.userLoggedIn()) {
-      console.log('utente loggato');
-      return this.firestoreService.verificaPreferito(this.authservice.getUserUid(), this.route.snapshot.paramMap.get('id'));
+      console.log('Utente loggato');
+      console.log(this.route.snapshot.paramMap);
+      return this.firestoreService.verificaPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
     } else {
-      console.log('utente Non loggato');
+      console.log('Utente non loggato');
       return false;
     }
     // return false; //libro non preferito
