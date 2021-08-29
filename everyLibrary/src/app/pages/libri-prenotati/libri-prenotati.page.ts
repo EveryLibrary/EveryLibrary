@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
+import {FirestoreService} from '../../services/data/firestore.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-libri-prenotati',
@@ -9,9 +12,38 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./libri-prenotati.page.scss'],
 })
 export class LibriPrenotatiPage implements OnInit {
+  public libriList: any[];
+  public libriCaricati: any[];
+  constructor(private navController: NavController, private router: Router,
+              private firestoreService: FirestoreService, private route: ActivatedRoute,
+              public authservice: AuthService, private firestore: AngularFirestore) { }
 
-  constructor(private navController: NavController, private router: Router, public authservice: AuthService) { }
+  async ngOnInit() {
+    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
+    this.libriList = await this.initializeItems(bibliotecaId);
+  }
+  async initializeItems(bibliotecaId): Promise<any> {
+    const libriList = await this.firestoreService.getListaLibriBiblioteca(bibliotecaId).pipe(first()).toPromise();
+    this.libriCaricati = libriList;
+    return libriList;
+  }
 
-  ngOnInit() {
+  async filterList(evt){
+    this.libriList = this.libriCaricati;
+    const searchTerm = evt.srcElement.value;
+    if(!searchTerm){
+      return;
+    }
+
+    this.libriList = this.libriList.filter(
+      currentLibro => {
+        if(currentLibro.titolo && searchTerm){
+          if(currentLibro.titolo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+            return true;
+          }
+          return false;
+        }
+      }
+    );
   }
 }
