@@ -68,16 +68,25 @@ export class DashboardPage implements OnInit {
     });
     toast.present();
   }
+  
   ricerca(value){
       try  {
-        this.db.collection('Biblioteche').where('nome', '==', value)
-          .get()
-          .then((doc) => {
-            doc.isEqual(value);
-            this.navController.navigateForward(['biblioteca']);
-          });
+        this.firestore.collection("Biblioteche", 
+        ref => ref.where('nome', '==', value.ricerca)
+        ).get()
+          .subscribe(
+            snaps => {
+              snaps.forEach(
+                snap=>{
+                  console.log(snap.data());
+                  this.navController.navigateForward(['biblioteca/', snap.id]);
+                }
+              )
+            }
+          )
       } catch (err) {
       console.log(err);
     }
   }
+
 }

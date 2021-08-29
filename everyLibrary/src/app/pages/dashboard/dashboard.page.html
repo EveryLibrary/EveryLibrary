@@ -10,22 +10,20 @@
   <br>
   <ion-button (click)="linkMappaBiblioteche()">Mappa Biblioteche</ion-button>
   <br>
-  <!--<form [formGroup]="ricercaBiblioteca" (ngSubmit)="ricerca(ricercaBiblioteca.value)">
-      <div class="wrapform" style="background-color: white;">
-        <ion-input type="text" placeholder="ricerca" formControlName="ricerca">
+  <form [formGroup]="ricercaBiblioteca" (ngSubmit)="ricerca(ricercaBiblioteca.value)">
+      <div class="wrapform" style="display: inline-flex; margin-top: 10px; width: fit-content;">
+        <ion-input type="text" placeholder="Cerca nome biblioteca" formControlName="ricerca" style=" background-color: white; color:black; width: 180px; border-radius: 10px; border:solid 1px black; height: 25px; float: left;">
         </ion-input>
-        <ion-button type="submit" [disabled]="!ricercaBiblioteca.valid"><b>Cerca</b></ion-button>
-        <div>
-          <ng-container *ngFor="let validation of validationFormRicerca.ricerca">
-            <div class="error_message" *ngIf="validationFormRicerca.get('ricerca').hasError(validation.type) && (validationFormRicerca.get('ricerca').dirty || validationFormRicerca.get('ricerca').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
-              {{validation.message}}
-            </div>
-          </ng-container>
-        </div>
+        <ion-button type="submit" [disabled]="!ricercaBiblioteca.valid" style=" background-color: white; color:black; width: 50px; border-radius: 10px; border:solid 1px black; height: 25px; margin-top: auto;"><ion-icon name="search"></ion-icon></ion-button>
       </div>
-  </form>-->
-
-  <ion-searchbar showCancelButton placeholder="Città e/o biblioteche"></ion-searchbar>
+      <div>
+        <ng-container *ngFor="let validation of validationFormRicerca.ricerca">
+          <div class="error_message" *ngIf="ricercaBiblioteca.get('ricerca').hasError(validation.type) && (ricercaBiblioteca.get('ricerca').dirty || ricercaBiblioteca.get('ricerca').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+            {{validation.message}}
+          </div>
+        </ng-container>
+      </div>
+  </form>
   <br>
   <ion-button (click)="linkAreaRiservata()">Area Riservata</ion-button>
 </ion-content>

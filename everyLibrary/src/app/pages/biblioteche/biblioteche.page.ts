@@ -48,6 +48,7 @@ export class BibliotechePage implements OnInit{ //, AfterContentInit
   async filterList(evt){
     this.bibliotecheList = this.bibliotecheCaricate;
     const searchTerm = evt.srcElement.value;
+    
     if(!searchTerm){
       return;
     }
@@ -55,7 +56,7 @@ export class BibliotechePage implements OnInit{ //, AfterContentInit
     this.bibliotecheList = this.bibliotecheList.filter(
       currentBiblioteca => {
         if(currentBiblioteca.nome && searchTerm){
-          if(currentBiblioteca.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+          if(currentBiblioteca.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 || currentBiblioteca.citta.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
             return true;
           }
           return false;
