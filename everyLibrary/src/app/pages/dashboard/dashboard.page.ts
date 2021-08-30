@@ -8,6 +8,7 @@ import {NavController, ToastController} from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Libro} from '../../models/libri.interface';
 import {Biblioteca} from '../../models/biblioteche.interface';
+import {count} from "rxjs/operators";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,7 @@ import {Biblioteca} from '../../models/biblioteche.interface';
 export class DashboardPage implements OnInit {
   validationFormRicerca ={
     ricerca:[
-      {type:'required', message:'Inserisci la biblioteca'},
+      {type:'required', message:'Inserisci il nome della biblioteca'},
     ]
   };
   ricercaBiblioteca: FormGroup;
@@ -42,7 +43,7 @@ export class DashboardPage implements OnInit {
     if(this.userLoggedIn()){
     this.router.navigate(['/area-riservata']);}
     else {
-      this.presentToast().then( res=>
+      this.presentToast('Devi effettuare il Login!').then( res=>
       this.router.navigate(['/login']),
         err => console.log(err)
         );
@@ -59,9 +60,9 @@ export class DashboardPage implements OnInit {
     return (firebase.auth().currentUser != null);
   }
 
-  async presentToast() {
+  async presentToast(mex) {
     const toast = await this.toastController.create({
-      message: 'Devi effettuare il Login!',
+      message: mex,
       duration: 2000,
       position: 'top',
       color: 'danger'
@@ -69,22 +70,24 @@ export class DashboardPage implements OnInit {
     toast.present();
   }
 
-  ricerca(value){
-      try  {
-        this.firestore.collection('Biblioteche',
+  async ricerca(value) {
+    let counter = 0;
+    try {
+      this.firestore.collection('Biblioteche',
         ref => ref.where('nome', '==', value.ricerca)
-        ).get()
-          .subscribe(
-            snaps => {
-              snaps.forEach(
-                snap=>{
-                  console.log(snap.data());
-                  this.navController.navigateForward(['biblioteca/', snap.id]);
-                }
-              );
-            }
-          );
-      } catch (err) {
+      ).get()
+        .subscribe(
+          snaps => {
+            snaps.forEach(
+              snap => {
+                console.log(snap.data());
+                this.navController.navigateForward(['biblioteca/', snap.id]);
+              }
+            );
+          }
+        );
+      if (counter === 0) {await this.presentToast('Nessuna biblioteca trovata!');}
+    } catch (err) {
       console.log(err);
     }
   }

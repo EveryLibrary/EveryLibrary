@@ -58,8 +58,10 @@ export class ListaLibriPage implements OnInit {
 
     this.libriList = this.libriList.filter(
       currentLibro => {
-        if(currentLibro.titolo && searchTerm){
-          if(currentLibro.titolo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+        if((currentLibro.titolo || currentLibro.autore || currentLibro.editore) && searchTerm){
+          if((currentLibro.titolo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+            || (currentLibro.autore.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+            || (currentLibro.editore.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)){
             return true;
           }
           return false;

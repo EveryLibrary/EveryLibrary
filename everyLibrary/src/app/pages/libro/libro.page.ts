@@ -22,7 +22,7 @@ export class LibroPage implements OnInit {
 
   ngOnInit() {
     const libroId: string = this.route.snapshot.paramMap.get('id');
-    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
+    //const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
     console.log('Libro: ' + libroId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;

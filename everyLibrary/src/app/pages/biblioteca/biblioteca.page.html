@@ -39,6 +39,20 @@
   <br>
   <ion-button (click)="linkListaLibri()">Lista Libri</ion-button>
   <br>
-  <ion-searchbar placeholder="Cerca un libro"></ion-searchbar>
+  <form [formGroup]="ricercaLibro" (ngSubmit)="ricerca(ricercaLibro.value)">
+    <div class="wrapform" style="display: inline-flex; margin-top: 10px; width: fit-content;">
+      <ion-input type="text" placeholder="Cerca titolo libro" formControlName="ricerca" style=" background-color: white; color:black; width: 180px; border-radius: 10px; border:solid 1px black; height: 25px; float: left;">
+      </ion-input>
+      <ion-button type="submit" [disabled]="!ricercaLibro.valid" style=" background-color: white; color:black; width: 50px; border-radius: 10px; border:solid 1px black; height: 25px; margin-top: auto;"><ion-icon name="search"></ion-icon></ion-button>
+    </div>
+    <div>
+      <ng-container *ngFor="let validation of validationFormRicerca.ricerca">
+        <div class="error_message" *ngIf="ricercaLibro.get('ricerca').hasError(validation.type) && (ricercaLibro.get('ricerca').dirty || ricercaLibro.get('ricerca').touched)" style="color: red; margin-top: 4px; font-size: 13px;">
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+  </form>
 
 </ion-content>
