@@ -12,7 +12,6 @@ import {resolve} from 'url';
   providedIn: 'root'
 })
 export class FirestoreService {
-  private listaLibri: Observable<Libro[]>;
   private db = firebase.firestore();
 
   constructor(public firestore: AngularFirestore) { }

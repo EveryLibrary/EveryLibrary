@@ -22,7 +22,9 @@
       Autore: {{ libro?.autore }}
       <br>
       Editore: {{ libro?.editore }}
-      <!--Disponibilità: {{ libro?.titolo }}-->
+      <br>
+      <!-- quando viene prenotato un libro bisogna diminuire la disponibilità-->
+      Disponibilità: {{ libro?.numero_copie }}
     </ion-card-content>
     </ion-card>
   </ion-list>

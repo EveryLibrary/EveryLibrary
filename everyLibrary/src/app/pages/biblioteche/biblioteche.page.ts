@@ -10,7 +10,7 @@ import {AuthService} from '../../services/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
 //declare var google;
-declare var google: any;
+declare let google: any;
 
 @Component({
   selector: 'app-biblioteche',
@@ -30,33 +30,33 @@ export class BibliotechePage implements OnInit{ //, AfterContentInit
   private firestore: AngularFirestore) { }
 
   async ngOnInit() {
-    /*this.firestoreService.getBibliotecheList().subscribe(
+    this.firestoreService.getBibliotecheList().subscribe(
       bibliotecheList=>{
         this.bibliotecheList = bibliotecheList;
-        this.bibliotecheCaricate = bibliotecheList;
       }
-    );*/
+    );
     this.bibliotecheList = await this.initializeItems();
   }
 
   async initializeItems(): Promise<any> {
-    const bibliotecheList = await this.firestoreService.getBibliotecheList().pipe(first()).toPromise();
+    const bibliotecheList = await this.firestore.collection('Biblioteche').valueChanges().pipe(first()).toPromise();
+    //const bibliotecheList = await this.firestoreService.getBibliotecheList().pipe(first()).toPromise();
     this.bibliotecheCaricate = bibliotecheList;
     return bibliotecheList;
   }
 
   async filterList(evt){
     this.bibliotecheList = this.bibliotecheCaricate;
-    const searchTerm = evt.srcElement.value;
-    
+    let searchTerm = null;
+    searchTerm = evt.srcElement.value;
     if(!searchTerm){
       return;
     }
-    
     this.bibliotecheList = this.bibliotecheList.filter(
       currentBiblioteca => {
         if(currentBiblioteca.nome && searchTerm){
-          if(currentBiblioteca.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 || currentBiblioteca.citta.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
+          if((currentBiblioteca.nome.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+            || (currentBiblioteca.citta.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)){
             return true;
           }
           return false;

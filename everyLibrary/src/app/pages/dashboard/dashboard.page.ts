@@ -68,10 +68,10 @@ export class DashboardPage implements OnInit {
     });
     toast.present();
   }
-  
+
   ricerca(value){
       try  {
-        this.firestore.collection("Biblioteche", 
+        this.firestore.collection('Biblioteche',
         ref => ref.where('nome', '==', value.ricerca)
         ).get()
           .subscribe(
@@ -81,9 +81,9 @@ export class DashboardPage implements OnInit {
                   console.log(snap.data());
                   this.navController.navigateForward(['biblioteca/', snap.id]);
                 }
-              )
+              );
             }
-          )
+          );
       } catch (err) {
       console.log(err);
     }
