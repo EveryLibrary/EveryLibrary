@@ -71,13 +71,15 @@ export class DashboardPage implements OnInit {
   }
 
   async ricerca(value) {
-    let counter = 0;
     try {
       this.firestore.collection('Biblioteche',
         ref => ref.where('nome', '==', value.ricerca)
       ).get()
         .subscribe(
           snaps => {
+            if(snaps.size === 0)
+                {this.presentToast('Nessuna biblioteca trovata!');}
+            else {
             snaps.forEach(
               snap => {
                 console.log(snap.data());
@@ -85,8 +87,9 @@ export class DashboardPage implements OnInit {
               }
             );
           }
+          }
         );
-      if (counter === 0) {await this.presentToast('Nessuna biblioteca trovata!');}
+      //if (counter === 0) {await this.presentToast('Nessuna biblioteca trovata!');}
     } catch (err) {
       console.log(err);
     }

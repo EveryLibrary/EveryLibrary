@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController} from '@ionic/angular';
+import {NavController, ToastController} from '@ionic/angular';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ViewChild, ElementRef} from '@angular/core';
 import { FirestoreService } from '../../services/data/firestore.service';
@@ -24,7 +24,7 @@ export class BibliotecaPage implements OnInit {
   public biblioteca: Biblioteca;
   constructor(private navController: NavController, private router: Router, private firestore: AngularFirestore,
     private route: ActivatedRoute, private firestoreService: FirestoreService, public authservice: AuthService,
-              public formBuilder: FormBuilder) { }
+              public formBuilder: FormBuilder, private toastController: ToastController) { }
 
   ngOnInit() {
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
@@ -51,6 +51,16 @@ export class BibliotecaPage implements OnInit {
     return (firebase.auth().currentUser != null);
   }
 
+  async presentToast(mex) {
+    const toast = await this.toastController.create({
+      message: mex,
+      duration: 2000,
+      position: 'bottom',
+      color: 'warning'
+    });
+    toast.present();
+  }
+
   ricerca(value: any) {
     try  {
       this.firestore.collection('Biblioteche/'+ this.route.snapshot.paramMap.get('id') + '/ListaLibri',
@@ -58,13 +68,17 @@ export class BibliotecaPage implements OnInit {
       ).get()
         .subscribe(
           snaps => {
-            snaps.forEach(
-              snap=>{
-                console.log(snap.data());
-                console.log(snap.get('titolo'));
-                this.navController.navigateForward(['libro/', snap.get('id')]);
-              }
-            );
+            if(snaps.size === 0)
+            {this.presentToast('Nessun libro corrispondente trovato!');}
+            else {
+              snaps.forEach(
+                snap => {
+                  console.log(snap.data());
+                  console.log(snap.get('titolo'));
+                  this.navController.navigateForward(['libro/', snap.get('id')]);
+                }
+              );
+            }
           }
         );
     } catch (err) {

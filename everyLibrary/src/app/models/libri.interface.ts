@@ -10,3 +10,7 @@ export interface Libro {
   numero_copie: string;
   posizione_corsia: string;
 }
+export interface LibroPreferito {
+  userId: string;
+  libroId: string;
+}

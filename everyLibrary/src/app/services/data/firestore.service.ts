@@ -3,10 +3,9 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import 'firebase/firestore';
 import {Biblioteca} from '../../models/biblioteche.interface';
 import {Observable} from 'rxjs';
-import {Libro} from '../../models/libri.interface';
+import {Libro, LibroPreferito} from '../../models/libri.interface';
 import firebase from 'firebase';
 import {count} from 'rxjs/operators';
-import {resolve} from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +26,25 @@ export class FirestoreService {
   getLibriList(): Observable<Libro[]> {
     return this.firestore.collection<Libro>(`Libri`).valueChanges();
   }
+
+  getLibriPreferitiList(uid: string) {
+    /*this.firestore.collection<LibroPreferito>(`LibriPreferiti`, ref => ref.where('userId','==',uid))
+      .valueChanges().subscribe(
+      snaps => {
+        snaps.forEach(
+          snap=>{
+            console.log(snap.libroId);
+            console.log(snap.userId);
+            return this.firestore.collection<Libro>('Libro', ref => ref.where('id','==',snap.libroId)).valueChanges();
+            //this.navController.navigateForward(['libro/', snap.get('id')]);
+          }
+        );
+      }
+    );*/
+    return this.firestore.collection<Libro>(`LibriPreferiti`, ref => ref.where('userId','==',uid))
+      .valueChanges();
+  }
+
   getLibro(libroId: string): Observable<Libro> {
     return this.firestore.doc<Libro>('/Libri/'+libroId).valueChanges();
     //return this.firestore.collection<Libro>(`Libri`).doc<Libro>(libroId).valueChanges();
@@ -158,6 +176,8 @@ export class FirestoreService {
     console.log('COND: ' + cond);
     return cond;
   }
+
+
 }
 /*ngOnInit() {
   var libri = this.database.collection("utente", ref => ref.where('uid','==',this.id));

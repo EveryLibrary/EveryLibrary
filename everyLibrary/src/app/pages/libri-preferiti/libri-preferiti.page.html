@@ -10,77 +10,26 @@
   <br>
   <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
   <ion-list>
-    <ion-card>
+    <ion-card *ngFor="let libro of libriList"
+              routerLink="/libro/{{libro?.id}}">
       <ion-card-content>
         <ion-icon class="icone" name="book-outline"></ion-icon>
-        &nbsp;
-        &nbsp;
-        &nbsp;
         <ion-icon class="icone" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
         <br>
         <ion-text>
           <strong>Titolo:</strong>
           <br>
-          Il bello dell'essere morti
+          {{ libro?.titolo }}
           <br>
           <strong>Autore:</strong>
           <br>
-          Fredrick Panch
+          {{ libro?.autore }}
           <br>
           <strong>Editore:</strong>
           <br>
-          Mondadori
+          {{ libro?.editore }}
         </ion-text>
       </ion-card-content>
     </ion-card>
-
-    <ion-card>
-      <ion-card-content>
-        <ion-icon class="icone" name="book-outline"></ion-icon>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <ion-icon class="icone" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
-        <br>
-        <ion-text>
-          <strong>Titolo:</strong>
-          <br>
-          Il bello dell'essere morti
-          <br>
-          <strong>Autore:</strong>
-          <br>
-          Fredrick Panch
-          <br>
-          <strong>Editore:</strong>
-          <br>
-          Mondadori
-        </ion-text>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-content>
-        <ion-icon class="icone" name="book-outline"></ion-icon>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <ion-icon class="icone" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
-        <br>
-        <ion-text>
-          <strong>Titolo:</strong>
-          <br>
-          Il bello dell'essere morti
-          <br>
-          <strong>Autore:</strong>
-          <br>
-          Fredrick Panch
-          <br>
-          <strong>Editore:</strong>
-          <br>
-          Mondadori
-        </ion-text>
-      </ion-card-content>
-    </ion-card>
-
   </ion-list>
 </ion-content>
