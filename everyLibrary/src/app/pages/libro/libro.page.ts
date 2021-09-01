@@ -80,6 +80,7 @@ export class LibroPage implements OnInit {
   favoriteBook() {
     if (this.userLoggedIn()) {
       console.log('Utente loggato');
+      console.log(this.firestoreService.verificaPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id')));
       console.log(this.route.snapshot.paramMap);
       return this.firestoreService.verificaPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
     } else {

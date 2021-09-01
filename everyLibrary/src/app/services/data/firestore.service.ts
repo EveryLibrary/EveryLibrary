@@ -150,7 +150,7 @@ export class FirestoreService {
   }
 
   async verificaPreferito(userUid: string, id: string){
-    console.log('ciaone');
+    console.log('Metodo verificaPreferito:');
     let cond: boolean;
     //let list = this.firestore.collection('LibriPreferiti', ref => ref.where('userId', '==', userUid))
     //  .get();
@@ -160,6 +160,7 @@ export class FirestoreService {
        .get()
        .then((doc) => {
       if (doc.size !== 0) {
+        console.log(doc.docs);
         console.log('libro preferito');
         console.log('Document data:', doc.size);
         //return Promise.resolve(true);
@@ -174,6 +175,7 @@ export class FirestoreService {
       }
     });
     console.log('COND: ' + cond);
+    console.log('Fine Metodo verificaPreferito');
     return cond;
   }
 
