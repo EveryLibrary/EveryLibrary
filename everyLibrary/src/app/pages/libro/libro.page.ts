@@ -13,32 +13,50 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: './libro.page.html',
   styleUrls: ['./libro.page.scss'],
 })
+
 export class LibroPage implements OnInit {
-  isFavorited: Promise<boolean> | boolean;
+  isFavorited: boolean;
   public libro: Libro;
+  pippo: string;
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService,
               public authservice: AuthService, public toastController: ToastController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    //this.pippo = 'Aggiungi ai preferiti';
     const libroId: string = this.route.snapshot.paramMap.get('id');
     //const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
     console.log('Libro: ' + libroId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
     });
-    this.isFavorited = this.favoriteBook();
-    console.log('isFavorited: ' + this.isFavorited);
+    this.favoriteBook();
   }
-  favorite() {
-    if(this.userLoggedIn()){
-      this.presentToast('Libro aggiunto ai Preferiti!');
-      //aggiungo il preferito chiamando il metodo e passandogli l'uid dell'utente collegato e l'id del libro preferito
-      console.log('UID: ' + this.authservice.getUserUid());
-      console.log('LibroID: ' + this.route.snapshot.paramMap.get('id'));
-      this.firestoreService.aggiungiPreferito(this.authservice.getUserUid(), this.route.snapshot.paramMap.get('id'));
-      this.router.navigate(['/libro', this.route.snapshot.paramMap.get('id')]);
-    }
+  favorite(cond) {
+    //this.authservice.getUserUid()
+      if (this.userLoggedIn()) {
+        switch (cond){
+          case false:
+            this.presentToast('Libro aggiunto ai preferiti!');
+            this.pippo = 'Rimuovi dai preferiti';
+            //aggiungo il preferito chiamando il metodo e passandogli l'uid dell'utente collegato e l'id del libro preferito
+            this.firestoreService.aggiungiPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
+            this.isFavorited = true;
+            break;
+          case true:
+            this.presentToast('Libro rimosso dai preferiti!');
+            this.pippo = 'Aggiungo ai preferiti';
+            this.isFavorited = false;
+            //aggiungo il preferito chiamando il metodo e passandogli l'uid dell'utente collegato e l'id del libro preferito
+            this.firestoreService.rimuoviPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
+            break;
+        }
+        setTimeout(() => {
+          console.log('Async operation has ended');
+          //window.location.reload();
+        }, 1000);
+        //this.router.navigate(['/libro', this.route.snapshot.paramMap.get('id')]);
+      }
     else {
       this.presentToast('Devi effettuare il Login!').then( res=>
           this.router.navigate(['/login']),
@@ -80,12 +98,22 @@ export class LibroPage implements OnInit {
   favoriteBook() {
     if (this.userLoggedIn()) {
       console.log('Utente loggato');
-      console.log(this.firestoreService.verificaPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id')));
       console.log(this.route.snapshot.paramMap);
-      return this.firestoreService.verificaPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
+      this.firestoreService.verificaPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'))
+        .then(value => {
+          console.log('VALUE: ' + value);
+          this.isFavorited = value;
+          // parte html per visualizzare Rimuovi o Aggiungi in base alla preferenza del libro
+              if (this.isFavorited) {this.pippo = 'Rimuovi dai preferiti';}
+              else {this.pippo = 'Aggiungi dai preferiti';}
+          console.log('is Favorited in favoriteBook: ' + this.isFavorited);
+          return ;
+        });
     } else {
+      this.isFavorited = false;
+      this.pippo = 'Aggiungi dai preferiti';
       console.log('Utente non loggato');
-      return false;
+      return ;
     }
     // return false; //libro non preferito
   }

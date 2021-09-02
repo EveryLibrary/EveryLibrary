@@ -149,21 +149,35 @@ export class FirestoreService {
     });
   }
 
-  async verificaPreferito(userUid: string, id: string){
+  rimuoviPreferito(userUid: string, id: string) {
+    const doc = this.db.collection('LibriPreferiti')
+      .where('libroId', '==', id)
+      .where('userId','==',userUid).get().then(
+      querySnapshot => {
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach( document => {
+            console.log('docID:' + document.id);
+            this.firestore.collection('LibriPreferiti').doc(document.id).delete();
+          });
+        }
+      });
+    const docRef = this.firestore.collection('LibriPreferiti',
+        ref => ref.where('libroId', '==', id)).doc(id);
+    console.log('Rimuovi:' + docRef);
+  }
+
+  async verificaPreferito(userUid: string, id: string): Promise<boolean>{
     console.log('Metodo verificaPreferito:');
     let cond: boolean;
-    //let list = this.firestore.collection('LibriPreferiti', ref => ref.where('userId', '==', userUid))
-    //  .get();
-    // per fare la query corretta va aggiunto un altro .where(userID == userUid) dopo il primo e
-    // vanno indicizzati su firebase se non funziona
-     await this.db.collection('LibriPreferiti').where('libroId', '==', id)
+     await this.db.collection('LibriPreferiti')
+       .where('libroId', '==', id)
+       .where('userId','==',userUid)
        .get()
        .then((doc) => {
       if (doc.size !== 0) {
         console.log(doc.docs);
         console.log('libro preferito');
         console.log('Document data:', doc.size);
-        //return Promise.resolve(true);
         cond = true;
         return true;
       } else {
@@ -178,6 +192,7 @@ export class FirestoreService {
     console.log('Fine Metodo verificaPreferito');
     return cond;
   }
+
 
 
 }
