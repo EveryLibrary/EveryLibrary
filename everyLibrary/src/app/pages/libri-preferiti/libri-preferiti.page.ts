@@ -17,7 +17,7 @@ import firestore = firebase.firestore;
 })
 export class LibriPreferitiPage implements OnInit {
   public libriList: any[];
-  private libriCaricati: any[];
+  private libriCaricati: Libro[];
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,
               public authservice: AuthService, public firestore: AngularFirestore) {}
@@ -27,7 +27,7 @@ export class LibriPreferitiPage implements OnInit {
   }
 
   async initializeItems(utenteId: any) {
-    const libriPreferitiList = await this.firestoreService.getLibriPreferitiList(utenteId).pipe(first()).toPromise();
+    const libriPreferitiList = await this.firestoreService.getLibriPreferitiList(utenteId);//.pipe(first()).toPromise()
     this.libriCaricati = libriPreferitiList;
     return libriPreferitiList;
   }

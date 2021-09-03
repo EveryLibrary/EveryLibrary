@@ -5,7 +5,7 @@ import {Biblioteca} from '../../models/biblioteche.interface';
 import {Observable} from 'rxjs';
 import {Libro, LibroPreferito} from '../../models/libri.interface';
 import firebase from 'firebase';
-import {count} from 'rxjs/operators';
+import {count, first} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,23 +27,38 @@ export class FirestoreService {
     return this.firestore.collection<Libro>(`Libri`).valueChanges();
   }
 
-  getLibriPreferitiList(uid: string) {
-    /*this.firestore.collection<LibroPreferito>(`LibriPreferiti`, ref => ref.where('userId','==',uid))
-      .valueChanges().subscribe(
-      snaps => {
-        snaps.forEach(
-          snap=>{
-            console.log(snap.libroId);
-            console.log(snap.userId);
-            return this.firestore.collection<Libro>('Libro', ref => ref.where('id','==',snap.libroId)).valueChanges();
-            //this.navController.navigateForward(['libro/', snap.get('id')]);
-          }
-        );
-      }
-    );*/
-    return this.firestore.collection<Libro>(`LibriPreferiti`, ref => ref.where('userId','==',uid))
-      .valueChanges();
-  }
+   async getLibriPreferitiList(uid: string) {
+     let list: Array<{ libroId: string }>;
+     const listaLibriPreferiti: Array<Libro> = [];
+
+     await this.metodoPref(uid).then(value => {
+       list = value;
+     });
+     for (let i = 0; i < list.length; i++) {
+       console.log(list[i]);
+       listaLibriPreferiti.push(await this.firestore.collection<Libro>('Libri')
+         .doc(list[i].toString())
+         .valueChanges().pipe(first()).toPromise());
+       //.forEach(libro => {console.log(libro);});
+     }
+     return listaLibriPreferiti;
+     //return this.firestore.collection<Libro>(`LibriPreferiti`, ref => ref.where('userId','==',uid))
+     //  .valueChanges();
+
+     /*this.firestore.collection<LibroPreferito>(`LibriPreferiti`, ref => ref.where('userId','==',uid))
+       .valueChanges().subscribe(
+       snaps => {
+         snaps.forEach(
+           snap=>{
+             console.log(snap.libroId);
+             console.log(snap.userId);
+             return this.firestore.collection<Libro>('Libro', ref => ref.where('id','==',snap.libroId)).valueChanges();
+             //this.navController.navigateForward(['libro/', snap.get('id')]);
+           }
+         );
+       }
+     );*/
+   }
 
   getLibro(libroId: string): Observable<Libro> {
     return this.firestore.doc<Libro>('/Libri/'+libroId).valueChanges();
@@ -148,9 +163,26 @@ export class FirestoreService {
       libroId: ''+id
     });
   }
-
+  async metodoPref(uid: string) {
+    const list: Array<{ libroId: string }> = [];
+    console.log('METODO PREF: ');
+    await this.db.collection('LibriPreferiti').where('userId', '==', uid).get().then(
+      querySnapshot => {
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach(document => {
+            list.push(document.get('libroId'));
+            console.log('documento:' + document.get('libroId'));
+            console.log('documento:' + document.get('userId'));
+            console.log('list:' + list);
+          });
+        }
+      }
+    );
+    console.log('FINE METODO PREF....');
+    return list;
+  }
   rimuoviPreferito(userUid: string, id: string) {
-    const doc = this.db.collection('LibriPreferiti')
+    this.db.collection('LibriPreferiti')
       .where('libroId', '==', id)
       .where('userId','==',userUid).get().then(
       querySnapshot => {
