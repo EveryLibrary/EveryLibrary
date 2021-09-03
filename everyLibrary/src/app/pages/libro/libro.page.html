@@ -12,7 +12,7 @@
   <br>
   <br>
   <ion-title style="text-align: center;">
-    Titolo: {{ libro?.titolo }}
+    {{ libro?.titolo }}
   </ion-title>
   <br>
   <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
@@ -51,9 +51,7 @@
   <br>
   <ion-item>
     <ion-label>Trama: </ion-label>
-    <br>
-    <ion-text> {{ libro?.trama }} </ion-text>
-    <br>
+    <ion-text style="margin-top: 20px"> {{ libro?.trama }} </ion-text>
   </ion-item>
   <br>
   <ion-button class="prestito" (click)="linkPrestito()">Prendi in prestito</ion-button>

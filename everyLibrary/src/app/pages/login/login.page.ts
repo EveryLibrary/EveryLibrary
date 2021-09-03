@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
             email: resp.user.email,
             //username: resp.user.displayName,
             uid: resp.user.uid
-          })
+          });
           const userProfile = this.firestore.collection('Utenti').doc(resp.user.uid);
           console.log(userProfile);
           userProfile.get().subscribe(result=>{
@@ -80,7 +80,7 @@ export class LoginPage implements OnInit {
               });
               this.navController.navigateForward(['area-riservata']);
             }
-          })
+          });
         }
       });
     } catch (err) {

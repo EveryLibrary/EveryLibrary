@@ -45,7 +45,7 @@ export class LibroPage implements OnInit {
             break;
           case true:
             this.presentToast('Libro rimosso dai preferiti!');
-            this.pippo = 'Aggiungo ai preferiti';
+            this.pippo = 'Aggiungi ai preferiti';
             this.isFavorited = false;
             //aggiungo il preferito chiamando il metodo e passandogli l'uid dell'utente collegato e l'id del libro preferito
             this.firestoreService.rimuoviPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
@@ -105,13 +105,13 @@ export class LibroPage implements OnInit {
           this.isFavorited = value;
           // parte html per visualizzare Rimuovi o Aggiungi in base alla preferenza del libro
               if (this.isFavorited) {this.pippo = 'Rimuovi dai preferiti';}
-              else {this.pippo = 'Aggiungi dai preferiti';}
+              else {this.pippo = 'Aggiungi ai preferiti';}
           console.log('is Favorited in favoriteBook: ' + this.isFavorited);
           return ;
         });
     } else {
       this.isFavorited = false;
-      this.pippo = 'Aggiungi dai preferiti';
+      this.pippo = 'Aggiungi ai preferiti';
       console.log('Utente non loggato');
       return ;
     }

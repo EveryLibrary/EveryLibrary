@@ -31,4 +31,24 @@ export class LibriPreferitiPage implements OnInit {
     this.libriCaricati = libriPreferitiList;
     return libriPreferitiList;
   }
+  async filterList(evt){
+    this.libriList = this.libriCaricati;
+    const searchTerm = evt.srcElement.value;
+    if(!searchTerm){
+      return;
+    }
+
+    this.libriList = this.libriList.filter(
+      currentLibro => {
+        if((currentLibro.titolo || currentLibro.autore || currentLibro.editore) && searchTerm){
+          if((currentLibro.titolo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+            || (currentLibro.autore.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+            || (currentLibro.editore.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)){
+            return true;
+          }
+          return false;
+        }
+      }
+    );
+  }
 }
