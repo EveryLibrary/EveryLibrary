@@ -7,10 +7,18 @@
 </ion-header>
 
 <ion-content>
-  <br>
-  <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
-  <ion-list>
-    <ion-card *ngFor="let libro of libriList"
+  <div>
+    <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
+  </div>
+  <h6 style="font-size: 10px; color: #4d4d4d; text-align: center; margin-top: -5px; margin-bottom: -1px">Scorri in basso per aggiornare...</h6>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Pull to refresh"
+                           refreshingSpinner="circles"
+                           refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+    <ion-list>
+      <!-- <h3 *ngIf="libriList.length === 0" style="color: tomato;"> Non ci sono ancora libri preferiti!</h3> -->
+      <ion-card *ngFor="let libro of libriList"
               routerLink="/libro/{{libro?.id}}">
       <ion-card-content>
         <ion-icon class="icone" name="book-outline"></ion-icon>
@@ -18,18 +26,15 @@
         <br>
         <ion-text>
           <strong>Titolo:</strong>
-          <br>
           {{ libro?.titolo }}
           <br>
           <strong>Autore:</strong>
-          <br>
           {{ libro?.autore }}
           <br>
           <strong>Editore:</strong>
-          <br>
           {{ libro?.editore }}
         </ion-text>
       </ion-card-content>
-    </ion-card>
-  </ion-list>
+      </ion-card>
+      </ion-list>
 </ion-content>

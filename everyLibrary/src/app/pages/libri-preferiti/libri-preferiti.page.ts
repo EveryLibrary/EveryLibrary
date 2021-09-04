@@ -25,7 +25,6 @@ export class LibriPreferitiPage implements OnInit {
     const utenteId = firebase.auth().currentUser.uid;
     this.libriList = await this.initializeItems(utenteId);
   }
-
   async initializeItems(utenteId: any) {
     const libriPreferitiList = await this.firestoreService.getLibriPreferitiList(utenteId);//.pipe(first()).toPromise()
     this.libriCaricati = libriPreferitiList;
@@ -50,5 +49,13 @@ export class LibriPreferitiPage implements OnInit {
         }
       }
     );
+  }
+
+  doRefresh(event) {
+    setTimeout(async () => {
+      console.log('Aggiornamento...');
+      this.libriList = await this.initializeItems(firebase.auth().currentUser.uid);
+      event.target.complete();
+    }, 1500);
   }
 }
