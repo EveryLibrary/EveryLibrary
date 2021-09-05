@@ -228,16 +228,3 @@ export class FirestoreService {
 
 
 }
-/*ngOnInit() {
-  var libri = this.database.collection("utente", ref => ref.where('uid','==',this.id));
-  docRef.get().toPromise().then((querySnapshot) => {
-    querySnapshot.forEach( (doc) => {
-      this.SchedeProfilo = this.database.collection<Schede>("scheda", ref =>
-       ref.where('creatore', '==', doc.data()['username']).where('genere','==',this.cat)).valueChanges();
-      this.SchedeProfilo.subscribe(result => {
-        if(result.length == 0)
-          this.openToast();
-      });
-    });
-  });
-}*/

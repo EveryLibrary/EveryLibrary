@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
-    <ion-button class="bottoniLog" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="authservice.SignOut()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
-    <ion-button class="bottoniLog" style="margin-right: 130px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" style="float: left; margin-right: 5px; margin-left: 5px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float:right; margin-right: 5px; margin-left: 5px;margin-top: 10px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>
+    <ion-button class="bottoniLog" *ngIf="userLoggedIn()" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="authservice.SignOut()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
     <ion-img src="../../../assets/icon/titolo_everylibrary.png" id="logo"></ion-img>
   </ion-toolbar>
 </ion-header>
@@ -10,50 +11,18 @@
   <br>
   <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
   <ion-list>
-    <ion-card>
+    <ion-card *ngFor="let libro of libriList "
+              routerLink="/libro/{{libro?.id}}">
+      <ion-icon class="icona" name="book-outline"></ion-icon>
       <ion-card-content>
-        <ion-icon class="icona" name="book-outline"></ion-icon>
+        Titolo: {{ libro?.titolo }}
         <br>
-        Titolo: Il bello dell'essere morti
+        Autore: {{ libro?.autore }}
         <br>
-        Autore: Fredrick Panch
+        Biblioteca:
         <br>
-        Biblioteca: L'Aquila
-        <br>
-        Data Restituzione: 09/09/2021
-        <br>
+        Data Restituzione:
       </ion-card-content>
     </ion-card>
-
-    <ion-card>
-      <ion-card-content>
-        <ion-icon class="icona" name="book-outline"></ion-icon>
-        <br>
-        Titolo: Il bello dell'essere morti
-        <br>
-        Autore: Fredrick Panch
-        <br>
-        Biblioteca: L'Aquila
-        <br>
-        Data Restituzione: 09/09/2021
-        <br>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-content>
-        <ion-icon class="icona" name="book-outline"></ion-icon>
-        <br>
-        Titolo: Il bello dell'essere morti
-        <br>
-        Autore: Fredrick Panch
-        <br>
-        Biblioteca: L'Aquila
-        <br>
-        Data Restituzione: 09/09/2021
-        <br>
-      </ion-card-content>
-    </ion-card>
-
   </ion-list>
 </ion-content>

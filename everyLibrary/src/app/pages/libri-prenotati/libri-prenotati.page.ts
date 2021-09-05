@@ -5,6 +5,7 @@ import {AuthService} from '../../services/auth.service';
 import {FirestoreService} from '../../services/data/firestore.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {first} from 'rxjs/operators';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-libri-prenotati',
@@ -45,5 +46,11 @@ export class LibriPrenotatiPage implements OnInit {
         }
       }
     );
+  }
+  login(){
+    this.router.navigate(['/login']);
+  }
+  userLoggedIn() {
+    return (firebase.auth().currentUser != null);
   }
 }
