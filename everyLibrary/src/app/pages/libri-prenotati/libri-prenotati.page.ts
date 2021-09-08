@@ -20,11 +20,11 @@ export class LibriPrenotatiPage implements OnInit {
               public authservice: AuthService, private firestore: AngularFirestore) { }
 
   async ngOnInit() {
-    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
-    this.libriList = await this.initializeItems(bibliotecaId);
+    const userId = firebase.auth().currentUser.uid;
+    this.libriList = await this.initializeItems(userId);
   }
-  async initializeItems(bibliotecaId): Promise<any> {
-    const libriList = await this.firestoreService.getListaLibriBiblioteca(bibliotecaId).pipe(first()).toPromise();
+  async initializeItems(userId): Promise<any> {
+    const libriList = await this.firestoreService.getLibriPrestatiList(userId);
     this.libriCaricati = libriList;
     return libriList;
   }

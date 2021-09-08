@@ -225,6 +225,59 @@ export class FirestoreService {
     return cond;
   }
 
-
-
+  async getLibriPrestatiList(uid: string) {
+    let list: Array<{ libroId: string }>;
+    const listaLibriPrestati: Array<Libro> = [];
+    await this.metodoPrestito(uid).then(value => {
+      list = value;
+    });
+    for (let i = 0; i < list.length; i++) {
+      console.log(list[i]);
+      listaLibriPrestati.push(await this.firestore.collection<Libro>('Libri')
+        .doc(list[i].toString())
+        .valueChanges().pipe(first()).toPromise());
+    }
+    return listaLibriPrestati;
+  }
+  async metodoPrestito(uid: string) {
+    const list: Array<{ libroId: string }> = [];
+    await this.db.collection('LibriPrestati').where('idUtente', '==', uid).get().then(
+      querySnapshot => {
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach(document => {
+            list.push(document.get('idLibro'));
+            console.log('documento:' + document.get('idLibro'));
+            console.log('documento:' + document.get('idUtente'));
+          });
+        }
+      }
+    );
+    return list;
+  }
+  aggiungiPrestito(idUser: string, libroId: string) {
+    this.firestore.collection('LibriPrestati').add({
+      idUtente: ''+idUser,
+      idLibro: ''+libroId,
+      dataPrenotazione: '',
+      dataPrestito: '',
+      dataRestituzione: '',
+    });
+  }
+  async verificaPrestito(userUid: string, id: string): Promise<boolean>{
+    let cond: boolean;
+    await this.db.collection('LibriPrestati')
+      .where('idLibro', '==', id)
+      .where('idUtente','==',userUid)
+      .get()
+      .then((doc) => {
+        if (doc.size !== 0) {
+          cond = true;
+          return true;
+        } else {
+          cond = false;
+          return false;
+        }
+      });
+    return cond;
+  }
 }

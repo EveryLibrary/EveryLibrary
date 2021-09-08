@@ -14,3 +14,10 @@ export interface LibroPreferito {
   userId: string;
   libroId: string;
 }
+export interface LibroPrestato {
+  idUtente: string;
+  idLibro: string;
+  dataPrestito: string;
+  dataPrenotazione: string;
+  dataRestituzione: string;
+}

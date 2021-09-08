@@ -17,22 +17,22 @@
   <br>
   <ion-item>
     <ion-label>Titolo: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libro?.titolo }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>ISBN: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libro?.isbn }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Autore: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libro?.autore }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Editore: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libro?.editore }} </ion-text>
   </ion-item>
 
   <br>
@@ -43,27 +43,27 @@
 
   <ion-item>
     <ion-label>Biblioteca: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ biblioteca?.nome }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Corsia: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libro?.posizione_corsia }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Data Prenotazione: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libroPrestato?.dataPrenotazione }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Data Ritiro: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libroPrestato?.dataPrestito }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Data Restituzione: </ion-label>
-    <ion-text> ... </ion-text>
+    <ion-text> {{ libroPrestato?.dataRestituzione }} </ion-text>
   </ion-item>
   <br>
   <ion-button class="prestito" aria-haspopup="true">Conferma Prenotazione</ion-button>

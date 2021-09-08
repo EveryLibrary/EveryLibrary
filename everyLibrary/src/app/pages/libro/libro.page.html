@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar style="margin-top: 17px">
+    <!--<ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float: left; margin-right: 5px; margin-left: 5px;" (click)="signup()">Registrati<ion-icon style="margin-left: 5px" name="person-add-outline"></ion-icon></ion-button>-->
     <ion-button class="bottoniLog" style="float: left; margin-right: 5px; margin-left: 5px; margin-top: 10px;" (click)="this.navController.back();"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" *ngIf="!userLoggedIn()" style="float: right;margin-right: 5px; margin-left: 5px;margin-top: 10px;" (click)="login()">Accedi <ion-icon name="log-in-outline"></ion-icon></ion-button>
     <ion-button class="bottoniLog" *ngIf="userLoggedIn()" style="margin-left: 50px; margin-right: 5px; margin-top: 10px;" (click)="authservice.SignOut()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
@@ -10,16 +11,16 @@
 <ion-content>
   <br>
   <br>
-  <ion-title style="text-align: center;">
-    {{ libro?.titolo }}
-  </ion-title>
+  <ion-card-title style="text-align: center;">
+    <b>{{ libro?.titolo }}</b>
+  </ion-card-title>
   <br>
   <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
   <br>
   <ion-segment-button (click)="favorite(isFavorited)">
-  <ion-icon class="icona" style="" name="heart-circle-outline"></ion-icon>
-  <ion-text *ngIf="!isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
-  <ion-text *ngIf="isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
+    <ion-icon class="icona" style="" name="heart-circle-outline"></ion-icon>
+    <ion-text *ngIf="!isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
+    <ion-text *ngIf="isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
   </ion-segment-button>
   <br>
   <ion-item>
@@ -28,18 +29,15 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Data Pubblicazione: </ion-label>
-    <ion-text> {{ libro?.dataPubblicazione }} </ion-text>
+    <ion-label>Data Pubblicazione:<br> <ion-label style="float: right;">{{ libro?.dataPubblicazione }}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Autore: </ion-label>
-    <ion-text> {{ libro?.autore }} </ion-text>
+    <ion-label>Autore: <br> <ion-label style="float: right;">{{ libro?.autore }}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Editore: </ion-label>
-    <ion-text> {{ libro?.editore }} </ion-text>
+    <ion-label>Editore: <br> <ion-label style="float: right;">{{ libro?.editore }}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
@@ -49,10 +47,16 @@
 
   <br>
   <ion-item>
-    <ion-label>Trama: </ion-label>
-    <ion-text style="margin-top: 20px"> {{ libro?.trama }} </ion-text>
+    <ion-text>Trama:
+    <br>
+      <br>
+      {{ libro?.trama }}
+    </ion-text>
   </ion-item>
   <br>
-  <ion-button class="prestito" (click)="linkPrestito()">Prendi in prestito</ion-button>
 
+  <ion-button class="bottonePrestito" (click)="prestato(prestito)">
+    <ion-text *ngIf="prestito">{{ ciccio }}</ion-text>
+    <ion-text *ngIf="!prestito">{{ ciccio }}</ion-text>
+  </ion-button>
 </ion-content>

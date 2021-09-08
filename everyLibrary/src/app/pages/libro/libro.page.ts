@@ -7,6 +7,7 @@ import { Libro } from '../../models/libri.interface';
 import { Observable } from 'rxjs';
 import firebase from 'firebase';
 import {AuthService} from '../../services/auth.service';
+import {Biblioteca} from '../../models/biblioteche.interface';
 
 @Component({
   selector: 'app-libro',
@@ -18,6 +19,9 @@ export class LibroPage implements OnInit {
   isFavorited: boolean;
   public libro: Libro;
   pippo: string;
+  ciccio: string;
+  prestito: boolean;
+  biblioteca: Biblioteca;
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService,
               public authservice: AuthService, public toastController: ToastController) { }
@@ -25,12 +29,16 @@ export class LibroPage implements OnInit {
   async ngOnInit() {
     //this.pippo = 'Aggiungi ai preferiti';
     const libroId: string = this.route.snapshot.paramMap.get('id');
-    //const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
+    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
     console.log('Libro: ' + libroId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
     });
+    this.firestoreService.getBiblioteca(bibliotecaId).subscribe(biblioteca => {
+      this.biblioteca = biblioteca;
+    });
     this.favoriteBook();
+    this.libroPrestato();
   }
   favorite(cond) {
     //this.authservice.getUserUid()
@@ -57,17 +65,6 @@ export class LibroPage implements OnInit {
         }, 1000);
         //this.router.navigate(['/libro', this.route.snapshot.paramMap.get('id')]);
       }
-    else {
-      this.presentToast('Devi effettuare il Login!').then( res=>
-          this.router.navigate(['/login']),
-        err => console.log(err)
-      );
-    }
-  }
-  linkPrestito(){
-    if(this.userLoggedIn()){
-      this.router.navigate(['/prestito']);
-    }
     else {
       this.presentToast('Devi effettuare il Login!').then( res=>
           this.router.navigate(['/login']),
@@ -116,5 +113,46 @@ export class LibroPage implements OnInit {
       return ;
     }
     // return false; //libro non preferito
+  }
+  prestato(cond) {
+    if (this.userLoggedIn()) {
+      switch (cond){
+        case false:
+          this.ciccio = 'Prendi in prestito';
+          this.firestoreService.aggiungiPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
+          this.prestito = true;
+          this.router.navigate(['/prestito']);
+          break;
+        case true:
+          this.ciccio = 'Preso in prestito';
+          this.prestito = false;
+          this.router.navigate(['/prestito']);
+          break;
+      }
+      setTimeout(() => {
+        console.log('Async operation has ended');
+      }, 1000);
+    }
+    else {
+      this.presentToast('Devi effettuare il Login!').then( res=>
+          this.router.navigate(['/login']),
+        err => console.log(err)
+      );
+    }
+  }
+  libroPrestato() {
+    if (this.userLoggedIn()) {
+      this.firestoreService.verificaPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'))
+        .then(value => {
+          this.prestito = value;
+          if (this.prestito) {this.ciccio = 'Preso in prestito';}
+          else {this.ciccio = 'Prendi in prestito';}
+          return ;
+        });
+    } else {
+      this.prestito = false;
+      this.ciccio = 'Prendi in prestito';
+      return ;
+    }
   }
 }
