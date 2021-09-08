@@ -60,6 +60,8 @@ export class FirestoreService {
      );*/
    }
 
+  
+
   getLibro(libroId: string): Observable<Libro> {
     return this.firestore.doc<Libro>('/Libri/'+libroId).valueChanges();
     //return this.firestore.collection<Libro>(`Libri`).doc<Libro>(libroId).valueChanges();
@@ -254,13 +256,13 @@ export class FirestoreService {
     );
     return list;
   }
-  aggiungiPrestito(idUser: string, libroId: string) {
+  aggiungiPrestito(idUser: string, libroId: string, idBiblioteca: string) {
     this.firestore.collection('LibriPrestati').add({
       idUtente: ''+idUser,
       idLibro: ''+libroId,
+      idBiblioteca: ''+idBiblioteca,
       dataPrenotazione: '',
       dataPrestito: '',
-      dataRestituzione: '',
     });
   }
   async verificaPrestito(userUid: string, id: string): Promise<boolean>{
@@ -280,4 +282,6 @@ export class FirestoreService {
       });
     return cond;
   }
+
+  
 }

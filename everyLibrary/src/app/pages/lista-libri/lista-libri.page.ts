@@ -10,6 +10,7 @@ import { Biblioteca } from 'src/app/models/biblioteche.interface';
 import {AuthService} from '../../services/auth.service';
 import {first} from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { BibliotecaPage } from '../biblioteca/biblioteca.page';
 
 @Component({
   selector: 'app-lista-libri',
@@ -19,6 +20,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class ListaLibriPage implements OnInit {
   public libriList: any[];
   public libriCaricati: any[];
+  public biblioteca = this.route.snapshot.paramMap.get('id');
   //public bid: string;
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,

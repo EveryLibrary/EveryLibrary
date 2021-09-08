@@ -17,7 +17,7 @@ export interface LibroPreferito {
 export interface LibroPrestato {
   idUtente: string;
   idLibro: string;
+  idBiblioteca: string;
   dataPrestito: string;
   dataPrenotazione: string;
-  dataRestituzione: string;
 }

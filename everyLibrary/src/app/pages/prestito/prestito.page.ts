@@ -13,6 +13,7 @@ import firebase from 'firebase';
   styleUrls: ['./prestito.page.scss'],
 })
 export class PrestitoPage implements OnInit {
+  today = Date.now();
   public libro: Libro;
   public biblioteca: Biblioteca;
   public libroPrestato: LibroPrestato;
@@ -22,8 +23,10 @@ export class PrestitoPage implements OnInit {
 
   ngOnInit() {
     const libroId: string = this.route.snapshot.paramMap.get('id');
-    const bibliotecaId: string = this.route.snapshot.paramMap.get('id');
-    this.firestoreService.getLibro(libroId).subscribe(libro => {
+    console.log(libroId);
+    const bibliotecaId: string = this.route.snapshot.paramMap.get('idBiblioteca');
+    console.log("id della biblioteca "+ bibliotecaId);
+    this.firestoreService.getLibro(libroId,).subscribe(libro => {
       this.libro = libro;
     });
     this.firestoreService.getBiblioteca(bibliotecaId).subscribe(biblioteca => {

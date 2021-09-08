@@ -29,8 +29,10 @@ export class LibroPage implements OnInit {
   async ngOnInit() {
     //this.pippo = 'Aggiungi ai preferiti';
     const libroId: string = this.route.snapshot.paramMap.get('id');
-    const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
+    const bibliotecaId: string =  this.route.snapshot.paramMap.get('idBiblioteca');
+    
     console.log('Libro: ' + libroId);
+    console.log('biblioteca id: ' + bibliotecaId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
     });
@@ -119,14 +121,14 @@ export class LibroPage implements OnInit {
       switch (cond){
         case false:
           this.ciccio = 'Prendi in prestito';
-          this.firestoreService.aggiungiPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
+          this.firestoreService.aggiungiPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'), this.biblioteca.id);
           this.prestito = true;
-          this.router.navigate(['/prestito']);
+          this.router.navigate(['/prestito',this.libro.id, this.biblioteca.id]);
           break;
         case true:
           this.ciccio = 'Preso in prestito';
           this.prestito = false;
-          this.router.navigate(['/prestito']);
+          this.router.navigate(['/prestito',this.libro.id, this.biblioteca.id]);
           break;
       }
       setTimeout(() => {

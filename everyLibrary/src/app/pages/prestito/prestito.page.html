@@ -52,18 +52,17 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Data Prenotazione: </ion-label>
-    <ion-text> {{ libroPrestato?.dataPrenotazione }} </ion-text>
+    <ion-label>Data Prenotazione: {{ today | date:'dd/MM/yyyy'}}</ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Data Ritiro: </ion-label>
-    <ion-text> {{ libroPrestato?.dataPrestito }} </ion-text>
+    <ion-datetime displayFormat="DD MM YYYY" min="2021-01-01" max="2030-12-31" placeholder="Scegli data"></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label>Data Restituzione: </ion-label>
-    <ion-text> {{ libroPrestato?.dataRestituzione }} </ion-text>
+    <ion-label>Periodo Prestito: {{ biblioteca?.periodo_prestito }}</ion-label>
+    
   </ion-item>
   <br>
   <ion-button class="prestito" aria-haspopup="true">Conferma Prenotazione</ion-button>

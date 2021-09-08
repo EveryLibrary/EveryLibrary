@@ -15,6 +15,7 @@ import firebase from 'firebase';
 export class LibriPrenotatiPage implements OnInit {
   public libriList: any[];
   public libriCaricati: any[];
+  
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,
               public authservice: AuthService, private firestore: AngularFirestore) { }

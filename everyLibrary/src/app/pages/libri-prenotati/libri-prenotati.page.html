@@ -11,8 +11,7 @@
   <br>
   <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
   <ion-list>
-    <ion-card *ngFor="let libro of libriList "
-              routerLink="/libro/{{libro?.id}}">
+    <ion-card *ngFor="let libro of libriList " [routerLink]="['/libro', libro.id]">
       <ion-icon class="icona" name="book-outline"></ion-icon>
       <ion-card-content>
         Titolo: {{ libro?.titolo }}

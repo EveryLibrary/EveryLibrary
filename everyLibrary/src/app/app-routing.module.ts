@@ -44,7 +44,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/biblioteca/biblioteca.module').then( m => m.BibliotecaPageModule)
   },
   {
-    path: 'libro/:id',
+    path: 'libro/:id/:idBiblioteca',
     loadChildren: () => import('./pages/libro/libro.module').then( m => m.LibroPageModule)
   },
   {
@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/lista-libri/lista-libri.module').then( m => m.ListaLibriPageModule)
   },
   {
-    path: 'prestito',
+    path: 'prestito/:id/:idBiblioteca',
     loadChildren: () => import('./pages/prestito/prestito.module').then( m => m.PrestitoPageModule)
   },
 
