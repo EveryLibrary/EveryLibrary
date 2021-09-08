@@ -16,8 +16,7 @@
   <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
   <br>
   <ion-item>
-    <ion-label>Titolo: </ion-label>
-    <ion-text> {{ libro?.titolo }} </ion-text>
+    <ion-label>Titolo: <br> {{ libro?.titolo }} </ion-label>
   </ion-item>
 
   <ion-item>
@@ -26,13 +25,11 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Autore: </ion-label>
-    <ion-text> {{ libro?.autore }} </ion-text>
+    <ion-label>Autore: <br> <ion-label style="float: right;"> {{ libro?.autore }} </ion-label></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Editore: </ion-label>
-    <ion-text> {{ libro?.editore }} </ion-text>
+    <ion-label>Editore: <br> <ion-label style="float: right;">{{ libro?.editore }} </ion-label></ion-label>
   </ion-item>
 
   <br>
@@ -52,7 +49,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Data Prenotazione: {{ today | date:'dd/MM/yyyy'}}</ion-label>
+    <ion-label>Data Prenotazione: <br> <ion-label style="float: right;">{{ today | date:'dd/MM/yyyy'}}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
@@ -61,10 +58,10 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Periodo Prestito: {{ biblioteca?.periodo_prestito }}</ion-label>
-    
+    <ion-label>Periodo Prestito: <ion-label style="float: right;">{{ biblioteca?.periodo_prestito }}</ion-label></ion-label>
   </ion-item>
+
   <br>
-  <ion-button class="prestito" aria-haspopup="true">Conferma Prenotazione</ion-button>
+  <ion-button class="prestito" (click)="confermaPrestito()">Conferma Prenotazione</ion-button>
 
 </ion-content>

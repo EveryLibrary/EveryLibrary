@@ -22,6 +22,7 @@ export class LibroPage implements OnInit {
   ciccio: string;
   prestito: boolean;
   biblioteca: Biblioteca;
+  //public bibliotecaId = this.route.snapshot.paramMap.get('id');
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService,
               public authservice: AuthService, public toastController: ToastController) { }
@@ -30,9 +31,6 @@ export class LibroPage implements OnInit {
     //this.pippo = 'Aggiungi ai preferiti';
     const libroId: string = this.route.snapshot.paramMap.get('id');
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('idBiblioteca');
-    
-    console.log('Libro: ' + libroId);
-    console.log('biblioteca id: ' + bibliotecaId);
     this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
     });

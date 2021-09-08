@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {Libro, LibroPreferito} from '../../models/libri.interface';
 import firebase from 'firebase';
 import {count, first} from 'rxjs/operators';
+import {isFirebaseDataSnapshot} from "@angular/fire/database/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +61,7 @@ export class FirestoreService {
      );*/
    }
 
-  
+
 
   getLibro(libroId: string): Observable<Libro> {
     return this.firestore.doc<Libro>('/Libri/'+libroId).valueChanges();
@@ -261,8 +262,6 @@ export class FirestoreService {
       idUtente: ''+idUser,
       idLibro: ''+libroId,
       idBiblioteca: ''+idBiblioteca,
-      dataPrenotazione: '',
-      dataPrestito: '',
     });
   }
   async verificaPrestito(userUid: string, id: string): Promise<boolean>{
@@ -283,5 +282,29 @@ export class FirestoreService {
     return cond;
   }
 
-  
+  modificaPrestito(idUtente: string, idLibro: string, idBiblioteca: string) {
+    /*this.db.collection('LibriPrestati').where('idUtente','==',idUtente)
+      .where('idLibro', '==', idLibro)
+      .where('idBiblioteca','==',idBiblioteca).get().then(
+        querySnapshot => {
+          if (!querySnapshot.empty) {
+            querySnapshot.forEach( document => {
+              this.firestore.collection('LibriPrestati').doc(document.id).set('dataRitiro');
+              this.firestore.collection('LibriPrestati').doc(document.id).set(dataPrenotazione');
+            });
+          }
+        });
+    */
+
+    /*const data = {
+      idUtente,
+      idLibro,
+      idBiblioteca,
+      dataRitiro: '',
+      dataPrenotazione: Date.now()
+    };
+    this.db.collection('LibriPrestati').where('idUtente','==',idUtente)
+      .where('idLibro', '==', idLibro)
+      .where('idBiblioteca','==',idBiblioteca).set(data);*/
+  }
 }

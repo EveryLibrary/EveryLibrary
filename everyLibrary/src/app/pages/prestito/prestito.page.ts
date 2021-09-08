@@ -16,7 +16,6 @@ export class PrestitoPage implements OnInit {
   today = Date.now();
   public libro: Libro;
   public biblioteca: Biblioteca;
-  public libroPrestato: LibroPrestato;
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService,
               public authservice: AuthService, public toastController: ToastController) { }
@@ -25,12 +24,16 @@ export class PrestitoPage implements OnInit {
     const libroId: string = this.route.snapshot.paramMap.get('id');
     console.log(libroId);
     const bibliotecaId: string = this.route.snapshot.paramMap.get('idBiblioteca');
-    console.log("id della biblioteca "+ bibliotecaId);
     this.firestoreService.getLibro(libroId,).subscribe(libro => {
       this.libro = libro;
     });
     this.firestoreService.getBiblioteca(bibliotecaId).subscribe(biblioteca => {
       this.biblioteca = biblioteca;
     });
+  }
+
+  confermaPrestito() {
+    this.firestoreService.modificaPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'), this.biblioteca.id);
+    this.router.navigate(['/libri-prenotati']);
   }
 }
