@@ -19,16 +19,12 @@ export class LibroPage implements OnInit {
   isFavorited: boolean;
   public libro: Libro;
   pippo: string;
-  ciccio: string;
-  prestito: boolean;
   biblioteca: Biblioteca;
-  //public bibliotecaId = this.route.snapshot.paramMap.get('id');
   constructor(private navController: NavController, private router: Router,
               private route: ActivatedRoute, private firestoreService: FirestoreService,
               public authservice: AuthService, public toastController: ToastController) { }
 
   async ngOnInit() {
-    //this.pippo = 'Aggiungi ai preferiti';
     const libroId: string = this.route.snapshot.paramMap.get('id');
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('idBiblioteca');
     this.firestoreService.getLibro(libroId).subscribe(libro => {
@@ -38,7 +34,6 @@ export class LibroPage implements OnInit {
       this.biblioteca = biblioteca;
     });
     this.favoriteBook();
-    this.libroPrestato();
   }
   favorite(cond) {
     //this.authservice.getUserUid()
@@ -110,48 +105,6 @@ export class LibroPage implements OnInit {
       this.isFavorited = false;
       this.pippo = 'Aggiungi ai preferiti';
       console.log('Utente non loggato');
-      return ;
-    }
-    // return false; //libro non preferito
-  }
-  prestato(cond) {
-    if (this.userLoggedIn()) {
-      switch (cond){
-        case false:
-          this.ciccio = 'Prendi in prestito';
-          this.firestoreService.aggiungiPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'), this.biblioteca.id);
-          this.prestito = true;
-          this.router.navigate(['/prestito',this.libro.id, this.biblioteca.id]);
-          break;
-        case true:
-          this.ciccio = 'Preso in prestito';
-          this.prestito = false;
-          this.router.navigate(['/prestito',this.libro.id, this.biblioteca.id]);
-          break;
-      }
-      setTimeout(() => {
-        console.log('Async operation has ended');
-      }, 1000);
-    }
-    else {
-      this.presentToast('Devi effettuare il Login!').then( res=>
-          this.router.navigate(['/login']),
-        err => console.log(err)
-      );
-    }
-  }
-  libroPrestato() {
-    if (this.userLoggedIn()) {
-      this.firestoreService.verificaPrestito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'))
-        .then(value => {
-          this.prestito = value;
-          if (this.prestito) {this.ciccio = 'Preso in prestito';}
-          else {this.ciccio = 'Prendi in prestito';}
-          return ;
-        });
-    } else {
-      this.prestito = false;
-      this.ciccio = 'Prendi in prestito';
       return ;
     }
   }

@@ -18,6 +18,6 @@ export interface LibroPrestato {
   idUtente: string;
   idLibro: string;
   idBiblioteca: string;
-  dataPrestito: string;
+  dataRitiro: string;
   dataPrenotazione: string;
 }

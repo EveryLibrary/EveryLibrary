@@ -257,11 +257,13 @@ export class FirestoreService {
     );
     return list;
   }
-  aggiungiPrestito(idUser: string, libroId: string, idBiblioteca: string) {
+  aggiungiPrestito(idUser: string, libroId: string, idBiblioteca: string, today: string, dataRitiro: string) {
     this.firestore.collection('LibriPrestati').add({
       idUtente: ''+idUser,
       idLibro: ''+libroId,
       idBiblioteca: ''+idBiblioteca,
+      dataRitiro: ''+dataRitiro,
+      dataPrenotazione: ''+today,
     });
   }
   async verificaPrestito(userUid: string, id: string): Promise<boolean>{
@@ -280,31 +282,5 @@ export class FirestoreService {
         }
       });
     return cond;
-  }
-
-  modificaPrestito(idUtente: string, idLibro: string, idBiblioteca: string) {
-    /*this.db.collection('LibriPrestati').where('idUtente','==',idUtente)
-      .where('idLibro', '==', idLibro)
-      .where('idBiblioteca','==',idBiblioteca).get().then(
-        querySnapshot => {
-          if (!querySnapshot.empty) {
-            querySnapshot.forEach( document => {
-              this.firestore.collection('LibriPrestati').doc(document.id).set('dataRitiro');
-              this.firestore.collection('LibriPrestati').doc(document.id).set(dataPrenotazione');
-            });
-          }
-        });
-    */
-
-    /*const data = {
-      idUtente,
-      idLibro,
-      idBiblioteca,
-      dataRitiro: '',
-      dataPrenotazione: Date.now()
-    };
-    this.db.collection('LibriPrestati').where('idUtente','==',idUtente)
-      .where('idLibro', '==', idLibro)
-      .where('idBiblioteca','==',idBiblioteca).set(data);*/
   }
 }
