@@ -50,12 +50,12 @@
 
   <ion-item>
     <ion-label style="color: black; opacity: unset;">Prenotazione: {{ today | date:'dd/MM/yyyy'}} </ion-label>
-    <ion-datetime disabled [(ngModel)]="today"></ion-datetime>
+    <ion-datetime disabled displayFormat="DD/MM/YYYY" [(ngModel)]="today"></ion-datetime>
   </ion-item>
 
-  <ion-item>
-    <ion-label>Data Ritiro: </ion-label>
-    <ion-datetime displayFormat="DD MM YYYY" min="2021-01-01" max="2030-12-31" placeholder="Scegli data" [(ngModel)]="dataRitiro"></ion-datetime>
+  <ion-item *ngIf="!prestito">
+    <ion-label style="color: black; opacity: unset;">Data Ritiro: </ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" min="2021-01-01" max="2030-12-31" [(ngModel)]="dataRitiro"></ion-datetime>
   </ion-item>
 
   <ion-item>
@@ -63,9 +63,11 @@
   </ion-item>
 
   <br>
-  <ion-button class="bottonePrestito" (click)="prestato(prestito)">
-    <ion-text *ngIf="prestito">{{ ciccio }}</ion-text>
-    <ion-text *ngIf="!prestito">{{ ciccio }}</ion-text>
+  <ion-button *ngIf="prestito" disabled class="bottonePrestito" (click)="prestato(prestito)">
+    <ion-text style="color: red; opacity: unset;"> Libro Preso in prestito! </ion-text>
+  </ion-button>
+  <ion-button *ngIf="!prestito" class="bottonePrestito" (click)="prestato(prestito)">
+    <ion-text>{{ ciccio }}</ion-text>
   </ion-button>
 
 </ion-content>

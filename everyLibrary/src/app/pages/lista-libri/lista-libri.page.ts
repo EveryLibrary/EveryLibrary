@@ -28,10 +28,6 @@ export class ListaLibriPage implements OnInit {
 
   async ngOnInit() {
     const bibliotecaId: string =  this.route.snapshot.paramMap.get('id');
-    //this.bid =  this.route.snapshot.paramMap.get('id');
-    //console.log('Biblio: ' + bibliotecaId);
-    //this.libriList = this.firestoreService.getListaLibriBiblioteca(bibliotecaId);
-    //console.log('Lista libri: ' + this.libriList);
     this.libriList = await this.initializeItems(bibliotecaId);
   }
 

@@ -26,7 +26,7 @@ export class LibriPreferitiPage implements OnInit {
     this.libriList = await this.initializeItems(utenteId);
   }
   async initializeItems(utenteId: any) {
-    const libriPreferitiList = await this.firestoreService.getLibriPreferitiList(utenteId);//.pipe(first()).toPromise()
+    const libriPreferitiList = await this.firestoreService.getLibriPreferitiList(utenteId);
     this.libriCaricati = libriPreferitiList;
     return libriPreferitiList;
   }

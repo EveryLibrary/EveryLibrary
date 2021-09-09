@@ -16,10 +16,10 @@
                            refreshingSpinner="circles"
                            refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
-    <ion-list>
-      <!-- <h3 *ngIf="libriList.length === 0" style="color: tomato;"> Non ci sono ancora libri preferiti!</h3> -->
-      <ion-card *ngFor="let libro of libriList"
-              routerLink="/libro/{{libro?.id}}">
+  <ion-list>
+    <!--<h3 *ngIf="libriList.length === 0" style="color: tomato;"> Non ci sono ancora libri preferiti!</h3>-->
+    <ion-card *ngFor="let libro of libriList"
+                [routerLink]="['/libro-singolo', libro.id]">
       <ion-card-content>
         <ion-icon class="icone" name="book-outline"></ion-icon>
         <ion-icon class="icone" style="margin-left: 117px;" name="heart-circle-outline" color="danger"></ion-icon>
@@ -35,6 +35,6 @@
           {{ libro?.editore }}
         </ion-text>
       </ion-card-content>
-      </ion-card>
-      </ion-list>
+    </ion-card>
+  </ion-list>
 </ion-content>

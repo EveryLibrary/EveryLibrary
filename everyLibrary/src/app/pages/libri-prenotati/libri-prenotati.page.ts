@@ -6,6 +6,8 @@ import {FirestoreService} from '../../services/data/firestore.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {first} from 'rxjs/operators';
 import firebase from 'firebase';
+import {Biblioteca} from '../../models/biblioteche.interface';
+import {Libro} from '../../models/libri.interface';
 
 @Component({
   selector: 'app-libri-prenotati',
@@ -15,7 +17,6 @@ import firebase from 'firebase';
 export class LibriPrenotatiPage implements OnInit {
   public libriList: any[];
   public libriCaricati: any[];
-  
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,
               public authservice: AuthService, private firestore: AngularFirestore) { }
@@ -25,9 +26,9 @@ export class LibriPrenotatiPage implements OnInit {
     this.libriList = await this.initializeItems(userId);
   }
   async initializeItems(userId): Promise<any> {
-    const libriList = await this.firestoreService.getLibriPrestatiList(userId);
-    this.libriCaricati = libriList;
-    return libriList;
+    const libriPrenotatiList = await this.firestoreService.getLibriPrestatiList(userId);
+    this.libriCaricati = libriPrenotatiList;
+    return libriPrenotatiList;
   }
 
   async filterList(evt){
@@ -36,7 +37,6 @@ export class LibriPrenotatiPage implements OnInit {
     if(!searchTerm){
       return;
     }
-
     this.libriList = this.libriList.filter(
       currentLibro => {
         if(currentLibro.titolo && searchTerm){
@@ -47,9 +47,6 @@ export class LibriPrenotatiPage implements OnInit {
         }
       }
     );
-  }
-  login(){
-    this.router.navigate(['/login']);
   }
   userLoggedIn() {
     return (firebase.auth().currentUser != null);

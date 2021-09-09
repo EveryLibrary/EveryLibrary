@@ -25,9 +25,8 @@ export class PrestitoPage implements OnInit {
 
   ngOnInit() {
     const libroId: string = this.route.snapshot.paramMap.get('id');
-    console.log(libroId);
     const bibliotecaId: string = this.route.snapshot.paramMap.get('idBiblioteca');
-    this.firestoreService.getLibro(libroId,).subscribe(libro => {
+    this.firestoreService.getLibro(libroId).subscribe(libro => {
       this.libro = libro;
     });
     this.firestoreService.getBiblioteca(bibliotecaId).subscribe(biblioteca => {
@@ -58,7 +57,6 @@ export class PrestitoPage implements OnInit {
         case true:
           this.ciccio = 'Preso in prestito';
           this.prestito = false;
-          this.router.navigate(['/libri-prenotati']);
           break;
       }
       setTimeout(() => {
