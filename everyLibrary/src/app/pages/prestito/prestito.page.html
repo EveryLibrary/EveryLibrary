@@ -63,11 +63,13 @@
   </ion-item>
 
   <br>
-  <ion-button *ngIf="prestito" disabled class="bottonePrestito" (click)="prestato(prestito)">
-    <ion-text style="color: red; opacity: unset;"> Libro Preso in prestito! </ion-text>
-  </ion-button>
-  <ion-button *ngIf="!prestito" class="bottonePrestito" (click)="prestato(prestito)">
-    <ion-text>{{ ciccio }}</ion-text>
-  </ion-button>
+  <div *ngIf="libro?.numero_copie > 0">
+    <ion-button *ngIf="prestito" disabled class="bottonePrestito" (click)="prestato(prestito)">
+      <ion-text style="color: red; opacity: unset;"> Libro Preso in prestito! </ion-text>
+    </ion-button>
+    <ion-button *ngIf="!prestito" class="bottonePrestito" (click)="prestato(prestito)">
+      <ion-text>{{ ciccio }}</ion-text>
+    </ion-button>
+  </div>
 
 </ion-content>

@@ -51,4 +51,12 @@ export class LibriPrenotatiPage implements OnInit {
   userLoggedIn() {
     return (firebase.auth().currentUser != null);
   }
+
+  doRefresh(event) {
+    setTimeout(async () => {
+      console.log('Aggiornamento...');
+      this.libriList = await this.initializeItems(firebase.auth().currentUser.uid);
+      event.target.complete();
+    }, 1500);
+  }
 }

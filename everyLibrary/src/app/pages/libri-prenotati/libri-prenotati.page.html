@@ -9,6 +9,12 @@
 <ion-content>
   <br>
   <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
+  <h6 style="font-size: 10px; color: #4d4d4d; text-align: center; margin-top: -5px; margin-bottom: -1px">Scorri in basso per aggiornare...</h6>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Pull to refresh"
+                           refreshingSpinner="circles"
+                           refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-card *ngFor="let libro of libriList"
               [routerLink]="['/libro-singolo', libro.id]">

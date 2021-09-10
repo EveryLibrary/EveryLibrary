@@ -13,7 +13,7 @@ import firebase from 'firebase';
   styleUrls: ['./prestito.page.scss'],
 })
 export class PrestitoPage implements OnInit {
-  today = Date.now().toString().split('T')[0];
+  today = Date.now().toString();
   public libro: Libro;
   public biblioteca: Biblioteca;
   ciccio: string;
