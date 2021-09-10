@@ -9,6 +9,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import {Libro} from '../../models/libri.interface';
 import {Biblioteca} from '../../models/biblioteche.interface';
 import {count} from "rxjs/operators";
+import { AlertController } from '@ionic/angular';
+import { FirestoreService } from 'src/app/services/data/firestore.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +26,8 @@ export class DashboardPage implements OnInit {
   ricercaBiblioteca: FormGroup;
   private db = firebase.firestore();
   constructor(private router: Router, public authservice: AuthService, private firestore: AngularFirestore,
-  public toastController: ToastController, private navController: NavController, public formBuilder: FormBuilder) {
+  public toastController: ToastController, private navController: NavController, public formBuilder: FormBuilder,
+  public alertController:AlertController, public firestoreService: FirestoreService) {
   }
   ngOnInit() {
     this.ricercaBiblioteca=this.formBuilder.group({
@@ -33,6 +36,47 @@ export class DashboardPage implements OnInit {
       ]))
     });
     //console.log(firebase.auth().currentUser.uid);
+
+  }
+
+  /*restituisci(cond) {
+    //this.authservice.getUserUid()
+      if (this.userLoggedIn()) {
+        switch (cond){
+          case false:
+            this.presentAlert;
+            
+            this.firestoreService.verificaRestituzioni(firebase.auth().currentUser.uid, );
+            
+            break;
+          case true:
+            this.presentToast('Libro rimosso dai preferiti!');
+            this.pippo = 'Aggiungi ai preferiti';
+            this.isFavorited = false;
+            //aggiungo il preferito chiamando il metodo e passandogli l'uid dell'utente collegato e l'id del libro preferito
+            this.firestoreService.rimuoviPreferito(firebase.auth().currentUser.uid, this.route.snapshot.paramMap.get('id'));
+            break;
+        }
+        setTimeout(() => {
+          console.log('Async operation has ended');
+          //window.location.reload();
+        }, 1000);
+        //this.router.navigate(['/libro', this.route.snapshot.paramMap.get('id')]);
+      }
+    else {
+      this.presentToast('Devi effettuare il Login!').then( res=>
+          this.router.navigate(['/login']),
+        err => console.log(err)
+      );
+    }
+  }*/
+  
+  async presentAlert (){
+    const alert = await this.alertController.create({
+      header: 'Restituzione',
+      message:'Devi restituire un libro',
+      buttons: ['OK']
+    })
   }
 
   linkMappaBiblioteche(){

@@ -207,4 +207,35 @@ export class FirestoreService {
         .where('idBiblioteca', '==', bibliotecaId)
         .where('idUtente', '==', utenteId)).valueChanges();
   }*/
+
+
+  /*async verificaRestituzioni(uid: string, idBiblioteca: string) {
+    let list: Array<{ libriDaRestituireId: string }>;
+    const ListaLibriDaRestituire: Array<Libro> = [];
+    await this.metodoRestituzione(uid,idBiblioteca).then(value => {
+      list = value;
+    });
+    for (let i = 0; i < list.length; i++) {
+      console.log(list[i]);
+      ListaLibriDaRestituire.push(await this.firestore.collection<Libro>('Libri')
+        .doc(list[i].toString())
+        .valueChanges().pipe(first()).toPromise());
+    }
+    return ListaLibriDaRestituire;
+  }
+
+  async metodoRestituzione(uid: string,idBiblioteca: string) {
+    const list: Array<{ libriDaRestituireId: string }> = [];
+    await this.db.collection('LibriPrestati').where('idUtente', '==', uid).where('idBiblioteca','==',idBiblioteca).get().then(
+      querySnapshot => {
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach(document => {
+            list.push(document.get('idLibro'));
+          });
+        }
+      }
+    );
+    return list;
+  }*/
+  
 }
