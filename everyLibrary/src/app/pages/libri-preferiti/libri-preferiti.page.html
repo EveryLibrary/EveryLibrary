@@ -17,7 +17,7 @@
                            refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <!--<h3 *ngIf="libriList.length === 0" style="color: tomato;"> Non ci sono ancora libri preferiti!</h3>-->
+    <h4 *ngIf="lengthLibriList===0" style="color: tomato; margin-left: 20px;"> Non ci sono ancora libri preferiti!</h4>
     <ion-card *ngFor="let libro of libriList"
                 [routerLink]="['/libro-singolo', libro.id]">
       <ion-card-content>

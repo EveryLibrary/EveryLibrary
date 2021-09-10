@@ -17,6 +17,7 @@ import {Libro} from '../../models/libri.interface';
 export class LibriPrenotatiPage implements OnInit {
   public libriList: any[];
   public libriCaricati: any[];
+  public lengthLibriList: number;
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,
               public authservice: AuthService, private firestore: AngularFirestore) { }
@@ -24,6 +25,7 @@ export class LibriPrenotatiPage implements OnInit {
   async ngOnInit() {
     const userId = firebase.auth().currentUser.uid;
     this.libriList = await this.initializeItems(userId);
+    this.lengthLibriList = this.libriList.length;
   }
   async initializeItems(userId): Promise<any> {
     const libriPrenotatiList = await this.firestoreService.getLibriPrestatiList(userId);

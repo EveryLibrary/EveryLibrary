@@ -14,8 +14,15 @@
   </ion-card-title>
   <br>
   <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
+
   <br>
+    <ion-segment-button (click)="favorite(isFavorited)">
+      <ion-icon class="icona" style="" name="heart-circle-outline"></ion-icon>
+      <ion-text *ngIf="!isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
+      <ion-text *ngIf="isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
+    </ion-segment-button>
   <br>
+
   <ion-item>
     <ion-label>ISBN: </ion-label>
     <ion-text> {{ libro?.isbn }} </ion-text>

@@ -18,12 +18,14 @@ import firestore = firebase.firestore;
 export class LibriPreferitiPage implements OnInit {
   public libriList: any[];
   private libriCaricati: Libro[];
+  public lengthLibriList: number;
   constructor(private navController: NavController, private router: Router,
               private firestoreService: FirestoreService, private route: ActivatedRoute,
               public authservice: AuthService, public firestore: AngularFirestore) {}
   async ngOnInit() {
     const utenteId = firebase.auth().currentUser.uid;
     this.libriList = await this.initializeItems(utenteId);
+    this.lengthLibriList = this.libriList.length;
   }
   async initializeItems(utenteId: any) {
     const libriPreferitiList = await this.firestoreService.getLibriPreferitiList(utenteId);
