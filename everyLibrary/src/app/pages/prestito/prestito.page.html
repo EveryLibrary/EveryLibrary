@@ -10,46 +10,50 @@
   <br>
   <br>
   <ion-title style="text-align: center;">
-    Info Libro
+    Informazioni generali
   </ion-title>
   <br>
-  <ion-img class="libro" src="../../../assets/icon/ONYX.jpg"></ion-img>
+  <ion-img class="libro" style="border-radius: 10px" src="../../../assets/icon/ONYX.jpg"></ion-img>
   <br>
+  <ion-card>
+    <ion-card-content style="padding: 0; display: contents;">
   <ion-item>
-    <ion-label>Titolo: <br> {{ libro?.titolo }} </ion-label>
+    <ion-label>Titolo:</ion-label> <ion-label style="float: right; flex:none"> {{ libro?.titolo }} </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>ISBN: </ion-label>
-    <ion-text> {{ libro?.isbn }} </ion-text>
+    <ion-text style="float: right" > {{ libro?.isbn }} </ion-text>
   </ion-item>
 
   <ion-item>
-    <ion-label>Autore: <br> <ion-label style="float: right;"> {{ libro?.autore }} </ion-label></ion-label>
+    <ion-label>Autore: <ion-label style="float: right;"> {{ libro?.autore }} </ion-label></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Editore: <br> <ion-label style="float: right;">{{ libro?.editore }} </ion-label></ion-label>
+    <ion-label>Editore: <ion-label style="float: right;">{{ libro?.editore }} </ion-label></ion-label>
   </ion-item>
-
+    </ion-card-content>
+  </ion-card>
   <br>
-  <br>
-  <ion-title style="text-align: center;">
-    Info Prenotazione
+  <ion-title style="text-align: center; font-size: 16px">
+    Informazioni Prenotazione
   </ion-title>
-
+  <ion-card>
+    <ion-card-content style="padding: 0; display: contents;">
   <ion-item>
     <ion-label>Biblioteca: </ion-label>
-    <ion-text> {{ biblioteca?.nome }} </ion-text>
+    <ion-text style="float: right;"> {{ biblioteca?.nome }} </ion-text>
   </ion-item>
 
   <ion-item>
     <ion-label>Corsia: </ion-label>
-    <ion-text> {{ libro?.posizione_corsia }} </ion-text>
+    <ion-text style="float: right;"> {{ libro?.posizione_corsia }} </ion-text>
   </ion-item>
 
   <ion-item>
-    <ion-label style="color: black; opacity: unset;">Prenotazione: {{ today | date:'dd/MM/yyyy'}} </ion-label>
+    <ion-label style="color: black; opacity: unset;">Prenotazione: </ion-label>
+    <ion-label style="color: black; opacity: unset;float: right;flex: none">{{ today | date:'dd/MM/yyyy'}} </ion-label >
     <ion-datetime disabled displayFormat="DD/MM/YYYY" [(ngModel)]="today"></ion-datetime>
   </ion-item>
 
@@ -61,7 +65,8 @@
   <ion-item>
     <ion-label>Periodo Prestito: <ion-label style="float: right;">{{ biblioteca?.periodo_prestito }}</ion-label></ion-label>
   </ion-item>
-
+    </ion-card-content>
+  </ion-card>
   <br>
   <div *ngIf="libro?.numero_copie > 0">
     <ion-button *ngIf="prestito" disabled class="bottonePrestito" (click)="prestato(prestito)">

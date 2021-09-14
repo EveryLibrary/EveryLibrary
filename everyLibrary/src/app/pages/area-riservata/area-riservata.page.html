@@ -8,6 +8,8 @@
 
 <ion-content>
   <br>
+  <ion-card style="background-color: #8fa35d;">
+    <ion-card-content style="padding: 2px; align-items: center">
     <ion-item>
       <ion-label>Nome: </ion-label>
       <ion-text> {{ utente?.name }} </ion-text>
@@ -32,7 +34,9 @@
       <ion-label>Telefono: </ion-label>
       <ion-text> {{ utente?.phoneNumber }} </ion-text>
     </ion-item>
-  <br>
+
+    </ion-card-content>
+  </ion-card>
   <ion-button (click)="linkLibriPrenotati()">Libri Prenotati</ion-button>
   <br>
   <br>

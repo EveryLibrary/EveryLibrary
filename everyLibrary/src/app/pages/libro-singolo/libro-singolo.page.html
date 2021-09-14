@@ -22,36 +22,38 @@
       <ion-text *ngIf="isFavorited" style="color: tomato"> {{ pippo }} </ion-text>
     </ion-segment-button>
   <br>
-
+  <ion-card>
+    <ion-card-content style="padding: 0; display: contents;">
   <ion-item>
     <ion-label>ISBN: </ion-label>
-    <ion-text> {{ libro?.isbn }} </ion-text>
+    <ion-text style="float: right"> {{ libro?.isbn }} </ion-text>
   </ion-item>
 
   <ion-item>
-    <ion-label>Data Pubblicazione:<br> <ion-label style="float: right;">{{ libro?.dataPubblicazione }}</ion-label></ion-label>
+    <ion-label>Data Pubblicazione: <ion-label style="float: right;">{{ libro?.dataPubblicazione }}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Autore: <br> <ion-label style="float: right;">{{ libro?.autore }}</ion-label></ion-label>
+    <ion-label>Autore: <ion-label style="float: right;">{{ libro?.autore }}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
-    <ion-label>Editore: <br> <ion-label style="float: right;">{{ libro?.editore }}</ion-label></ion-label>
+    <ion-label>Editore: <ion-label style="float: right;">{{ libro?.editore }}</ion-label></ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>Genere: </ion-label>
     <ion-text> {{ libro?.genere }} </ion-text>
   </ion-item>
-
-  <br>
-  <ion-item>
-    <ion-text>Trama:
-      <br>
-      <br>
+    </ion-card-content>
+  </ion-card>
+  <ion-label style="padding-left: 15px;font-size: 14px;">Trama:
+  </ion-label>
+  <ion-card style="    background-color: #c0e080;padding: 0;font-family: -webkit-body;max-height: 100%;
+        display: flex;flex-direction: column;">
+    <ion-card-content style="overflow: hidden;overflow-y: auto;">
       {{ libro?.trama }}
-    </ion-text>
-  </ion-item>
+    </ion-card-content>
+  </ion-card>
   <br>
 </ion-content>

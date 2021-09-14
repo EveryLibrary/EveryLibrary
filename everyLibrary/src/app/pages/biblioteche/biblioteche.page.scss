@@ -35,7 +35,7 @@ ion-searchbar{
 }
 
 ion-button{
-  --background: #c0e080;
+  --background: #d8f2a2;
   --color: black;
   width: 200px;
   --border-radius: 10px;
@@ -53,8 +53,12 @@ ion-label{
   height: 30px;
   width: 30px;
 }
+ion-card-content{
+  //background-color: #9acd32ab;
+  //border: 1px solid #894212;
+}
 ion-card{
   text-align: left;
   color: black;
-  background-color: white;
+  background-color:#c0e080 ;
 }

@@ -13,16 +13,17 @@
   <ion-searchbar showCancelButton="" (ionInput)="filterList($event)" placeholder="Cerca un libro"></ion-searchbar>
   <ion-list>
     <ion-card *ngFor="let libro of libriList" [routerLink]="['/libro', libro.id, biblioteca]">
-          <ion-icon class="icona" name="book-outline"></ion-icon>
-          <ion-icon class="icona" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
       <ion-card-content>
-        Titolo: {{ libro?.titolo }}
+        <ion-icon class="icona" name="book-outline"></ion-icon>
+        <ion-icon class="icona" style="margin-left: 117px;" name="heart-circle-outline"></ion-icon>
         <br>
-        Autore: {{ libro?.autore }}
+        <ion-text> <strong> Titolo:</strong> {{ libro?.titolo }} </ion-text>
         <br>
-        Editore: {{ libro?.editore }}
+        <ion-text> <strong> Autore:</strong> {{ libro?.autore }}</ion-text>
         <br>
-        Genere: {{ libro?.genere }}
+        <ion-text> <strong> Editore:</strong> {{ libro?.editore }}</ion-text>
+        <br>
+        <ion-text> <strong> Genere:</strong> {{ libro?.genere }}</ion-text>
       </ion-card-content>
     </ion-card>
   </ion-list>

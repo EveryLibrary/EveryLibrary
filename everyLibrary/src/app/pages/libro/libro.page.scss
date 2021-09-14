@@ -33,8 +33,14 @@ ion-button{
 ion-list{
   background-color: #d8f2a2;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+
 ion-item{
-  --background: #d8f2a2;
+  display: flex;
+  font-size: 12px;
+  --background: #c0e080;
 }
 .libro{
   height: 250px;

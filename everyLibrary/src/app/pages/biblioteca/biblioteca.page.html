@@ -12,8 +12,9 @@
 
 <ion-content>
   <br>
-  <br>
-  <ion-title>
+  <ion-card style="background-color: #c0e080;padding: 0">
+    <ion-card-content>
+  <ion-title style="font-weight: bolder; color: #374124">
     {{ biblioteca?.nome }}
   </ion-title>
   <ion-item>
@@ -35,7 +36,8 @@
     <ion-label>Orario chiusura: </ion-label>
     <ion-text> {{biblioteca?.orario_chiusura}} </ion-text>
   </ion-item>
-  <br>
+    </ion-card-content>
+  </ion-card>
   <br>
   <ion-button (click)="linkListaLibri()">Lista Libri</ion-button>
   <br>
